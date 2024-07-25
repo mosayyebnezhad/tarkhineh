@@ -1,0 +1,31 @@
+@import "../../Data/varibles.scss";
+
+fieldset {
+    width: 320px;
+    height: auto;
+    direction: rtl;
+    border-radius: 4px;
+    @include align(space-around, center);
+
+    .nohere {
+        border: none;
+        background: none;
+        @include align(center, center);
+        cursor: pointer;
+    }
+
+    legend {
+        transition: .5s;
+        text-align: right;
+
+    }
+
+    input {
+        width: calc(100% - 60px);
+        height: 30px;
+        border: none;
+        outline: none;
+        // background: red;
+        font-size: 14px;
+    }
+}
