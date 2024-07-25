@@ -8,9 +8,12 @@ interface icon {
     "rotator" |
     "eye" |
     "close-eye" |
-    "security",
+    "security"|
+    "ArrowLeft" |
+    "ArrowRight",
     color?: string
-
+    width?: number
+    height?: number
 
 
 }

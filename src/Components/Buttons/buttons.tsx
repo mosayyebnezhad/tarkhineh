@@ -6,7 +6,7 @@ import IProps from "./buttonType";
 
 const Buttons = (prop: IProps) => {
 
-    const { IconFirst, disabled, iconcolor, onclick, type, children, IconSecond, color, btnStyle, size } = prop;
+    const { IconFirst, disabled, iconcolor, iconHeight, IconWidth, onclick, type, children, IconSecond, color, btnStyle, size } = prop;
 
     var backGColor;
     var textColor;
@@ -15,7 +15,7 @@ const Buttons = (prop: IProps) => {
     switch (color) {
         case "white":
 
-            textColor = "#417F56";
+            textColor = "#ffffff";
             backGColor = "#E5F2E9";
             break;
         case "green":
@@ -48,7 +48,7 @@ const Buttons = (prop: IProps) => {
     } else if (btnStyle === "border") {
         style = {
             // backgroundColor: "#E5F2E9",
-            color: "black",
+            color: textColor,
             border: "1px solid " + backGColor,
         }
     } else if (btnStyle === "no-border") {
@@ -92,7 +92,12 @@ const Buttons = (prop: IProps) => {
 
 
 
-
+    if (prop.textColor) {
+        style = {
+            ...style,
+            color: prop.textColor
+        }
+    }
 
 
 
@@ -100,7 +105,7 @@ const Buttons = (prop: IProps) => {
 
 
         <button type={type} onClick={onclick} style={style} disabled={disabled} className={color + " customBTN"} >
-            {IconFirst && <Icon icon={IconFirst} color={iconcolor} />
+            {IconFirst && <Icon height={iconHeight} width={IconWidth} icon={IconFirst} color={iconcolor} />
             }
             {prop.disabled ?
 

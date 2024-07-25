@@ -13,6 +13,9 @@ interface IProps {
     disabled?: boolean;
     type?: "submit" | "reset" | "button";
     iconcolor?: string;
+    textColor?: string;
+    iconHeight?:number
+    IconWidth?:number
 
 }
 export default IProps;
