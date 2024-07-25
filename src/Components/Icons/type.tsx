@@ -10,6 +10,9 @@ interface icon {
     "close-eye" |
     "security"|
     "ArrowLeft" |
+    "Telegram"|
+    "Instagram"|
+    "X"|
     "ArrowRight",
     color?: string
     width?: number
