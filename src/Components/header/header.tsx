@@ -1,48 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import "./header.scss"
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import Icon from "../Icons/icons";
+import { URL } from "url";
 
 
 
 
-interface HeaderProps {
-    active: "تماس با ما" | "درباره ما" | "اعطای نمایندگی" | "منو" | "شعبه" | "صفحه اصلی"
-}
+const Header = () => {
 
 
-const Header = (prop: HeaderProps) => {
-
-
-    var fakeProps = 0;
-
-
-
-    switch (prop.active) {
-
-
-        case "تماس با ما":
-            fakeProps = 0
-            break;
-        case "درباره ما":
-            fakeProps = 1
-            break;
-        case "اعطای نمایندگی":
-            fakeProps = 2
-            break;
-        case "منو":
-            fakeProps = 3
-            break;
-        case "شعبه":
-            fakeProps = 4
-            break;
-        case "صفحه اصلی":
-            fakeProps = 5
-            break;
-
-
-    }
 
 
     return (
@@ -52,24 +20,24 @@ const Header = (prop: HeaderProps) => {
             <div className="icons">
                 <Link to="/users">
                     <i>
-                    <Icon icon="user" />
+                        <Icon icon="user" />
                     </i>
                 </Link>
 
                 <Link to="/about">
                     <i>
-                    <Icon icon="pay" />
+                        <Icon icon="pay" />
                     </i>
                 </Link >
                 <Link className="phoneDelete" to="/contact">
                     <i>
-                    <Icon icon="search" />
+                        <Icon icon="search" />
                     </i>
                 </Link>
 
             </div>
             <div className="parameters phoneDelete">
-                <Headeritem activeItem={fakeProps} />
+                <Headeritem />
             </div>
             <div className="logo">
                 <svg width="155" height="51" viewBox="0 0 155 51" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,16 +90,17 @@ const Header = (prop: HeaderProps) => {
 
 export default Header;
 
-interface HeaderItemProps {
 
-    activeItem: number;
-}
 
 const haederItems = ["تماس با ما", "درباره ما", "اعطای نمایندگی", "منو", "شعبه", "صفحه اصلی"]
-const haederItemsLinks = ["تماس با ما", "درباره ما", "اعطای نمایندگی", "منو", "", ""]
+const haederItemsEnglish = ["contact", "aboute", "Deputize", "menu", "Branch", "home"]
 
 
-const Headeritem = (prop: HeaderItemProps) => {
+const Headeritem = () => {
+
+    const indexloc = haederItemsEnglish.indexOf(useLocation().pathname.replace("/", "")) | 0
+
+
     return (
         <>
             {haederItems.map((item, index) =>
@@ -139,24 +108,17 @@ const Headeritem = (prop: HeaderItemProps) => {
                 <>
 
                     <div>
-                        {haederItemsLinks[index] === "" ?
-                            <div key={item} className={prop.activeItem === index ? "active item" : "item"}>
 
-                                {index === 4 ? <Icon icon="ArrowDown" /> : null}
-                                {index === 5 ? <Icon icon="ArrowDown" /> : null}
-                                {item}
-                            </div>
+                        <Link to={haederItemsEnglish[index]}><div key={item} className={haederItems[indexloc] === item ? "active item" : "item"}>
+
+                            {index === 4 ? <Icon icon="ArrowDown" /> : null}
+                            {index === 5 ? <Icon icon="ArrowDown" /> : null}
+                            {item}
 
 
-                            :
-                            <Link to={haederItemsLinks[index]}><div key={item} className={prop.activeItem === index ? "active item" : "item"}>
+                        </div>
 
-                                {index === 4 ? <Icon icon="ArrowDown" /> : null}
-                                {index === 5 ? <Icon icon="ArrowDown" /> : null}
-                                {item}
-                            </div>
-
-                            </Link>}
+                        </Link>
                     </div>
 
 

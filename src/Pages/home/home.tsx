@@ -3,8 +3,8 @@ import Slider from '../../Components/Slider/slider';
 const Home = () => {
     return (
         <>
-            <Header active={'صفحه اصلی'} />
-            <Slider/>
+
+            <Slider />
         </>
     )
 }

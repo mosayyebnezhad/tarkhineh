@@ -1,3 +1,5 @@
+@import "../../Data/varibles.scss";
+
 .customBTN {
 
     border: none;
@@ -5,13 +7,14 @@
     background: none;
     border-radius: 4px;
     cursor: pointer;
+    @include align(center, center);
 
     &:hover {
         opacity: .9;
     }
 }
 
-@import "../../Data/varibles.scss";
+
 
 .RotateIcon {
     // background: red;

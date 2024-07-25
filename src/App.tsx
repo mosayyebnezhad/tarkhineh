@@ -1,23 +1,13 @@
-import React from 'react';
-// import Header from './Components/header/header';
-import { Routes, Route } from 'react-router-dom';
-import Notfound from './Pages/Notfound/notfound';
-import Home from './Pages/home/home';
+
+import Routings from './Pages/Routes';
+import Header from './Components/header/header';
 
 
 function App() {
   return (
     <>
-      <Routes>
-
-        <Route index element={<Home />} />
-
-        <Route path="*" element={<Notfound />} />
-
-      </Routes>
-
-
-      {/* <Notfound /> */}
+      <Header/>
+      <Routings />
     </>
   );
 }

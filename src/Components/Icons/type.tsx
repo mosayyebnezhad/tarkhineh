@@ -4,11 +4,12 @@ interface icon {
     "search" |
     "menu" |
     "ArrowUp" |
-    "ArrowDown"|
-    "rotator"|
-    "eye"|
-    "close-eye"|
-    "security"
+    "ArrowDown" |
+    "rotator" |
+    "eye" |
+    "close-eye" |
+    "security",
+    color?: string
 
 
 

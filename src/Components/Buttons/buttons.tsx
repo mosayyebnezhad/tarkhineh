@@ -6,7 +6,7 @@ import IProps from "./buttonType";
 
 const Buttons = (prop: IProps) => {
 
-    const { IconFirst, disabled, onclick, type, children, IconSecond, color, btnStyle, size } = prop;
+    const { IconFirst, disabled, iconcolor, onclick, type, children, IconSecond, color, btnStyle, size } = prop;
 
     var backGColor;
     var textColor;
@@ -100,7 +100,7 @@ const Buttons = (prop: IProps) => {
 
 
         <button type={type} onClick={onclick} style={style} disabled={disabled} className={color + " customBTN"} >
-            {IconFirst && <Icon icon={IconFirst} />
+            {IconFirst && <Icon icon={IconFirst} color={iconcolor} />
             }
             {prop.disabled ?
 
@@ -112,7 +112,7 @@ const Buttons = (prop: IProps) => {
                 : children}
 
 
-            {IconSecond && <Icon icon={IconSecond} />}
+            {IconSecond && <Icon icon={IconSecond} color={iconcolor} />}
         </button >
 
 
