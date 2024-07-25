@@ -1,0 +1,70 @@
+@import "../../../../Data/varibles.scss";
+
+.resturantMenu {
+    width: 100%;
+    height: auto;
+    // background: red;
+    float: left;
+    @include align(center, center);
+
+    .subcountainer {
+        width: 90%;
+        height: auto;
+        // background: green;
+        @include align(space-around, center);
+        flex-wrap: wrap;
+        flex-direction: row;
+
+        // flex-grow: 0;
+        // flex-flow: wrap;
+        .countainerElement {
+
+            width: 220px;
+            height: 360px;
+            position: relative;
+            display: block !important;
+
+            img {
+                position: absolute;
+                width: 100%;
+                margin-top: 25px;
+                filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+            }
+
+            // background: red;
+
+            .card {
+                width: 100%;
+                margin-top: 144px;
+                border-radius: 8px;
+                height: 144px;
+                background: #417F56;
+
+                .flowing {
+                    position: absolute;
+                    z-index: 99;
+                    width: 100%;
+                    // height: 3;
+                    margin-top: 136px;
+                    // background: gray;
+
+                    @include align(center, center);
+
+                    .linkBoxShadow {
+                        border-radius: 4px;
+                        overflow: hidden;
+                        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@media (max-width:900px) {
+    .countainerElement {
+        margin: 20px 40px;
+    }
+
+}

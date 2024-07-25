@@ -1,0 +1,24 @@
+interface icon {
+    icon: "pay" |
+    "user" |
+    "search" |
+    "menu" |
+    "ArrowUp" |
+    "ArrowDown" |
+    "rotator" |
+    "eye" |
+    "close-eye" |
+    "security"|
+    "ArrowLeft" |
+    "Telegram"|
+    "Instagram"|
+    "X"|
+    "ArrowRight",
+    color?: string
+    width?: number
+    height?: number
+
+
+}
+
+export default icon;

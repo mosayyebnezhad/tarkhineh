@@ -1,0 +1,83 @@
+@import "../../Data/varibles.scss";
+
+:root {
+
+    --swiper-pagination-color: rgb(16, 147, 29);
+    --swiper-pagination-bullet-size: 8px;
+    --swiper-pagination-bullet-width: 8px;
+    --swiper-pagination-bullet-height: 8px;
+
+    --swiper-pagination-bullet-inactive-color: black;
+    --swiper-pagination-bullet-inactive-opacity: .4;
+    --swiper-pagination-bullet-opacity: 1;
+    --swiper-pagination-bullet-horizontal-gap: 4px;
+    --swiper-pagination-bullet-vertical-gap: 6px;
+
+}
+.swiper-pagination{
+    margin-top: 50px !important;
+}
+.swiper-pagination-bullet-active {
+    width: 14px !important;
+    height: 14px !important;
+}
+
+.swipBase {
+    width: 100%;
+
+    .simage {
+        height: 450px;
+
+        .shader {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, black, rgba(255, 255, 255, 0));
+            position: absolute;
+
+
+            .shadercase {
+                @include align(center, flex-end);
+                flex-wrap: wrap;
+                height: 50%;
+                margin-top: 8%;
+
+                h2 {
+                    font-size: 40px;
+                    // background: red;
+                    text-align: center;
+                    color: white;
+                    width: 100%;
+                }
+            }
+
+
+        }
+    }
+
+    img {
+        width: 100%;
+
+    }
+}
+
+.pagi {
+    width: 154px;
+    height: 33px;
+    position: absolute;
+    z-index: 1;
+    margin: -33px;
+    // background: red;
+    margin-left: calc(50% - 77px);
+    // margin-left: calc( 1px);
+}
+
+@media (max-width: 1000px) {
+    .swipBase {
+        img {
+            object-fit: cover;
+            height: 100%;
+            width: 1000px;
+        }
+    }
+
+}

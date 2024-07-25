@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# Tarkhineh
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a sample portfolio website built using React. It showcases my skills , projects, and experience.
 
-## Available Scripts
+This project is based on designs and inspirations from:
 
-In the project directory, you can run:
+[Arezoo](https://www.figma.com/@rwish77)
 
-### `npm start`
+[sardar](https://www.figma.com/@sardar_wazifeh)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+[ehsan](https://www.figma.com/@theehsanez)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Thanks About That
 
-### `npm test`
+[Tarkhineh Project](https://www.figma.com/community/file/1231631272542945983) on Figma
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Table of Contents
 
-### `npm run build`
+- [Demo](#demo)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Demo
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+You can check out the live demo of the website [here](Coming soon).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
 
-### `npm run eject`
+- Responsive design
+- Projects showcase
+- Skills display
+- Contact form
+- Clean and modern UI
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Installation
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+To get a local copy up and running follow these simple steps:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. **Clone the repository**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```bash
+- git clone https://github.com/mosayyebnezhad/tarkhineh
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- npm i
+```
