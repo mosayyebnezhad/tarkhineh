@@ -1,6 +1,6 @@
 # Tarkhineh
 
-This is a sample portfolio website built using React. It showcases my skills, projects, and experience.
+This is a sample portfolio website built using React. It showcases my skills , projects, and experience.
 
 This project is based on designs and inspirations from:
 
