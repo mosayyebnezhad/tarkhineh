@@ -8,6 +8,8 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import Buttons from "../Buttons/buttons";
+import Image from "../Images/Image";
+import { Link } from "react-router-dom";
 
 
 const Slider = () => {
@@ -36,39 +38,33 @@ const Slider = () => {
                 </div>
                 <SwiperSlide>
                     <div className="simage">
-                        <div className="shader">
-                            <div className="shadercase">
-                                <h2>یک ماجراجویی آشپزی برای تمام حواس</h2>
-                                <Buttons color="green" size="medium" btnStyle="filled" >
-                                    سفارش دهید
-                                </Buttons>
-                            </div>
-                        </div>
-                        <img src="/image1.jpg" alt="Slide 1" />
+                        <Shader Buttontitle="سفارش دهید" link="/" title="یک ماجراجویی آشپزی برای تمام حواس" />
+                        <Image path="image1.jpg" alt="Slide 1" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="simage">
-                        <div className="shader"></div>
-                        <img src="/image2.jpg" alt="Slide 1" />
+                        <Shader Buttontitle="سفارش دهید" link="/" title="یک ماجراجویی آشپزی برای تمام حواس" />
+
+                        <Image path="image2.jpg" alt="Slide 1" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="simage">
-                        <div className="shader"></div>
-                        <img src="/image4.jpg" alt="Slide 1" />
+                        <Shader Buttontitle="سفارش دهید" link="/" title="یک ماجراجویی آشپزی برای تمام حواس" />
+                        <Image path="image3.jpg" alt="Slide 1" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="simage">
-                        <div className="shader"></div>
-                        <img src="/image1.jpg" alt="Slide 1" />
+                        <Shader Buttontitle="سفارش دهید" link="/" title="یک ماجراجویی آشپزی برای تمام حواس" />
+                        <Image path="image4.jpg" alt="Slide 1" />
                     </div>
                 </SwiperSlide>
                 <SwiperSlide>
                     <div className="simage">
-                        <div className="shader"></div>
-                        <img src="/image3.jpg" alt="Slide 1" />
+                        <Shader Buttontitle="سفارش دهید" link="/" title="یک ماجراجویی آشپزی برای تمام حواس" />
+                        <Image path="image2.jpg" alt="Slide 1" />
                     </div>
                 </SwiperSlide>
 
@@ -82,5 +78,23 @@ const Slider = () => {
 
 export default Slider;
 
+interface IShaderProps {
+    title: string
+    Buttontitle: string
+    link: string
 
-
+}
+const Shader = (prop: IShaderProps) => {
+    return (
+        <div className="shader">
+            <div className="shadercase">
+                <h2>{prop.title}</h2>
+                <Link to={prop.link}>
+                    <Buttons color="green" size="medium" btnStyle="filled" >
+                        {prop.Buttontitle}
+                    </Buttons>
+                </Link>
+            </div>
+        </div>
+    )
+}

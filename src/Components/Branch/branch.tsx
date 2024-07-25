@@ -1,10 +1,12 @@
 import { Link } from "react-router-dom"
 import "./branch.scss"
 import Buttons from "../Buttons/buttons"
+import Image from "../Images/Image"
 
 interface Branch {
-    Device: "Desktop" | "Mobile"
-    Size: "small" | "large"
+    Branch: string
+    address: string
+    link: string
 }
 
 const Branch = (prop: Branch) => {
@@ -17,14 +19,14 @@ const Branch = (prop: Branch) => {
 
 
                 </div>
-                <img src="/image2.jpg" alt="hi" />
+                {/* <img src="/image2.jpg" alt="hi" /> */}
+                <Image path="image2.jpg" BeforTxt="Resturant Branch Image" />
             </div>
             <div className="Detail">
-                <h3 className="title">شعبه اکباتان</h3>
+                <h3 className="title">شعبه {prop.Branch}</h3>
                 <p className="address">
 
-                    شهرک اکباتان، فاز ۳، مجتمع تجاری کوروش، طبقه سوم
-
+                    {prop.address}
 
                 </p>
 
@@ -32,8 +34,8 @@ const Branch = (prop: Branch) => {
             </div>
 
             <div className="hiddenbutton">
-                <Link to={"./"}>
-                    <Buttons btnStyle="border" color="green" size="small" IconFirst="ArrowLeft"  textColor="black" iconHeight={24} IconWidth={16}>
+                <Link to={prop.link}>
+                    <Buttons btnStyle="border" color="green" size="small" IconFirst="ArrowLeft" textColor="black" iconHeight={24} IconWidth={16}>
                         شعبه
                     </Buttons>
 

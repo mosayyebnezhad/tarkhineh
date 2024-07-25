@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Buttons from "../../../../Components/Buttons/buttons";
 import "./resturantmenu.scss"
+import Image from "../../../../Components/Images/Image";
 
 const ResturantMenu = () => {
     return (
@@ -8,7 +9,7 @@ const ResturantMenu = () => {
 
             <div className="subcountainer">
                 <div className="countainerElement">
-                    <img src="./drink.png" alt="Menu" />
+                    <Image path="drink.png" BeforTxt="Enjoy from your" />
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
@@ -20,7 +21,8 @@ const ResturantMenu = () => {
                     </div>
                 </div>
                 <div className="countainerElement">
-                    <img src="./deser.png" alt="Menu" />
+
+                    <Image path="deser.png" BeforTxt="Enjoy from your" />
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
@@ -32,7 +34,8 @@ const ResturantMenu = () => {
                     </div>
                 </div>
                 <div className="countainerElement">
-                    <img src="./befor.png" alt="Menu" />
+
+                    <Image path="befor.png" BeforTxt="Enjoy from your" />
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
@@ -45,7 +48,7 @@ const ResturantMenu = () => {
                     </div>
                 </div>
                 <div className="countainerElement">
-                    <img src="./food.png" alt="Menu" />
+                    <Image path="food.png" BeforTxt="Enjoy from your" />
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
