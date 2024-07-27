@@ -9,6 +9,7 @@ function App() {
     <>
       <header>
         <Header />
+        header
       </header>
       <Routings />
       <Footer />
