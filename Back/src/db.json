@@ -1,14 +1,34 @@
 {
-  "endpoints": ["/api/users", "/api/admins"],
-  "admins": [
-    { "uid": "001", "username": "Larry Pages" },
-    { "uid": "002", "username": "Sergey Brin" }
-  ],
   "users": [
-    { "uid": "001", "username": "Bill Gates" },
-    { "uid": "002", "username": "Mark Zuck" },
-    { "uid": "003", "username": "Elon Musk" },
-    { "uid": "004", "username": "Steve Jobs" },
-    { "uid": "005", "username": "Jeff Bezos" }
+    {
+      "uid": "001",
+      "username": "Bill Gates",
+      "email":"billgates@example.com",
+      "password": "123456789"
+    },
+    {
+      "uid": "002",
+      "username": "Mark Zuck",
+      "email":"markzuck@example.com",
+      "password": "123456789"
+    },
+    {
+      "uid": "003",
+      "username": "Elon Musk",
+      "email": "elonmusk@example.com",
+      "password": "123456789"
+    },
+    {
+      "uid": "004",
+      "username": "Steve Jobs",
+      "email": "stevejobs@example.com",
+      "password": "123456789"
+    },
+    {
+      "uid": "005",
+      "username": "Jeff Bezos",
+      "email": "jeffbezos@example.com",
+      "password": "123456789"
+    }
   ]
 }
