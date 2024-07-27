@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react';
+// import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 
 
@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import './Data/index.scss';
 import { BrowserRouter } from 'react-router-dom';
-import Loading from './Components/Loading/Loading';
+// import Loading from './Components/Loading/Loading';
 import App from './App';
 
 
@@ -28,14 +28,11 @@ const Main = () => {
 
   //         <OtherComponent />    {/* this is app */}
   //    //   </Suspense> 
-  
+
   return (
     <React.StrictMode>
       <BrowserRouter>
-
-
-       //
-
+ 
 
         <App />
 
