@@ -7,6 +7,7 @@ import reportWebVitals from './reportWebVitals';
 import './Data/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 import Loading from './Components/Loading/Loading';
+import App from './App';
 
 
 const root = ReactDOM.createRoot(
@@ -20,17 +21,24 @@ const Main = () => {
 
 
 
-  const OtherComponent = React.lazy(() => import('./App'));
+  // const OtherComponent = React.lazy(() => import('./App'));
+
+  // replace by App
+  // <Suspense fallback={<h1><Loading />~</h1>}>
+
+  //         <OtherComponent />    {/* this is app */}
+  //    //   </Suspense> 
+  
   return (
     <React.StrictMode>
       <BrowserRouter>
 
 
-        <Suspense fallback={<h1><Loading />~</h1>}>
+       //
 
-          <OtherComponent />    {/* this is app */}
-        </Suspense>
-  
+
+        <App />
+
 
       </BrowserRouter>
 
