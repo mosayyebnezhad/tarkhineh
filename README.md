@@ -1,5 +1,9 @@
 # Tarkhineh
 
+[
+    ![tarkhineh image](https://repository-images.githubusercontent.com/833374287/5387f4c1-fe81-47e5-9a06-ad2839d690ec "tarkhineh image")
+](https://www.figma.com/community/file/1231631272542945983)
+
 This is a sample portfolio website built using React. It showcases my skills , projects, and experience.
 
 This project is based on designs and inspirations from:
