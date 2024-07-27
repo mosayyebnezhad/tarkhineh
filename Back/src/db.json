@@ -1,7 +1,7 @@
 {
   "endpoints": ["/api/users", "/api/admins"],
   "admins": [
-    { "uid": "001", "username": "Larry Page" },
+    { "uid": "001", "username": "Larry Pages" },
     { "uid": "002", "username": "Sergey Brin" }
   ],
   "users": [
