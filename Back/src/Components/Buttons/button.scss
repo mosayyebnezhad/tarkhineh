@@ -1,0 +1,36 @@
+@import "../../Data/varibles.scss";
+
+.customBTN {
+
+    border: none;
+    outline: none !important;
+    background: none;
+    border-radius: 4px;
+    cursor: pointer;
+    @include align(center, center);
+
+    &:hover {
+        opacity: .9;
+    }
+}
+
+
+
+.RotateIcon {
+    // background: red;
+    height: 100%;
+    width: 100%;
+    @include align(center, center);
+    animation: rotat 1s linear normal infinite;
+}
+
+
+@keyframes rotat {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
