@@ -1,8 +1,14 @@
-import Buttons from "../../Components/Buttons/buttons";
+
+import Image from "../../Components/Images/Image";
 
 const ContactUs = () => {
     return (
-        <Buttons btnStyle="filled" color="white" size="medium" >here is Contat us</Buttons>
+
+
+
+        <Image path="image2.jpg" width={"260px"} height={"180px"} />
+
+
     )
 }
 

@@ -15,9 +15,9 @@ const Footer = () => {
                     <form action="" className="deleteinPhoen">
                         <div className="subsplit">
                             <textarea placeholder="پیام شما"></textarea>
-                            <Buttons type="button" btnStyle="border" color="white" textColor="white" size="medium" >
+                            {/* <Buttons type="button" btnStyle="border" color="white" textColor="white" size="medium" >
                                 ارسال پیام
-                            </Buttons>
+                            </Buttons> */}
                         </div>
                         <div className="subsplit">
                             <Input icon="user" title="نام و نام خانوادگی" type="text" />

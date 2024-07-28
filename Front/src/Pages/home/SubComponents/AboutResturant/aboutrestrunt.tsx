@@ -20,7 +20,7 @@ const Aboutrestrunt = () => {
                             مهمان‌نوازی یکی از مهم‌ترین مشخصه‌های ایرانیان است و باعث افتخار ماست که بیش از 20 سال است خدمت‌گزار مردم شریف ایران هستیم. ما در رستوران‌های زنجیره‌ای ترخینه همواره تلاش کردیم که در محیطی اصیل بر پایه معماری و طراحی مدرن در کنار طبیعتی دلنواز، غذایی سالم و درخور شان شما عزیزان ارائه دهیم.
 
                         </p>
-                        <Buttons
+                        {/* <Buttons
                             IconFirst="ArrowLeft"
                             btnStyle="border"
                             color="white"
@@ -33,7 +33,7 @@ const Aboutrestrunt = () => {
 
                             }}
 
-                        >اطلاعات بیشتر</Buttons>
+                        >اطلاعات بیشتر</Buttons> */}
                     </div>
                 </div>
                 <div className="side flexiblize">
@@ -76,7 +76,7 @@ const Aboutrestrunt = () => {
                             مهمان‌نوازی یکی از مهم‌ترین مشخصه‌های ایرانیان است و باعث افتخار ماست که بیش از 20 سال است خدمت‌گزار مردم شریف ایران هستیم. ما در رستوران‌های زنجیره‌ای ترخینه همواره تلاش کردیم که در محیطی اصیل بر پایه معماری و طراحی مدرن در کنار طبیعتی دلنواز، غذایی سالم و درخور شان شما عزیزان ارائه دهیم.
 
                         </p>
-                        <Buttons
+                        {/* <Buttons
                             IconFirst="ArrowLeft"
                             btnStyle="border"
                             color="white"
@@ -89,7 +89,7 @@ const Aboutrestrunt = () => {
 
                             }}
 
-                        >اطلاعات بیشتر</Buttons>
+                        >اطلاعات بیشتر</Buttons> */}
                     </div>
                 </div>
 
@@ -121,7 +121,8 @@ function Keifiat() {
 }
 function Persenel() {
     return (
-        <Icon icon="user" color="white" width={48} height={48} />
+        // <Icon icon="user" color="white" width={48} height={48} />
+        <h1>he</h1>
 
     )
 }

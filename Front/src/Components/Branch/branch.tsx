@@ -35,9 +35,9 @@ const Branch = (prop: Branch) => {
 
             <div className="hiddenbutton">
                 <Link to={prop.link}>
-                    <Buttons btnStyle="border" color="green" size="small" IconFirst="ArrowLeft" textColor="black" iconHeight={24} IconWidth={16}>
+                    {/* <Buttons btnStyle="border" color="green" size="small" IconFirst="ArrowLeft" textColor="black" iconHeight={24} IconWidth={16}>
                         شعبه
-                    </Buttons>
+                    </Buttons> */}
 
                 </Link>
             </div>

@@ -1,31 +1,205 @@
 @import "../../Data/varibles.scss";
 
-.customBTN {
 
-    border: none;
-    outline: none !important;
+.Custombtn {
     background: none;
+    border: none;
     border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    align-items: center;
     cursor: pointer;
-    @include align(center, center);
+    padding: 0 15px;
 
-    &:hover {
-        opacity: .9;
+}
+
+@mixin ButtonColoors($Original, $Hover, $active, $color) {
+
+
+
+    &fill {
+        background: $Original;
+        color: $color;
+
+        &:hover {
+            background: $Hover;
+        }
+
+        &:active {
+            background: $active;
+        }
+    }
+
+
+    &stroke {
+        border: 1px solid $Original;
+        color: $Original;
+
+        &:hover {
+            border: 1px solid $Hover;
+            color: $Hover;
+        }
+
+        &:active {
+            border: 1px solid $active;
+            color: $active;
+        }
+    }
+
+    &textbtn {
+        color: $Original;
+
+        &:hover {
+            color: $Hover;
+        }
+
+        &:active {
+            color: $active;
+        }
+    }
+}
+
+.primery {
+
+
+
+    @include ButtonColoors(#417F56, #315F41, #294F36, white);
+
+
+
+
+}
+
+.white {
+
+    @include ButtonColoors(#E5F2E9, #CAE4D3, #B0D7BD, #417F56);
+
+
+
+
+
+}
+
+.black {
+
+
+
+    @include ButtonColoors(#717171, #353535, #0C0C0C, white);
+
+
+
+}
+
+
+.loadingbtn {
+
+
+
+    $Original : #417F56;
+    $color: white;
+
+    &.fill {
+        background: $Original;
+        color: $color;
+
+
+    }
+
+
+    &.stroke {
+        border: 1px solid $Original;
+        color: $Original;
+
+
+
+    }
+
+    &.textbtn {
+        color: $Original;
+        background: none;
+
+    }
+}
+
+
+.disable {
+
+
+
+    $Original : #ededed;
+    $color: #cbcbcb;
+
+    &.fill {
+        background: $Original;
+        color: $color;
+
+
+    }
+
+
+    &.stroke {
+        border: 1px solid $color;
+        color: $color;
+
+
+
+    }
+
+    &.textbtn {
+        color: $color;
+        background: none;
+
     }
 }
 
 
 
-.RotateIcon {
-    // background: red;
-    height: 100%;
-    width: 100%;
-    @include align(center, center);
-    animation: rotat 1s linear normal infinite;
+
+// 32 114 12
+// 40 174 16
+// 48 174 16 
+// 56 174 16
+
+
+
+
+.size-32 {
+
+    font-size: 12px;
+    min-width: 114px;
+    height: 32px;
+}
+
+.size-40 {
+    font-size: 16px;
+    min-width: 174px;
+    height: 40px;
+}
+
+.size-48 {
+    font-size: 16px;
+    min-width: 174px;
+    height: 48px;
+}
+
+.size-56 {
+    font-size: 16px;
+    min-width: 174px;
+    height: 56px;
 }
 
 
-@keyframes rotat {
+
+
+
+.LoadingItem {
+    animation: rotate 1s linear infinite;
+}
+
+
+
+@keyframes rotate {
     0% {
         transform: rotate(0deg);
     }

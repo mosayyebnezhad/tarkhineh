@@ -90,9 +90,9 @@ const Shader = (prop: IShaderProps) => {
             <div className="shadercase">
                 <h2>{prop.title}</h2>
                 <Link to={prop.link}>
-                    <Buttons color="green" size="medium" btnStyle="filled" >
+                    {/* <Buttons color="green" size="medium" btnStyle="filled" >
                         {prop.Buttontitle}
-                    </Buttons>
+                    </Buttons> */}
                 </Link>
             </div>
         </div>
