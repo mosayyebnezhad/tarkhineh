@@ -1,11 +1,13 @@
 @import "../../Data/varibles.scss";
 
-fieldset {
+.fieldset {
     width: 320px;
-    height: auto;
+    height: 32px;
     direction: rtl;
     border-radius: 4px;
     @include align(space-around, center);
+    border: 2px solid black;
+    // background: red;
 
     .nohere {
         border: none;
@@ -14,19 +16,47 @@ fieldset {
         cursor: pointer;
     }
 
-    legend {
-        transition: .5s;
-        text-align: right;
 
-    }
+
 
     input {
         width: calc(100% - 60px);
-        height: 30px;
+
         border: none;
         outline: none;
         background: none;
         font-size: 14px;
-        color: white;
+        // background: red;
+
     }
+}
+
+
+
+.sizeinp-32 {
+    width: 320px;
+    height: 32px;
+}
+
+.sizeinp-40 {
+    width: 336px;
+    height: 40px;
+}
+
+.sizeinp-48 {
+    width: 336px;
+    height: 48px;
+}
+
+.sizeinp-56 {
+    width: 336px;
+    height: 56px;
+}
+
+.darkmode {
+    color: black;
+}
+
+.lightmode {
+    color: white;
 }

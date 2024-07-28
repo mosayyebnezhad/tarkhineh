@@ -173,7 +173,7 @@ const Buttons = (prop: IProps) => {
 
 
     return (
-        <button className={`Custombtn size-${size} ${colorStyle} ${oneOftwo}`}>
+        <button {...prop} className={`Custombtn size-${size} ${colorStyle} ${oneOftwo}`}>
             {loading ?
                 <>
 

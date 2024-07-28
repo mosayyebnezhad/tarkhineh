@@ -1,5 +1,6 @@
 import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
 import icon from "../Icons/type";
+import { ButtonHTMLAttributes } from "react";
 
 // interface IProps {
 
@@ -21,7 +22,7 @@ import icon from "../Icons/type";
 // }
 
 
-interface CommonProps {
+interface CommonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     Style?: "fill" | "stroke" | "textBTN";
     color?: "primery" | "white" | "black";
     state?: "active" | "disabled";

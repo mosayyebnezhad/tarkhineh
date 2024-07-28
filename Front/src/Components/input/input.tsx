@@ -2,9 +2,13 @@ import React, { useState } from "react"
 import "./input.scss"
 import Icon from '../Icons/icons';
 import icon from '../Icons/type';
+import { EyeClosed, EyeSolid, User } from "iconoir-react";
+import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
 interface IInterface extends React.InputHTMLAttributes<HTMLInputElement> {
-    icon: icon["icon"],
-    title: string
+    iconw?: IconoirProviderProps["children"],
+    title: string,
+    sizew?: 32 | 40 | 48 | 56,
+    darkmode?: boolean
 }
 
 
@@ -16,17 +20,19 @@ const Input = (prop: IInterface) => {
         seteye(!eye)
     }
     return (
-        <fieldset>
-            <Icon icon={prop.icon} color="white" />
-            <legend>{prop.title}</legend>
-
+        <div className={`fieldset sizeinp-${prop.sizew} ${prop.darkmode ? "darkmode" : "lightmode"}`}>
+            {prop.iconw ? prop.iconw : <User />}
+            {/* <legend>{prop.title}</legend> */}
+            <span className="titlea">hi</span>
             <input {...prop} type={eye ? "text" : prop.type} />
 
 
             {prop.type == "password" &&
 
-                <button type="button" className="nohere" onClick={handleeye}>
-                    <Icon icon={eye ? "close-eye" : "eye"} color="white" />
+                <button type="button" className={`nohere`} onClick={handleeye}>
+
+                    {eye ? <EyeClosed /> : <EyeSolid />}
+
 
 
                 </button>
@@ -38,7 +44,7 @@ const Input = (prop: IInterface) => {
 
 
 
-        </fieldset>
+        </div>
 
 
 

@@ -3,6 +3,8 @@ import Buttons from "../Buttons/buttons";
 import Icon from "../Icons/icons";
 import Input from "../input/input";
 import "./footer.scss"
+import { Send, User } from "iconoir-react";
+
 
 
 
@@ -15,15 +17,15 @@ const Footer = () => {
                     <form action="" className="deleteinPhoen">
                         <div className="subsplit">
                             <textarea placeholder="پیام شما"></textarea>
-                            {/* <Buttons type="button" btnStyle="border" color="white" textColor="white" size="medium" >
+                            <Buttons RightIcon={< Send />} type="button" >
                                 ارسال پیام
-                            </Buttons> */}
+                            </Buttons>
                         </div>
                         <div className="subsplit">
-                            <Input icon="user" title="نام و نام خانوادگی" type="text" />
-                            <Input icon="user" title="شماره تماس" type="tel" />
-                            <Input icon="user" title="آدرس ایمیل" type="email" />
-                            <Input icon="user" title="آدرس ایمیل" type="password" />
+                            <Input title="نام و نام خانوادگی" type="text" size={56} />
+                            <Input title="شماره تماس" type="text" />
+                            <Input title="آدرس ایمیل" type="email" />
+                            <Input title="آدرس ایمیل" type="password" />
                         </div>
                     </form>
                 </div>
