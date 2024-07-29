@@ -1,7 +1,7 @@
-import { EyeClosed, UserLove, } from "iconoir-react";
+import { Send } from "iconoir-react";
 import Buttons from "../../Components/Buttons/buttons"
-import Icon from "../../Components/Icons/icons";
-import { useEffect, useState } from "react";
+
+import { useState } from "react";
 
 const Aboute = () => {
 
@@ -9,24 +9,32 @@ const Aboute = () => {
 
     const [loading, setLoading] = useState(true)
 
-    useEffect(() => {
 
 
-       setTimeout(()=>{
-        setLoading(!loading)
-        console.log("loaded")
-       },500)
-    },[])
+
+
     return (
 
-        <Buttons Style="fill" color="black" loading={loading}
+        <Buttons
+            onClick={
+                () => {
+                    setLoading(!loading)
 
-            size={56}
-            RightIcon={<EyeClosed />}
-            leftIcon={<UserLove />}
+
+                }
+            }
+            Style="fill"
+            color="primery"
+            loading={!loading}
+
+
+            size={40}
+
+            RightIcon={<Send />}
+        // leftIcon={<Cart />}
         >
 
-            سلامسسسسسس
+            ارسال پیام
         </Buttons>
     )
 }

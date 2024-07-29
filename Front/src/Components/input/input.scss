@@ -1,62 +1,251 @@
 @import "../../Data/varibles.scss";
 
-.fieldset {
-    width: 320px;
-    height: 32px;
+
+
+
+input {
+    all: unset;
+
+}
+
+@mixin ff($mixinColor, $mixinBG) {
+
+    background: $mixinBG;
+    color: $mixinColor;
+    transition: .5s;
+
+
+
+
+
+}
+
+@mixin AllInOne($color, $border, $mixinColor: black, $mixinBG: white) {
+    // background: blue;
+    position: relative;
+
+    @include align(space-between, center);
     direction: rtl;
-    border-radius: 4px;
-    @include align(space-around, center);
-    border: 2px solid black;
-    // background: red;
+    border-radius: 5px;
+    border: 1px solid $border;
+    z-index: 5;
+    color: $color;
 
-    .nohere {
-        border: none;
-        background: none;
-        @include align(center, center);
-        cursor: pointer;
-    }
+    float: left;
+
+    display: flex;
+    justify-content: flex-start;
 
 
-
-
-    input {
-        width: calc(100% - 60px);
-
-        border: none;
-        outline: none;
-        background: none;
-        font-size: 14px;
+    .iconBaseL {
+        width: 24px;
+        margin-right: 16px;
         // background: red;
+        float: right;
+        height: 100%;
+        @include align(center, center);
+    }
+
+    .inp {
+
+        // background: blue;
+        float: right;
+
+        // position: absolute;
+    }
+
+    .iconBaseR {
+
+        width: 24px;
+        margin-left: 16px;
+        cursor: pointer;
+        float: right;
+        height: 100%;
+        @include align(center, center);
+    }
+
+
+
+
+
+    .input-container {
+        position: relative;
+        width: calc(100% - 112px);
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        float: left;
+        // background: red;
+        margin: 0 16px;
+
+        .lable {
+            z-index: 2;
+            transition: .5s;
+            position: absolute;
+            // background: black;
+
+            display: flex;
+            align-items: center;
+
+            padding: 0 10px;
+            border-radius: 100px;
+        }
+
+        .inp {
+
+            width: 100%;
+            z-index: 3;
+            position: relative;
+
+            // background: red;
+
+
+            &:not(:placeholder-shown)+.lable {
+                @include ff($mixinColor, $mixinBG)
+            }
+
+            &:focus+.lable {
+
+                @include ff($mixinColor, $mixinBG)
+            }
+        }
+
+
+
+
 
     }
+
+
 }
 
 
 
-.sizeinp-32 {
+.Input {
+    @include AllInOne(#F9F9F9, #717171);
+
+    &:hover {
+
+        @include AllInOne(#F9F9F9, #F9F9F9)
+    }
+
+    &:focus-within {
+        @include AllInOne(#F9F9F9, #417F56, #417F56, #F9F9F9)
+    }
+
+
+
+    &InActive {
+        @include AllInOne(#717171, #717171)
+    }
+
+    &HasError {
+        @include AllInOne(#f9f9f9, #C30000, #C30000, )
+    }
+
+}
+
+
+.InputDark {
+    @include AllInOne(#717171, #cbcbcb, white, #595959);
+
+    &:hover {
+
+        @include AllInOne(#353535, #353535, white, #595959)
+    }
+
+    &:focus-within {
+        @include AllInOne(#353535, #417F56, #7ef37a, #595959)
+    }
+
+
+
+    &InActive {
+        @include AllInOne(#cbcbcb, #cbcbcb)
+    }
+
+    &HasError {
+        @include AllInOne(#595959, #C30000, #ff8888, #595959)
+    }
+}
+
+.inputArea {
+    width: 320px;
+
+
+    span {
+        display: flex;
+        flex-wrap: wrap;
+        // background: red;
+        color: #C30000;
+        margin-top: 4px;
+        margin-right: 8px;
+        align-items: center;
+        direction: rtl;
+        float: right;
+        font-size: 12px;
+
+        p {
+            margin-right: 4px;
+        }
+    }
+}
+
+
+@mixin INP($top, $right) {
+    .inp {
+
+
+        &:not(:placeholder-shown)+.lable {
+            margin-top: $top;
+            margin-right: $right;
+        }
+
+        &:focus+.lable {
+
+            margin-top: $top;
+            margin-right: $right;
+        }
+    }
+
+    .lable {
+        font-size: 12px;
+        line-height: 17px;
+        // display: flex;
+        // align-items: center;
+    }
+}
+
+.INPSIE-32 {
     width: 320px;
     height: 32px;
+    font-size: 12px;
+
+
+   
+
+    @include INP(-32px, -25px)
 }
 
-.sizeinp-40 {
+.INPSIE-40 {
     width: 336px;
     height: 40px;
+    font-size: 14px;
+    @include INP(-40px, -25px)
 }
 
-.sizeinp-48 {
+.INPSIE-48 {
     width: 336px;
     height: 48px;
+    font-size: 14px;
+    @include INP(-48px, -25px)
 }
 
-.sizeinp-56 {
+.INPSIE-56 {
     width: 336px;
     height: 56px;
-}
+    font-size: 14px;
 
-.darkmode {
-    color: black;
-}
-
-.lightmode {
-    color: white;
+    @include INP(-56px, -25px)
 }

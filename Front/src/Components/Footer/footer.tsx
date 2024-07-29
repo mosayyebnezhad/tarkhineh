@@ -26,6 +26,13 @@ const Footer = () => {
                             <Input title="شماره تماس" type="text" />
                             <Input title="آدرس ایمیل" type="email" />
                             <Input title="آدرس ایمیل" type="password" />
+                            <Input
+                                title="ایمیل"
+                                sizew={56}
+                                darkmode placeholder="رمز عبور"
+
+
+                            />
                         </div>
                     </form>
                 </div>
