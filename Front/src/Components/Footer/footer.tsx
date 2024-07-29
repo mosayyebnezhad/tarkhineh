@@ -4,11 +4,26 @@ import Icon from "../Icons/icons";
 import Input from "../input/input";
 import "./footer.scss"
 import { Send, User } from "iconoir-react";
+import { useState } from "react";
 
 
 
 
 const Footer = () => {
+
+    const [text, setText] = useState(0)
+
+
+    const handlearea = (e: any) => {
+
+        let numbers = String(e.target.value).length
+
+
+
+        setText(numbers)
+    }
+
+
     return (
         <footer className="Mainfooter">
             <div className="shader">
@@ -16,23 +31,28 @@ const Footer = () => {
                     <h1 className="title deleteinPhoen" >پیام به ترخینه</h1>
                     <form action="" className="deleteinPhoen">
                         <div className="subsplit">
-                            <textarea placeholder="پیام شما"></textarea>
+                            <textarea maxLength={200} className="aefhn" onInput={handlearea} placeholder="پیام شما"
+
+                                // rows="2" cols="20" wrap="hard"
+                                rows={2}
+                                cols={2}
+                            // wrap="hard"
+
+
+                            ></textarea>
+                          
+                            <p className="counter">{text}/200</p>
+
                             <Buttons RightIcon={< Send />} type="button" >
                                 ارسال پیام
                             </Buttons>
                         </div>
                         <div className="subsplit">
-                            <Input title="نام و نام خانوادگی" type="text" size={56} />
-                            <Input title="شماره تماس" type="text" />
-                            <Input title="آدرس ایمیل" type="email" />
-                            <Input title="آدرس ایمیل" type="password" />
-                            <Input
-                                title="ایمیل"
-                                sizew={56}
-                                darkmode placeholder="رمز عبور"
 
+                            <Input title="نام و نام خانوادگی" sizew={40} />
+                            <Input title="شماره تماس" sizew={40} />
 
-                            />
+                            <Input title="ایمیل" sizew={40} />
                         </div>
                     </form>
                 </div>
@@ -41,7 +61,9 @@ const Footer = () => {
                     <div className="items">شعبه اکباتان</div>
                     <div className="items">شعبه چالوس</div>
                     <div className="items">شعبه اقدسیه</div>
-                    <div className="items">شعبه ونک</div>
+                    <Link to={""}>
+                        <div className="items">شعبه ونک</div>
+                    </Link>
                 </div>
                 <div className="split" >
                     <h1 className="title">دسترسی آسان</h1>

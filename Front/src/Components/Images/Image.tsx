@@ -22,13 +22,13 @@ const Image = (prop: Propp) => {
 
 
 
-    console.log(document.documentElement.offsetHeight)
+    // console.log(document.documentElement.offsetHeight)
     const [load, setLoading] = useState(true);
 
     const Load = () => {
 
         setLoading(!load);
-        console.log("loaded")
+        // console.log("loaded")
     }
 
     return (

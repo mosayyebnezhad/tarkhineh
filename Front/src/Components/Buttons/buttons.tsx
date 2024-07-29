@@ -1,19 +1,17 @@
 
 import "./button.scss"
 import IProps from "./buttonType";
-import {  RefreshDouble } from "iconoir-react";
+import { RefreshDouble } from "iconoir-react";
 import IconNpm from "../Icons/iconnpm";
-
-
 
 
 
 
 const Buttons = (prop: IProps) => {
 
+    let { Style, color, state, size, children, loading, disable, RightIcon, leftIcon, ...restProp } = prop;
 
-
-    let { size, color, Style, disable, loading, children, leftIcon, RightIcon } = prop;
+    // let { size, color, Style, disable, loading, children, } = prop;
 
 
     size = size ? size : 40;
@@ -48,13 +46,9 @@ const Buttons = (prop: IProps) => {
 
 
     marginSize = size === 32 ? 8 : 16;
-    // marginSize = 8;
-
-
-
 
     return (
-        <button {...prop} disabled={loading || disable} className={`Custombtn size-${size} ${colorStyle} ${oneOftwo}`}>
+        <button {...restProp} disabled={loading || disable} className={`Custombtn size-${size} ${colorStyle} ${oneOftwo}`}>
             {loading ?
                 <>
 

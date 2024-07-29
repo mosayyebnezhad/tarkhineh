@@ -13,6 +13,7 @@ interface icon {
     "Telegram"|
     "Instagram"|
     "X"|
+    "logo"|
     "ArrowRight",
     color?: string
     width?: number

@@ -21,9 +21,9 @@ input {
 }
 
 @mixin AllInOne($color, $border, $mixinColor: black, $mixinBG: white) {
-    // background: blue;
-    position: relative;
 
+    position: relative;
+    
     @include align(space-between, center);
     direction: rtl;
     border-radius: 5px;
@@ -124,7 +124,7 @@ input {
 
 .Input {
     @include AllInOne(#F9F9F9, #717171);
-
+ 
     &:hover {
 
         @include AllInOne(#F9F9F9, #F9F9F9)
@@ -148,6 +148,7 @@ input {
 
 
 .InputDark {
+
     @include AllInOne(#717171, #cbcbcb, white, #595959);
 
     &:hover {
@@ -156,7 +157,7 @@ input {
     }
 
     &:focus-within {
-        @include AllInOne(#353535, #417F56, #7ef37a, #595959)
+        @include AllInOne(#353535, #417F56, #353535, #595959)
     }
 
 
@@ -171,8 +172,8 @@ input {
 }
 
 .inputArea {
-    width: 320px;
-
+    // width: 320px;
+    // background: red;
 
     span {
         display: flex;
@@ -223,7 +224,7 @@ input {
     font-size: 12px;
 
 
-   
+
 
     @include INP(-32px, -25px)
 }

@@ -1,5 +1,6 @@
 .Mainfooter {
     width: 100%;
+    float: left;
     height: 500px;
     color: white;
     background: url("https://raw.githubusercontent.com/mosayyebnezhad/mohammadmosayyeb.github.io/mohammadmosayyebnezahd/Projects/Tarkhineh/image1.jpg");
@@ -9,6 +10,9 @@
         width: 100%;
         height: 100%;
         // position: absolute;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
         z-index: -1;
     }
 
@@ -17,11 +21,11 @@
     float: left;
 
     .split {
-        width: 25%;
+        width: auto;
+        width: 180px;
         float: left;
         // background: gray;
         height: 80%;
-        // margin-top: 10%;
 
         .title {
             width: 100%;
@@ -31,42 +35,54 @@
             float: right;
             font-size: 18px;
             font-weight: 600;
+
         }
 
         .items {
             float: right;
+            width: 100%;
+
+            // background: red;
         }
 
         &:nth-child(1) {
-            width: 40%;
-            margin-left: 5%;
+            width: auto !important;
+            // margin-left: 5%;
 
             .subsplit {
-                width: 50%;
+                width: auto;
                 float: left;
+
                 // background: red;
             }
 
             textarea {
-                width: 210px;
-                height: 210px;
+                outline: none;
+                margin-right: 16px;
+                border: 1px solid white;
+                border-radius: 4px;
+                width: 320px;
+                height: 125px;
+                padding: 15px;
                 background: none;
                 color: white;
                 direction: rtl;
                 margin-top: 16px;
-                margin-bottom: 30px;
+                margin-bottom: 5px;
                 resize: none;
+                font-size: 12px;
+                text-wrap: wrap;
             }
         }
 
         &:nth-child(2),
         &:nth-child(3) {
-            width: 23%;
-            margin-right: 2%;
+
+
             direction: rtl;
 
             .items {
-                width: 100%;
+
                 // background: red;
                 margin-top: 5%;
 
@@ -86,14 +102,49 @@
 }
 
 .subsplit {
-    float: right;
+    float: left;
     margin-top: 30px;
+    float: left;
+    
+
+    input {
+        float: left;
+    }
+
+    .counter {
+
+        margin-bottom: 10px;
+
+        font-weight: 100;
+    }
 
 }
 
 
-@media (max-width:1300px){
-    .deleteinPhoen{
+@media (max-width:768px) {
+    .deleteinPhoen {
         display: none;
     }
+
+    .split{
+        // all: unset !important;
+        width: 40% !important;
+        // background: red !important;
+    }
+
+
+}
+
+
+@media (max-width:1200px) {
+    .aefhn {
+        width: 220px !important;
+
+       
+
+    }
+}
+
+a {
+    color: white;
 }

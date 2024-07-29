@@ -1,7 +1,6 @@
 import React, { useState } from "react"
 import "./input.scss"
-import Icon from '../Icons/icons';
-import icon from '../Icons/type';
+
 import { EyeClosed, EyeSolid, User, UserCart, WarningCircle } from "iconoir-react";
 import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
 interface IInterface extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -72,10 +71,11 @@ const Input = (prop: IInterface) => {
 
 
 
-                {prop.type === "password" && <button onClick={eyeHandle} className="iconBaseR">
-                    {eye ? <EyeClosed /> : <EyeSolid />}
+                {prop.type === "password" &&
+                    <button onClick={eyeHandle} type="button" className="iconBaseR">
+                        {eye ? <EyeClosed /> : <EyeSolid />}
 
-                </button>}
+                    </button>}
 
             </div>
 
