@@ -8,6 +8,7 @@ router.get("/", (req, res) => {
 
     return res.json({
         "message": "We Cannot Connect to the Database", 
+        
         "status": 500
     });
 })
