@@ -2,8 +2,8 @@ import express from 'express';
 import Data from "./db.json"
 import env from 'dotenv';
 import mongoose from 'mongoose';
-import { FoodController, noConnect, userController } from './controllers';
-import Routers from './Routers';
+import { authController, FoodController, noConnect, userController } from './controllers';
+
 
 env.config();
 const app = express();
@@ -20,7 +20,8 @@ mongoose.connect(Connection, { autoIndex: true }).then((e) => {
 
   //  main Controlles
   app.use('/user', userController)
-  // app.use('/food', FoodController)
+  app.use('/auth', authController)
+  app.use('/food', FoodController)
 
   // app.use('/User', FoodController)
 

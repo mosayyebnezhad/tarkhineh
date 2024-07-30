@@ -23,7 +23,7 @@ const FoodSchema = new mongoose.Schema({
             date: String
         }
     ],
-    Category: FoodCategoryDTO
+    Category: [String]
 
 })
 

@@ -86,7 +86,7 @@ const UserSchema = new Schema(
         },
         Addresses: {
             type: [String],
-            required: true
+            required: false
         }
     },
     { timestamps: true }

@@ -1,7 +1,9 @@
-import express, { Router, Request, Response } from "express";
+import express, { Router, Request, Response, NextFunction } from "express";
 import UsersDTO from "../../models/UsersDTO";
 import Shobeh from "../../models/BranchsDTO";
 import mongoose from "mongoose";
+import bcrypt from 'bcryptjs';
+import AuthMiddleware from "../../middlewares/authmiddleware";
 
 const router = Router()
 
@@ -49,37 +51,39 @@ router.get("/:id", async (req: Request, res: Response) => {
 })
 
 
-router.post("/", async (req: Request, res: Response) => {
+router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
 
 
 
-
-    let OldData = await UsersDTO.find();
-    let data = await req.body;
-    let message = "";
-    let isExist = OldData.find(s => s.email === data.email)
-
-    if (isExist) {
-        return res.status(400).json({ message: "ایمیل وارد شده قبلا ثبت شده است" })
-    }
 
     try {
-        if (!data.email) return res.status(400).json({ title: "Email Is Defind", message: "این ایمیل هست" })
-        UsersDTO.create(data)
-        message = "کاربر با موفقیت ایجاد شد"
-    } catch {
-        message = "فرایند ایجاد کاربر با خطا مواجه شد"
+        let OldData = await UsersDTO.find();
+        let data = await req.body;
+        let message = "";
+        let isExist = OldData.find(s => s.email === data.email)
+
+        if (isExist) {
+            return res.status(400).json({ message: "ایمیل وارد شده قبلا ثبت شده است" })
+        }
+
+        try {
+            if (!data.email) return res.status(400).json({ message: "ایمیل را وارد کنید" })
+            if (!data.password) return res.status(400).json({ message: "ورود رمز عبور را وارد کنید" })
+
+            data.password = await bcrypt.hash(data.password, 10);
+            UsersDTO.create(data)
+            return res.status(200).json({ message: "کاربر با موفقیت ایجاد شد" })
+
+        } catch {
+            message = "فرایند ایجاد کاربر با خطا مواجه شد"
+        }
+
+        return res.json({
+            "message": message
+        });
+    } catch (err) {
+        next(err);
     }
-
-
-
-
-
-
-
-    return res.json({
-        "message": message
-    });
 
 
 
