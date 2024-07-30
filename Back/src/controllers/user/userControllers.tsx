@@ -1,67 +1,96 @@
-import express, { Router } from "express";
+import express, { Router, Request, Response } from "express";
 import UsersDTO from "../../models/UsersDTO";
-import Shobeh from "../../models/ShobehDTO";
+import Shobeh from "../../models/BranchsDTO";
+import mongoose from "mongoose";
 
 const router = Router()
 
-router.get("/", async (req, res) => {
-
-    // return res.json(Data.users);
-
-    // const Data: any = UsersDTO.create({
-
-
-    //     Addresses: ["Mohammadreza", "Ahmadreza"],
-    //     birthDate: "2024",
-    //     email: "mo@mo.io",
-    //     family: "Gates",
-    //     id: 1,
-    //     name: "mohammad",
-    //     phone: "09123456789",
-    //     password: "123456",
-    //     username: "mohammad123",
-    //     YourLovely: {
-    //         foods: [1, 6, 2, 3]
-    //     },
-    //     YourRating: {
-    //         foods: [{
-    //             foodID: "Nemidanam",
-    //             Comment: "ملایمت",
-    //             rate: 3
-    //         },
-    //         {
-    //             foodID: "Nemidanam2",
-    //             Comment: "ملایمت",
-    //             rate: 3
-    //         }],
-    //         Shobe: [
-    //             {
-    //                 shobehID: "Nemidanam",
-    //                 Comment: "ملایمت",
-    //                 rate: 4
-    //             },
-    //             {
-    //                 shobehID: "Nemidanam4",
-    //                 Comment: "ملایمت",
-    //                 rate: 4
-    //             }
-    //         ]
-    //     }
-
-    // })
 
 
 
-        const Data = await UsersDTO.find();
-    // console.log(UsersDTO.f)
+router.get("/", async (req: Request, res: Response) => {
+
+    let Data = await UsersDTO.find();
 
 
-    // Shobeh.find
+    return await res.json(Data);
 
-
-    // return res.json(process.env.PORT);
-    return res.json(Data);
 })
+
+
+
+router.get("/:id", async (req: Request, res: Response) => {
+
+
+
+
+    const id = req.params.id;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({ message: "آی دی وارده صحیح نمی باشد" })
+    }
+
+
+
+
+    let Data = await UsersDTO.findById(id);
+
+    if (!Data) {
+        return res.status(404).json({ message: "کاربر مورد نظر یافت نشد" })
+    }
+
+
+    // return await res.json(Data);
+    return await res.json(Data);
+
+
+
+
+})
+
+
+router.post("/", async (req: Request, res: Response) => {
+
+
+
+
+    let OldData = await UsersDTO.find();
+    let data = await req.body;
+    let message = "";
+    let isExist = OldData.find(s => s.email === data.email)
+
+    if (isExist) {
+        return res.status(400).json({ message: "ایمیل وارد شده قبلا ثبت شده است" })
+    }
+
+    try {
+        if (!data.email) return res.status(400).json({ title: "Email Is Defind", message: "این ایمیل هست" })
+        UsersDTO.create(data)
+        message = "کاربر با موفقیت ایجاد شد"
+    } catch {
+        message = "فرایند ایجاد کاربر با خطا مواجه شد"
+    }
+
+
+
+
+
+
+
+    return res.json({
+        "message": message
+    });
+
+
+
+
+})
+
+
+
+
+
+
 
 
 export default router;

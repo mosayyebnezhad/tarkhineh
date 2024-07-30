@@ -1,6 +1,6 @@
 import { Router } from "express";
-import router from '../user/userControllers';
 
+const router = Router();
 
 
 router.get("/", (req, res) => {

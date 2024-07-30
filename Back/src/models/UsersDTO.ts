@@ -1,41 +1,106 @@
 import mongoose from "mongoose";
+import validator from "validator";
+import bcrypt from "bcryptjs";
 
+const { Schema } = mongoose;
 
-
-
-const UserSchema = new mongoose.Schema(
+const UserSchema = new Schema(
     {
-        id: Number,
-        username: String,
-        name: String,
-        family: String,
-        email: String,
-        phone: String,
-        password: String,
-        birthDate: String,
+
+        username: {
+            type: String,
+            required: false,
+            unique: false
+        },
+        name: {
+            type: String,
+            required: false
+        },
+        family: {
+            type: String,
+            required: false
+        },
+        email: {
+            type: String,
+            required: true,
+            unique: true
+
+        },
+        phone: {
+            type: String,
+            required: false
+        },
+        password: {
+            type: String,
+            required: true,
+            minlength: 6
+        },
+        birthDate: {
+            type: String,
+            required: false
+        },
         YourRating: {
             foods: [
                 {
-                    foodID: String,
-                    rate: Number,
-                    Comment: String
+                    foodID: {
+                        type: String,
+                        required: false
+                    },
+                    rate: {
+                        type: Number,
+                        required: false,
+                        min: 1,
+                        max: 5
+                    },
+                    Comment: {
+                        type: String,
+                        required: false
+                    }
                 }
             ],
             Shobe: [
                 {
-                    shobehID: String,
-                    rate: Number,
-                    Comment: String
+                    shobehID: {
+                        type: String,
+                        required: false
+                    },
+                    rate: {
+                        type: Number,
+                        required: false,
+                        min: 1,
+                        max: 5
+                    },
+                    Comment: {
+                        type: String,
+                        required: false
+                    }
                 }
             ]
         },
         YourLovely: {
-            foods: [Number]
+            foods: [
+                {
+                    type: Number
+                }
+            ]
         },
-        Addresses: { type: [String], required: true }
-    }
-)
+        Addresses: {
+            type: [String],
+            required: true
+        }
+    },
+    { timestamps: true }
+);
 
 
+// هش کردن رمز عبور قبل از ذخیره کاربر
+// UserSchema.pre('save', async function (next) {
+//     if (!this.isModified('password')) {
+//         return next();
+//     }
+//     const salt = await bcrypt.genSalt(10);
+//     this.password = await bcrypt.hash(this.password, salt);
+//     next();
+// });
 
-export default mongoose.model("User", UserSchema)
+export default mongoose.model("User", UserSchema);
