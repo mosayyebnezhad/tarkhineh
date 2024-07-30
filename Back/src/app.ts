@@ -7,6 +7,7 @@ const PORT = process.env.PORT;
 app.get("/" , (req,res)=>{
   
   // return res.json(Data.users);
+  
  return res.json(process.env.PORT);
 })
 
