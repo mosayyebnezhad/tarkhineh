@@ -1,34 +1,190 @@
 {
   "users": [
     {
-      "uid": "001",
-      "username": "Bill Gates",
-      "email":"billgates@example.com",
-      "password": "123456789"
+      "id": 1,
+      "username": "billgates",
+      "name": "Bill",
+      "family": "Gates",
+      "email": "billgates@example.com",
+      "phone": "09121234567",
+      "password": "123456789",
+      "date": "1402",
+      "YourRating": {
+        "foods": [
+          {
+            "foodsID": 1,
+            "Rate": 3,
+            "Comment": "بسیار خوب"
+          },
+          {
+            "foodsID": 2,
+            "Rate": 3,
+            "Comment": "بسیار خوب"
+          }
+        ],
+        "Shobe": [
+          {
+            "shobehId": 1,
+            "Rate": 3,
+            "Comment": "بسیار خوب"
+          },
+          {
+            "shobehId": 2,
+            "Rate": 3,
+            "Comment": "بسیار خوب"
+          }
+        ]
+      },
+      "YourLovely": {
+        "foods": [
+          1,
+          2,
+          3,
+          4
+        ]
+      },
+      "Addresses": [
+        {
+          "city": "تهران",
+          "Addresses": "خیابان فردوسی، خیابان سهر",
+          "phone": "09121234567",
+          "type": "محل سکنی"
+        }
+      ]
+    }
+  ],
+  "Categoris": [
+    {
+      "id": 1,
+      "name": "غذای ایرانی"
     },
     {
-      "uid": "002",
-      "username": "Mark Zuck",
-      "email":"markzuck@example.com",
-      "password": "123456789"
+      "id": 2,
+      "name": "غذای غیر ایرانی"
     },
     {
-      "uid": "003",
-      "username": "Elon Musk",
-      "email": "elonmusk@example.com",
-      "password": "123456789"
+      "id": 3,
+      "name": "پیتزا"
     },
     {
-      "uid": "004",
-      "username": "Steve Jobs",
-      "email": "stevejobs@example.com",
-      "password": "123456789"
+      "id": 4,
+      "name": "ساندویچ"
+    }
+  ],
+  "foods": [
+    {
+      "id": 1,
+      "name": "دلمه برگر",
+      "Details": "بادمجان، کشک، نعناع خشک، مغز گردو، سیر، پیاز",
+      "Price": {
+        "priceView": "209,000",
+        "solidPriceView": "220,000",
+        "price": 220000,
+        "off": 8
+      },
+      "Rate": {
+        "rating": 3.7,
+        "SumRating": 18.5,
+        "SumPeaopleRated": 5,
+        "papularoty": 56
+      },
+      "Comments": [
+        {
+          "UserId": 1,
+          "comment": "بسیار خوب",
+          "date": "2021-08-20"
+        }
+      ],
+      "Category": 1
     },
     {
-      "uid": "005",
-      "username": "Jeff Bezos",
-      "email": "jeffbezos@example.com",
-      "password": "123456789"
+      "id": 2,
+      "name": "سوشی",
+      "Price": {
+        "priceView": "209,000",
+        "solidPriceView": "220,000",
+        "price": 220000,
+        "off": 8
+      },
+      "Rate": {
+        "rating": 3.7,
+        "SumRating": 18.5,
+        "SumPeaopleRated": 5,
+        "papularoty": 56
+      },
+      "Category": 2
+    }
+  ],
+  "Orders": [
+    {
+      "id": 1,
+      "findingCode": "1234567890",
+      "userId": 1,
+      "date": "2021-08-20",
+      "foods": [
+        {
+          "foodId": 1,
+          "quantity": 1
+        },
+        {
+          "foodId": 4,
+          "quantity": 1
+        }
+      ],
+      "address": {
+        "city": "تهران",
+        "Addresses": "خیابان فردوسی، خیابان سهر",
+        "phone": "09121234567",
+        "type": "محل سکنی"
+      },
+      "payment": {
+        "type": "پرداخت نقدی",
+        "price": 56000
+      },
+      "SendType": "پیک",
+      "status": "پرداخت شده",
+      "DeliveryStatus": "تحویل شده",
+      "Cooemnt": "لطفا حواستون باشه اقدام به تحویل به محل کارتون"
+    },
+    {
+      "id": 2,
+      "findingCode": "1234567890",
+      "userId": 1,
+      "date": "2021-08-20",
+      "foods": [
+        {
+          "foodId": 1,
+          "quantity": 1
+        },
+        {
+          "foodId": 4,
+          "quantity": 1
+        }
+      ],
+      "address": {
+        "city": "تهران",
+        "Addresses": "خیابان فردوسی، خیابان سهر",
+        "phone": "09121234567",
+        "type": "محل کار"
+      },
+      "payment": {
+        "type": "پرداخت نقدی",
+        "price": 56000
+      },
+      "SendType": "حضوری",
+      "status": "پرداخت شده",
+      "DeliveryStatus": "تحویل شده",
+      "Cooemnt": "لطفا حواستون باشه اقدام به تحویل به محل کارتون"
+    }
+  ],
+  "Shoab": [
+    {
+      "id": 1,
+      "name": "اکباتان",
+      "address": "آدرس: شهرک اکباتان، فاز ۳، مجتمع تجاری کوروش، طبقه سوم",
+      "phone": "021-54891250-51",
+      "WorgingTimeStart": "12",
+      "WorgingTimeEnd": "23"
     }
   ]
 }
