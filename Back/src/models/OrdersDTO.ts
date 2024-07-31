@@ -24,5 +24,5 @@ const OrderSchema = new mongoose.Schema({
     comment: { type: String } // توجه: 'Cooemnt' اصلاح شد به 'comment'
 });
 
-export default mongoose.model("OrderSchema", OrderSchema)
+export default mongoose.model("Orders", OrderSchema)
 

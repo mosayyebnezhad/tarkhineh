@@ -7,4 +7,4 @@ const FoodCategoryDTO = new mongoose.Schema({
 })
 
 
-export default mongoose.model("FoodCategoryDTO", FoodCategoryDTO)
+export default mongoose.model("FoodCategory", FoodCategoryDTO)

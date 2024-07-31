@@ -4,6 +4,7 @@ const FoodSchema = new mongoose.Schema({
     ID: String,
     name: String,
     detail: String,
+    Image: String,
     price: {
         priceView: String,
         solidPriceView: String,
@@ -28,4 +29,4 @@ const FoodSchema = new mongoose.Schema({
 })
 
 
-export default mongoose.model("FoodSchema", FoodSchema)
+export default mongoose.model("Food", FoodSchema)
