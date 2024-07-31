@@ -31,7 +31,7 @@ Thanks About That
 
 ## Demo
 
-You can check out the live demo of the website [here]([https://tarkhineh-three.vercel.app](https://tarkhineh-msy.vercel.app/home)).
+You can check out the live demo of the website [here](https://tarkhineh-msy.vercel.app/home).
 
 ## Features
 
