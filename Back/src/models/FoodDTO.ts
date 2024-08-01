@@ -24,7 +24,9 @@ const FoodSchema = new mongoose.Schema({
             date: String
         }
     ],
-    Category: [String]
+    Category: [String],
+    CreateDate: Date,
+    UpdateDate: Date,
 
 })
 
