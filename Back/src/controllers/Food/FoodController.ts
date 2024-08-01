@@ -1,4 +1,4 @@
-import { Request, Router } from "express";
+import { json, Request, Response, Router } from "express";
 import FoodDTO from "../../models/FoodDTO";
 import UsersDTO from "../../models/UsersDTO";
 
@@ -7,21 +7,17 @@ const router = Router();
 
 
 
-router.get("/", async (req: Request, res) => {
+router.get("/", async (req: Request, res: Response) => {
 
     const Query = req.query;
-    console.log(Query.category)
-    console.log(Query.search)
+
 
     const categori: any | null = Query.category ? String(Query.category).split(" ").map(s => s.trim()) : null;
-    const searchParam: any | null = Query.search ? String(Query.search).split(" ").map(s => s.trim()) : null;
-
-    // const searchParam: any | null = typeof Query.search === 'string' ? String(Query.search).split(" ").map(s => s.trim())  : null;
+    const searchParam: String | null = Query.search ? String(Query.search) : null;
 
 
 
 
-    
     // تبدیل startPrice و endPrice به عدد و تنظیم مقادیر پیش‌فرض
     const startPrice: number | null = !isNaN(Number(Query.startPrice)) ? Number(Query.startPrice) : 0;
     const endPrice: number | null = !isNaN(Number(Query.endPrice)) ? Number(Query.endPrice) : Infinity;
@@ -55,7 +51,7 @@ router.get("/", async (req: Request, res) => {
     let sortW: any = {};
     let Ordering = 1
 
-
+    console.log(SortDetail)
     if (SortDetail[1] === "0") Ordering = -1
 
     switch (SortDetail[0]) {
@@ -64,6 +60,9 @@ router.get("/", async (req: Request, res) => {
             break
         case "date":
             sortW["CreateDate"] = Ordering;
+            break
+        case "udate":
+            sortW["UpdateDate"] = Ordering;
             break
     }
 
@@ -76,16 +75,23 @@ router.get("/", async (req: Request, res) => {
 
 
 
-    return res.json({
-        filters,
-        len,
-        Data
-    })
+
+
+
+
+    // const output = {
+    //     status:200,
+    //     message: "اطلاعات با موفقیت دریافت شد",
+    //     data: Data
+    // }
+
+    return res.status(200).json(Data)
+
     // return res.json(Data)
 })
 
 
-router.post("/", async (req: Request, res) => {
+router.post("/", async (req: Request, res: Response) => {
 
 
     const Data = req.body
@@ -99,60 +105,96 @@ router.post("/", async (req: Request, res) => {
     return res.status(200).send({ message: "اطلاعات با موفقیت ثبت شد" })
 })
 
-router.get("/Category", async (req: Request, res) => {
 
-    const searchParam = req.query.search || '';
-    if (!searchParam) return res.status(400).send({ message: "اطلاعات نا کافی است" })
+interface ISet {
+    status: Number,
+    message: String
+}
 
-    // Convert To Array
-    let Data = String(searchParam).split(" ").map(s => s.trim())
+router.put("/updatePrice", async (req: Request, res: Response) => {
+
+    let setution: ISet = {
+        status: 200,
+        message: "ok"
+    };
+
+    const price: String = String(req.query.price);
+    const off: String = String(req.query.off);
 
 
-    // And
-    const Find = await FoodDTO.find({ Category: { $all: Data } }).lean();
+    if (!price) {
+        setution = {
+            status: 400,
+            message: "لطفا قیمت را وارد کنید"
+        }
 
-    // Or
-    // const Find = await FoodDTO.find({ Category: { $in: ["نهار","خوراک"] } }).lean();
+    } else {
+        if (isNaN(Number(price))) {
+            setution = {
+                status: 400,
+                message: "عددی که برای قیمت وارد کردید صحیح نمی باشد"
+            }
+
+        }
+        if (isNaN(Number(off))) {
+            setution = {
+                status: 400,
+                message: "عددی که برای قیمت وارد کردید صحیح نمی باشد"
+            }
+
+        }
+    }
 
 
-    return res.json(Find);
+
+
+    if (setution["status"] === 200) {
+
+        // if (!isNaN(Number(price))) {
+
+        //     console.log(" thi is found")
+        // }else{
+        //     console.log("how")
+        // }
+        // const Nprice = Number(price)
+        // const Noff = Number(off)
+
+
+        // const productID = req.query.productId;
+
+
+
+        // let priceView = 0;
+
+
+        // priceView = Nprice * Noff / 100
+
+
+        // const result = await FoodDTO.updateOne(
+        //     { _id: productID },
+        //     {
+        //         $set:
+        //         {
+        //             price: {
+        //                 priceView: String(priceView),
+        //                 solidPriceView: String(price),
+        //                 price: price,
+        //                 Off: off
+        //             }
+        //         }
+        //     }
+        // )
+
+
+        return res.send(200).json({ message: "hi" })
+        // return res.json({ message: result })
+    } else {
+        return res.send(setution["status"]).json({ message: setution["message"] })
+    }
+
+
 })
 
-
-router.get("/Name", async (req: Request, res) => {
-
-    const searchParam = req.query.search || '';
-    if (!searchParam) return res.status(400).send({ message: "اطلاعات نا کافی است" })
-
-
-    const Find = await FoodDTO.find({
-        $or: [
-            { name: { $regex: searchParam, $options: 'i' } },
-            { detail: { $regex: searchParam, $options: 'i' } }
-        ]
-    }).lean();
-
-
-
-
-    return res.json(Find);
-})
-
-
-router.get("/Price", async (req: Request, res) => {
-
-    const startPrice = req.query.start || 0;
-    const endPrice = req.query.end || Infinity;
-    if (!startPrice && !endPrice) return res.status(400).send({ message: "اطلاعات نا کافی است" })
-
-
-    const Find = await FoodDTO.find({ "price.price": { $gte: startPrice, $lte: endPrice } }).lean();
-
-
-
-
-    return res.json(Find);
-})
 
 
 
