@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import FoodCategoryDTO from "./FoodCategoriDTO"
 const FoodSchema = new mongoose.Schema({
     ID: String,
     name: String,
@@ -13,17 +12,10 @@ const FoodSchema = new mongoose.Schema({
     },
     Rate: {
         rating: Number,
-        SumRating: Number,
-        SumPeaopleRated: Number,
-        papularoty: Number
+        count: Number
     },
-    Comments: [
-        {
-            UserId: String,
-            comment: String,
-            date: Date
-        }
-    ],
+    RateID: String,
+    CommentID: String,
     Category: [String],
     CreateDate: Date,
     UpdateDate: Date,

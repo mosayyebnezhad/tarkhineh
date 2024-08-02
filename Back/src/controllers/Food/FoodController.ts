@@ -3,16 +3,12 @@ import FoodDTO from "../../models/FoodDTO";
 import UsersDTO from "../../models/UsersDTO";
 import mongoose from "mongoose";
 import AuthMiddleware from "../../middlewares/authmiddleware";
+import commentDTO from "../../models/commentDTO";
+import rateDTO from "../../models/rateDTO";
 
 
 const router = Router();
 
-interface ICom {
-    UserId: String,
-    comment: String,
-    date: Date,
-    _id: mongoose.Types.ObjectId
-}
 
 router.get("/", async (req: Request, res: Response) => {
 
@@ -137,11 +133,24 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextF
         if (logic) return res.status(409).send({ message: "آی دی اطلاعات تکراری است" })
 
         Data.CreateDate = Date.now();
+
+
+        Data['Rate.rating'] = 0
+        Data['Rate.count'] = 0
+        Data['RateID'] = new mongoose.mongo.ObjectId();
+        Data['CommentID'] = new mongoose.mongo.ObjectId();
+
+
         const Upload = await FoodDTO.create(Data);
 
         return res.status(200).send({ message: "اطلاعات با موفقیت ثبت شد" })
+
+
+
+
+
     }
-    catch(err) {
+    catch (err) {
         next(err)
     }
 })
@@ -236,130 +245,216 @@ router.patch("/edit", async (req: Request, res: Response) => {
 })
 
 
-router.post("/comment", async (req: Request, res: Response) => {
-    // Comments: [
-    //     {
-    //         UserId: String,
-    //         comment: String,
-    //         date: String
-    //     }
-    // ],
 
 
 
 
 
-    const { userID, comment, productID } = req.query;
+router.get("/comments", async (req: Request, res: Response) => {
 
 
-    if (!userID && !comment && !productID) return res.status(400).json({ message: "اطلاعات ناقص است " });
+    const { commentID: cmtid, UserID: usrid } = req.query;
 
-    let food: any;
+    let Logic: any = {};
 
-    try {
-        food = await FoodDTO.findById(productID);
-        if (!food) return res.status(400).json({ message: "عملیات یافتن اطلاعات بر اساس آیدی با مشکل رو به رو شد" });
-    } catch {
-        return res.status(400).json({ message: "عملیات یافتن اطلاعات بر اساس آیدی با مشکل رو به رو شد" });
-    }
-
-
-    const comments: any = food.Comments
-
-
-    const outpot = comments.push({
-        comment: comment,
-        date: Date.now(),
-        UserId: userID
-    })
-
-    const result = await FoodDTO.updateOne({
-        Comments: comments
-    })
-
-
-
-    return res.status(200).json({ message: "عملیات با موفقیت انجام شد" });
-
-})
-
-
-
-router.delete("/comment", async (req: Request, res: Response) => {
-
-
-    const { ID, foodID } = req.query
-
-    if (!ID && !foodID) return res.status(400).json({ message: "اطلاعات ناقص است" })
-
-    const food = await FoodDTO.findById(foodID);
-    if (!food) return res.status(400).json({ message: "غذایی با این آیدی پیدا نشد" })
-
-    const Comment = food.Comments.find(s => s._id == ID);
-    if (!Comment) return res.status(400).json({ message: "کامنتی با این آیدی پیدا نشد" })
-
-    const Icomments = food.Comments.filter(s => s._id != ID);
-
-
-    const result = await FoodDTO.updateOne(
-        { _id: foodID },
-        { $set: { Comments: Icomments } })
-
-
-
-
-    return res.status(200).json({ message: "با موفقیت حذف شد" })
-
-
-
-
-})
-
-
-
-router.patch("/comment", async (req: Request, res: Response) => {
-
-
-    let query = req.query;
-
-
-    const foodID: String = String(query.foodid);
-    const commentID: String = String(query.commentid);
-    const newCommentText: String = String(query.comment);
-
-
-    if (!query.foodid || !query.commentid || !query.comment) {
-        return res.status(400).json({ message: "اطلاعات ناقص است" });
+    if (cmtid && usrid) {
+        Logic = {
+            $and: [
+                { CommentID: cmtid },
+                { userID: usrid }
+            ]
+        };
+    } else {
+        if (cmtid) Logic.CommentID = cmtid;
+        if (usrid) Logic.userID = usrid;
     }
 
     try {
-        // یافتن غذا
-        const food = await FoodDTO.findById(foodID);
-        if (!food) {
-            return res.status(404).json({ message: "غذایی با این آیدی پیدا نشد" });
-        }
-
-        // یافتن کامنت و به‌روزرسانی آن
-        const commentIndex = food.Comments.findIndex(c => String(c._id) === commentID);
-        if (commentIndex === -1) {
-            return res.status(404).json({ message: "کامنتی با این آیدی پیدا نشد" });
-        }
-
-        food.Comments[commentIndex].comment = String(newCommentText);
-
-        // به‌روزرسانی سند در پایگاه داده
-        await FoodDTO.updateOne(
-            { _id: foodID },
-            { $set: { Comments: food.Comments } }
-        );
-
-        return res.status(200).json({ message: "کامنت با موفقیت به‌روزرسانی شد" });
+        const Data = await commentDTO.find(Logic);
+        return res.json(Data);
     } catch (error) {
-        return res.status(500).json({ message: "خطا در به‌روزرسانی کامنت" });
+        return res.status(500).json({ message: "Error retrieving data", error });
+    }
+
+})
+
+
+router.post("/comments", async (req: Request, res: Response) => {
+
+
+    const Data = req.body;
+
+
+
+    try {
+        await commentDTO.create(Data)
+
+        return res.status(200).json({ message: "ارسال موفق" })
+    } catch {
+        return res.status(400).json({ message: "ارسال نا موفق" })
+    }
+
+
+
+
+
+})
+
+router.patch("/comments", async (req, res) => {
+
+    const { id } = req.query;
+
+    if (!id) return res.status(400).json({ message: "آیدی ضروری است" })
+
+    const { comment } = req.body;
+    if (!comment) return res.status(400).json({ message: "محتوای کامنت دریافت نشد" })
+
+
+
+    try {
+        await commentDTO.findByIdAndUpdate(id,
+            { commentText: comment }
+        )
+
+
+
+        return res.status(200).json({ message: "با موفقیت تغییر کرد" });
+
+    }
+    catch {
+        return res.status(400).json({ message: "محتوای کامنت دریافت نشد" })
+    }
+
+
+
+})
+
+
+router.delete("/comments", async (req: Request, res: Response) => {
+
+
+    const { ID } = req.query
+
+
+
+    try {
+        await commentDTO.findByIdAndDelete(ID);
+
+        return res.status(200).json({ message: "با موفقیت حذف شد" });
+
+    }
+    catch {
+        return res.status(400).json({ message: "اشکالی در کار وجود!" })
     }
 
 
 })
+
+
+
+
+
+
+
+// router.get("/rate", async (req: Request, res: Response) => {
+
+
+//     const { commentID: cmtid, UserID: usrid } = req.query;
+
+//     let Logic: any = {};
+
+//     if (cmtid && usrid) {
+//         Logic = {
+//             $and: [
+//                 { CommentID: cmtid },
+//                 { userID: usrid }
+//             ]
+//         };
+//     } else {
+//         if (cmtid) Logic.CommentID = cmtid;
+//         if (usrid) Logic.userID = usrid;
+//     }
+
+//     try {
+//         const Data = await commentDTO.find(Logic);
+//         return res.json(Data);
+//     } catch (error) {
+//         return res.status(500).json({ message: "Error retrieving data", error });
+//     }
+
+// })
+
+
+router.post("/rate", async (req: Request, res: Response) => {
+
+
+    const Data = req.body;
+
+
+
+    try {
+        await rateDTO.create(Data)
+
+        return res.status(200).json({ message: "ارسال موفق" })
+    } catch {
+        return res.status(400).json({ message: "ارسال نا موفق" })
+    }
+
+
+
+
+
+})
+
+// router.patch("/rate", async (req, res) => {
+
+//     const { id } = req.query;
+
+//     if (!id) return res.status(400).json({ message: "آیدی ضروری است" })
+
+//     const { comment } = req.body;
+//     if (!comment) return res.status(400).json({ message: "محتوای کامنت دریافت نشد" })
+
+
+
+//     try {
+//         await commentDTO.findByIdAndUpdate(id,
+//             { commentText: comment }
+//         )
+
+
+
+//         return res.status(200).json({ message: "با موفقیت تغییر کرد" });
+
+//     }
+//     catch {
+//         return res.status(400).json({ message: "محتوای کامنت دریافت نشد" })
+//     }
+
+
+
+// })
+
+
+// router.delete("/rate", async (req: Request, res: Response) => {
+
+
+//     const { ID } = req.query
+
+
+
+//     try {
+//         await commentDTO.findByIdAndDelete(ID);
+
+//         return res.status(200).json({ message: "با موفقیت حذف شد" });
+
+//     }
+//     catch {
+//         return res.status(400).json({ message: "اشکالی در کار وجود!" })
+//     }
+
+
+// })
 
 
 
