@@ -106,94 +106,104 @@ router.post("/", async (req: Request, res: Response) => {
 })
 
 
-interface ISet {
-    status: Number,
-    message: String
-}
 
 router.put("/updatePrice", async (req: Request, res: Response) => {
 
-    let setution: ISet = {
-        status: 200,
-        message: "ok"
-    };
+    const { price: priceStr, off: offStr, productId } = req.query;
 
-    const price: String = String(req.query.price);
-    const off: String = String(req.query.off);
+    // تبدیل مقادیر ورودی به عدد
+    const price = Number(priceStr);
+    const off = Number(offStr);
 
-
-    if (!price) {
-        setution = {
-            status: 400,
-            message: "لطفا قیمت را وارد کنید"
-        }
-
-    } else {
-        if (isNaN(Number(price))) {
-            setution = {
-                status: 400,
-                message: "عددی که برای قیمت وارد کردید صحیح نمی باشد"
-            }
-
-        }
-        if (isNaN(Number(off))) {
-            setution = {
-                status: 400,
-                message: "عددی که برای قیمت وارد کردید صحیح نمی باشد"
-            }
-
-        }
+    // بررسی اعتبار ورودی‌ها
+    if (!productId) {
+        return res.status(400).json({ message: "لطفا آی دی را ورد کنید" });
+    }
+    if (!priceStr) {
+        return res.status(400).json({ message: "لطفا قیمت را وارد کنید" });
     }
 
-
-
-
-    if (setution["status"] === 200) {
-
-        // if (!isNaN(Number(price))) {
-
-        //     console.log(" thi is found")
-        // }else{
-        //     console.log("how")
-        // }
-        // const Nprice = Number(price)
-        // const Noff = Number(off)
-
-
-        // const productID = req.query.productId;
-
-
-
-        // let priceView = 0;
-
-
-        // priceView = Nprice * Noff / 100
-
-
-        // const result = await FoodDTO.updateOne(
-        //     { _id: productID },
-        //     {
-        //         $set:
-        //         {
-        //             price: {
-        //                 priceView: String(priceView),
-        //                 solidPriceView: String(price),
-        //                 price: price,
-        //                 Off: off
-        //             }
-        //         }
-        //     }
-        // )
-
-
-        return res.send(200).json({ message: "hi" })
-        // return res.json({ message: result })
-    } else {
-        return res.send(setution["status"]).json({ message: setution["message"] })
+    if (isNaN(price)) {
+        return res.status(400).json({ message: "عددی که برای قیمت وارد کردید صحیح نمی باشد" });
     }
 
+    if (isNaN(off)) {
+        return res.status(400).json({ message: "عددی که برای تخفیف وارد کردید صحیح نمی باشد" });
+    }
+
+    // محاسبه قیمت با تخفیف
+    const priceView = price - (price * (off / 100));
+
+    try {
+        // به‌روزرسانی پایگاه داده
+        const result = await FoodDTO.updateOne(
+            { _id: productId },
+            {
+                $set: {
+                    price: {
+                        priceView: String(priceView),
+                        solidPriceView: String(price),
+                        price: price,
+                        Off: off
+                    }
+                }
+            }
+        );
+
+        return res.status(200).json({ message: "به‌روزرسانی موفقیت‌آمیز بود", result });
+    } catch (error) {
+        // مدیریت خطا
+        return res.status(500).json({ message: "خطایی در به‌روزرسانی پایگاه داده رخ داد", error });
+    }
 
 })
+
+router.put("/NameDetail", async (req: Request, res: Response) => {
+
+    const { name, detail, productID } = req.query;
+
+
+
+    // بررسی اعتبار ورودی‌ها
+    if (!productID) {
+        return res.status(400).json({ message: "آیدی ضروری است" });
+    }
+    if (!name && !detail) {
+        return res.status(400).json({ message: "حد اقل یکی را وارد کنید" });
+    }
+
+
+    try {
+
+        let updatefiled: any = {}
+
+
+        if (name) {
+            updatefiled.name = name
+        }
+
+        if (detail) {
+            updatefiled.detail = detail
+        }
+
+        console.log(updatefiled)
+
+        // به‌روزرسانی پایگاه داده
+        const result = await FoodDTO.updateOne(
+            { _id: productID },
+            {
+                $set: updatefiled
+            }
+        );
+
+        return res.status(200).json({ message: "به‌روزرسانی موفقیت‌آمیز بود", result });
+    } catch (error) {
+        // مدیریت خطا
+        return res.status(500).json({ message: "خطایی در به‌روزرسانی پایگاه داده رخ داد", error });
+    }
+
+})
+
 
 
 
