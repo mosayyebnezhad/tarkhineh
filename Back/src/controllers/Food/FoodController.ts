@@ -113,8 +113,6 @@ router.get("/One", async (req: Request, res: Response) => {
 
 
 
-
-
             if (Data) return res.status(200).json(Data)
             return res.status(404).json({ message: "اطلاعاتی یافت نشد" })
         }
