@@ -3,10 +3,10 @@ import mongoose from "mongoose";
 const UserAdressSchema = new mongoose.Schema({
     userID: String,
     city: String,
-    phone: String,
-    type: String
+    address: String,
+    phone: String
 
 })
 
 
-export default mongoose.model("UserAddress", UserAdressSchema)
+export default mongoose.model("address", UserAdressSchema)

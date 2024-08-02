@@ -21,7 +21,7 @@ const FoodSchema = new mongoose.Schema({
         {
             UserId: String,
             comment: String,
-            date: String
+            date: Date
         }
     ],
     Category: [String],

@@ -1,6 +1,4 @@
 import mongoose from "mongoose";
-import validator from "validator";
-import bcrypt from "bcryptjs";
 
 const { Schema } = mongoose;
 
@@ -92,15 +90,5 @@ const UserSchema = new Schema(
     { timestamps: true }
 );
 
-
-// هش کردن رمز عبور قبل از ذخیره کاربر
-// UserSchema.pre('save', async function (next) {
-//     if (!this.isModified('password')) {
-//         return next();
-//     }
-//     const salt = await bcrypt.genSalt(10);
-//     this.password = await bcrypt.hash(this.password, salt);
-//     next();
-// });
 
 export default mongoose.model("User", UserSchema);
