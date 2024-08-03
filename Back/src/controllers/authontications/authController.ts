@@ -12,6 +12,13 @@ interface UserLogin {
 }
 
 
+interface LoginSimply {
+
+    phone: String,
+    authCode: String
+}
+
+
 
 
 router.get("/", async (req: any, res: any) => {
@@ -44,6 +51,41 @@ router.get("/", async (req: any, res: any) => {
 
 
 )
+
+
+router.post("/", async (req: any, res: any) => {
+
+
+    let Data: LoginSimply = req.body;
+
+    if (!Data.phone || !Data.authCode) return res.status(400).json({ message: "اطلاعات وارد شده نامعتبر است" })
+
+    let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
+
+    if (user) return res.status(409).json({ message: "شماره همراه شما قبلا ثبت شده است" })
+
+
+    try {
+        await UsersDTO.create({
+            phone: Data.phone,
+            authCode: Data.authCode,
+            CreateDate: Date.now()
+        })
+
+
+
+        return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+    }
+    catch {
+        return res.status(400).json({ message: "عملیات با شکست مواجع شده" })
+    }
+
+
+}
+
+
+)
+
 
 
 

@@ -10,8 +10,16 @@ const UserSchema = new Schema(
             required: false,
             unique: false
         },
+        authCode: {
+            type: String,
+            required: false
+        },
         name: {
             type: String,
+            required: false
+        },
+        CreateDate: {
+            type: Date,
             required: false
         },
         family: {
@@ -20,7 +28,7 @@ const UserSchema = new Schema(
         },
         email: {
             type: String,
-            required: true,
+            required: false,
             unique: true
 
         },
@@ -30,7 +38,7 @@ const UserSchema = new Schema(
         },
         password: {
             type: String,
-            required: true,
+            required: false,
             minlength: 6
         },
         birthDate: {

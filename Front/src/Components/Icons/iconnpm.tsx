@@ -1,4 +1,4 @@
-import { Check, IconoirProvider } from "iconoir-react";
+import { IconoirProvider } from "iconoir-react";
 import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
 
 

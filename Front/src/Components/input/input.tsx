@@ -3,6 +3,7 @@ import "./input.scss"
 
 import { EyeClosed, EyeSolid, User, UserCart, WarningCircle } from "iconoir-react";
 import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
+import invertHexColor from "../../utils/Colorinverter";
 interface IInterface extends React.InputHTMLAttributes<HTMLInputElement> {
     iconw?: IconoirProviderProps["children"],
     title: string,
@@ -22,6 +23,12 @@ const Input = (prop: IInterface) => {
     let disable = prop.disable ? "InActive" : ""
     let error = prop.error ? "HasError" : ""
 
+
+
+    let colorWWW;
+
+
+    if (transparency) colorWWW = invertHexColor(transparency)
 
     let Sizing = `INPSIE-${prop.sizew ? prop.sizew : 32}`
     let clasess = disable + error + " " + Sizing
@@ -58,7 +65,11 @@ const Input = (prop: IInterface) => {
 
 
                         style={
-                            transparency ? { background: transparency }
+                            transparency ? {
+                                background: transparency,
+                                color: colorWWW
+
+                            }
                                 : {}
                         }
 
@@ -79,12 +90,14 @@ const Input = (prop: IInterface) => {
 
             </div>
 
-            {prop.error && <span>
-                <WarningCircle />
-                <p>
-                    {prop.error}
-                </p>
-            </span>}
+            {
+                prop.error && <span>
+                    <WarningCircle />
+                    <p>
+                        {prop.error}
+                    </p>
+                </span>
+            }
         </div >
 
 

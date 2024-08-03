@@ -2,12 +2,12 @@
     background: white;
     width: 400px;
     padding: 24px 48px;
-
+    height: 400px;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
     flex-wrap: wrap;
-
+    overflow: hidden;
     border: 1px solid gray;
     border-radius: 8px;
 
@@ -72,3 +72,20 @@
     }
 
 }
+
+
+.slides {
+    @extend .Singin;
+    // background: red;
+    transition: .5s;
+    border: none;
+}
+
+.Singin {
+    border-radius: 16px;
+    // overflow: hidden;
+    position: relative;
+
+}
+
+

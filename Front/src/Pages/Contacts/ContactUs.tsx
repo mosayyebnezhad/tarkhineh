@@ -18,48 +18,11 @@ const ContactUs = () => {
             <div className="countainer">
 
                 <Input
-                    title="شماره تماس ضروری"
-                    sizew={32}
-                    transparency="lightcoral"
+                    title="نیاز است"
+                    error="لطفا این را پر کنید"
 
                 />
-                <Input
-                    title="شماره تماس ضروری"
-                    sizew={32}
-                    type="password"
 
-                />
-                <Input
-                    title="رمز عبور"
-                    sizew={32}
-                    type="password"
-                    error="لطفا رمز عبور را وارد کنید"
-                />
-                <Input
-                    title="شما خر تاریک هستید"
-                    sizew={40}
-                    darkmode
-                />
-                <Input
-                    title="شما خر تاریک هستید"
-                    sizew={40}
-                    darkmode
-                    error="لطفا رمز عبور را وارد کنید"
-                />
-
-                <Input
-                    title="شما خر هستید"
-                    sizew={48}
-                />
-                <Input
-                    style={{
-
-                    }}
-                    title="شما خر هستید"
-                    sizew={56}
-                    disable
-                />
-        
 
 
             </div>
