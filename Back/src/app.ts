@@ -18,27 +18,13 @@ mongoose.connect(Connection, { autoIndex: true }).then((e) => {
 
   );
 
-  //  main Controlles
+  //  Controlles
   app.use('/user', userController)
   app.use('/auth', authController)
   app.use('/food', FoodController)
   app.use('/branch', branchController)
   app.use('/address', addressContoller)
   app.use('/order', orderControllers)
-
-  // app.use('/User', FoodController)
-
-
-  // app.use('/Useraddress', FoodController)
-  // app.use('/Order', FoodController)
-  // app.use('/Order', FoodController)
-
-
-
-
-
-
-
 
 
 }).catch(() => {

@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import AuthMiddleware from "../../middlewares/authmiddleware";
 import commentDTO from "../../models/commentDTO";
 import rateDTO from "../../models/rateDTO";
+import Requestauthed from "../../types/authTypes";
 
 
 const router = Router();
@@ -156,8 +157,6 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextF
 })
 
 
-
-
 router.patch("/edit", async (req: Request, res: Response) => {
 
 
@@ -245,11 +244,6 @@ router.patch("/edit", async (req: Request, res: Response) => {
 })
 
 
-
-
-
-
-
 router.get("/comments", async (req: Request, res: Response) => {
 
 
@@ -278,7 +272,6 @@ router.get("/comments", async (req: Request, res: Response) => {
 
 })
 
-
 router.post("/comments", async (req: Request, res: Response) => {
 
 
@@ -299,7 +292,6 @@ router.post("/comments", async (req: Request, res: Response) => {
 
 
 })
-
 router.patch("/comments", async (req, res) => {
 
     const { id } = req.query;
@@ -329,7 +321,6 @@ router.patch("/comments", async (req, res) => {
 
 })
 
-
 router.delete("/comments", async (req: Request, res: Response) => {
 
 
@@ -355,53 +346,107 @@ router.delete("/comments", async (req: Request, res: Response) => {
 
 
 
-
-// router.get("/rate", async (req: Request, res: Response) => {
-
-
-//     const { commentID: cmtid, UserID: usrid } = req.query;
-
-//     let Logic: any = {};
-
-//     if (cmtid && usrid) {
-//         Logic = {
-//             $and: [
-//                 { CommentID: cmtid },
-//                 { userID: usrid }
-//             ]
-//         };
-//     } else {
-//         if (cmtid) Logic.CommentID = cmtid;
-//         if (usrid) Logic.userID = usrid;
-//     }
-
-//     try {
-//         const Data = await commentDTO.find(Logic);
-//         return res.json(Data);
-//     } catch (error) {
-//         return res.status(500).json({ message: "Error retrieving data", error });
-//     }
-
-// })
+router.get("/rate", AuthMiddleware, async (req: Requestauthed, res: Response, next: NextFunction) => {
 
 
-router.post("/rate", async (req: Request, res: Response) => {
+    // const { commentID: cmtid, UserID: usrid } = req.query;
+
+    // let Logic: any = {};
+
+    // if (cmtid && usrid) {
+    //     Logic = {
+    //         $and: [
+    //             { CommentID: cmtid },
+    //             { userID: usrid }
+    //         ]
+    //     };
+    // } else {
+    //     if (cmtid) Logic.CommentID = cmtid;
+    //     if (usrid) Logic.userID = usrid;
+    // }
+
+    // try {
+    //     const Data = await commentDTO.find(Logic);
+    //     return res.json(Data);
+    // } catch (error) {
+    //     return res.status(500).json({ message: "Error retrieving data", error });
+    // }
 
 
-    const Data = req.body;
+
 
 
 
     try {
-        await rateDTO.create(Data)
 
-        return res.status(200).json({ message: "ارسال موفق" })
-    } catch {
-        return res.status(400).json({ message: "ارسال نا موفق" })
+
+        try {
+
+            const UserID = req.id.id
+            const Myrates = await FoodDTO.find({ userID: UserID })
+            console.log(UserID)
+
+            if (!Myrates) return res.status(404).json({ message: "چیزی پیدا نشد" })
+
+            return res.json(Myrates)
+
+        } catch {
+            return res.status(404).json({ message: "اطلاعات ناقص" })
+        }
+
+
+    } catch (err) {
+        next(err)
     }
 
 
 
+
+
+})
+
+
+router.post("/rate", AuthMiddleware, async (req: Requestauthed, res: Response, next: NextFunction) => {
+
+    try {
+
+
+        const Data = req.body;
+        const UserID = req.id.id
+
+
+        const User = await UsersDTO.findById(Data.userID);
+
+        const TargetFood = await FoodDTO.findOne({ RateID: Data.RateID })
+
+
+        const isConflict = await rateDTO.exists({
+            $and: [
+                { RateID: Data.RateID },
+                { userID: UserID }
+            ]
+        });
+
+
+        if (isConflict) return res.status(409).json({ message: "این کاربر قبلا برای این مورد نظر ثبت کرده است" })
+
+
+
+
+        try {
+
+            Data.userID = UserID;
+            await rateDTO.create(Data)
+
+            return res.status(200).json({ message: "ارسال موفق" })
+        } catch {
+            return res.status(400).json({ message: "ارسال نا موفق" })
+        }
+
+
+    } catch (err) {
+        next(err)
+    }
 
 
 })

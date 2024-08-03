@@ -2,7 +2,6 @@ import express, { Router, Request, Response, NextFunction } from "express";
 import UsersDTO from "../../models/UsersDTO";
 import bcrypt from 'bcryptjs';
 import { ecnodetoken } from "../../tools";
-import AuthMiddleware from "../../middlewares/authmiddleware";
 
 const router = Router()
 
@@ -25,12 +24,12 @@ router.get("/", async (req: any, res: any) => {
 
     if (!user) return res.status(400).json({ message: "کاربری با این مشخصات یافت نشد" })
 
-    const compare = await bcrypt.compare(String(Data.password), user.password);
+    const compare = await bcrypt.compare(String(Data.password), String(user.password));
 
     if (!compare) return res.status(400).json({ message: "رمز عبور نا درست است" })
 
 
-    const token = ecnodetoken({ email: user.email })
+    const token = ecnodetoken({ id: user._id })
 
 
 

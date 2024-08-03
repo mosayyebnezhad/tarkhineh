@@ -5,7 +5,7 @@ const rateShema = new mongoose.Schema({
     userID: String,
     rate: Number,
     date: Date,
-
+  
 })
 
 

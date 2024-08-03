@@ -5,8 +5,11 @@ const commentShema = new mongoose.Schema({
     userID: String,
     commentText: String,
     date: Date,
-   
-
+   //NICE hello
+   //ALERT hello
+   //IMPORTANT hello
+   //INFO hello
+   //TODO hello
 })
 
 
