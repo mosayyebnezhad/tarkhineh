@@ -158,6 +158,7 @@ const Singin = () => {
 
         } else {
             setcodeValidation(false)
+            
             SetError2("")
         }
 
