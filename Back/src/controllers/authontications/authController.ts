@@ -74,10 +74,10 @@ router.post("/", async (req: any, res: any) => {
 
 
             await UsersDTO.findByIdAndUpdate(user._id, {
-                authCode:Data.authCode
+                authCode: Data.authCode
             })
 
-          
+
             return res.status(200).json({ message: "با موفقیت ایجاد شد" })
         }
         catch (err) {
@@ -116,10 +116,15 @@ router.post("/", async (req: any, res: any) => {
 )
 router.post("/exist", async (req: any, res: any) => {
 
-
+    const iranPhoneNumberRegex = /^09[0-9]{9}$/;
     let Data: exist = req.body;
 
     if (!Data.phone) return res.status(400).json({ message: "اطلاعات وارد شده نامعتبر است" })
+
+
+
+
+    if (!iranPhoneNumberRegex.test(String(Data.phone))) return res.status(400).json({ message: "فرمت شماره نا درست است " })
 
     let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
 
