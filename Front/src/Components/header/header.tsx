@@ -1,16 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 
 import "./header.scss"
 import { Link, useLocation } from "react-router-dom";
 import Icon from "../Icons/icons";
-import { URL } from "url";
+
 import Modal from "../modal/modal";
+import { appContext } from "../../App";
+import { ILogin } from "../../types/Puplictyps";
+import { LogOut } from "iconoir-react";
+
 
 
 
 
 
 const Header = () => {
+
+
+    const { Login: loding } = useContext(appContext);
+
+
+    const Login: ILogin = loding;
 
     const [Parentshow, setShow] = useState(false)
     const handleClickModal = () => {
@@ -25,11 +35,22 @@ const Header = () => {
 
 
                 <div className="icons">
-                    <button type="button" onClick={handleClickModal}  >
+                    {!Login.islogin ? <button type="button" onClick={handleClickModal}  >
                         <i>
                             <Icon icon="user" />
                         </i>
-                    </button>
+                    </button> :
+                        <Link to={"/singOut"} style={{ color: "black" }}>
+
+
+                            <i>
+                                <LogOut color="#417F56"/>
+                            </i>
+
+
+                        </Link>
+
+                    }
 
                     <Link to="/about">
                         <i>

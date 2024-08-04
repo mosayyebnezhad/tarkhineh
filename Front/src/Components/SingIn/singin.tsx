@@ -1,14 +1,20 @@
-import { ArrowUp, SineWave, Xmark } from "iconoir-react"
+import { ArrowUp, Xmark } from "iconoir-react"
 import Buttons from "../Buttons/buttons"
 import Input from "../input/input"
 import "./sining.scss"
 import Icon from "../Icons/icons"
-import { useRef, useState } from "react"
+import { useContext, useState } from "react"
 import axios from "axios"
+import { appContext } from "../../App"
+import { ILogin } from '../../types/Puplictyps';
+import { useCookies } from "react-cookie"
+
 
 
 
 const Singin = () => {
+    const { SetLogin } = useContext(appContext)
+    const [, setCookie] = useCookies(['Login']);
 
 
     const [next, setNext] = useState(0)
@@ -17,6 +23,7 @@ const Singin = () => {
     const [codeValidation, setcodeValidation] = useState(false)
     const [Error, SetError] = useState("")
     const [Error2, SetError2] = useState("")
+    const [exist , setExist] = useState(false)
 
 
     const btnHandle = () => {
@@ -32,11 +39,17 @@ const Singin = () => {
 
 
 
+
+           
+
             let data = JSON.stringify({
                 "phone": String(phoneNumber),
-                "authCode": CodeGenerating
+                "authCode": CodeGenerating,
+                "Exist":exist
 
             });
+
+            // console.log(data)
 
             let config = {
                 method: 'post',
@@ -48,16 +61,16 @@ const Singin = () => {
                 data: data
             };
 
-            console.log(config)
+            // console.log(config)
             axios.request(config)
                 .then((response) => {
-                    console.log("created")
+                    // console.log("created")
                     setNext(next + 1)
                     alert(CodeGenerating)
 
                 })
                 .catch((error) => {
-                    console.log("NO-created")
+                    // console.log("NO-created")
                 });
 
         }
@@ -93,17 +106,33 @@ const Singin = () => {
                 data: data
             };
 
-            console.log(config)
+            // console.log(config)
             axios.request(config)
                 .then((response) => {
 
 
                     SetError("");
-
+                    setExist(false)
                     SetPhoneNumber(val)
                 })
                 .catch((error) => {
-                    SetError(error.response.data.message);
+
+
+                    const Status = error.response.status;
+
+
+                    if (Status === 409) { 
+
+                        SetError("");
+                        setExist(true)
+                        SetPhoneNumber(val)
+
+
+                    } else {
+                        SetError(error.response.data.message);
+                    }
+
+
 
 
                 });
@@ -130,7 +159,7 @@ const Singin = () => {
                 "authCode": val
 
             });
-            console.log(data)
+            // console.log(data)
 
             let config = {
                 method: 'post',
@@ -142,23 +171,34 @@ const Singin = () => {
                 data: data
             };
 
-            console.log(config)
+            // console.log(config)
             axios.request(config)
                 .then((response) => {
-                    console.log("loged in")
+                    // console.log("loged in")
                     setNext(next + 1)
+
+
+                    const loginDetail: ILogin = {
+                        islogin: true,
+                        username: "پروفایل"
+                    }
+
+
+                    SetLogin(loginDetail)
+                    setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
                     SetError2("")
+
 
                 })
                 .catch((error) => {
-                    console.log("NO-log")
+                    // console.log("NO-log")
                     SetError2(error.response.data.message)
                 });
 
 
         } else {
             setcodeValidation(false)
-            
+
             SetError2("")
         }
 

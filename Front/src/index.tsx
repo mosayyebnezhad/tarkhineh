@@ -8,6 +8,7 @@ import './Data/index.scss';
 import { BrowserRouter } from 'react-router-dom';
 // import Loading from './Components/Loading/Loading';
 import App from './App';
+import { CookiesProvider } from 'react-cookie';
 
 
 const root = ReactDOM.createRoot(
@@ -32,10 +33,10 @@ const Main = () => {
   return (
     <React.StrictMode>
       <BrowserRouter>
- 
 
-        <App />
-
+        <CookiesProvider defaultSetOptions={{ path: "/" }}>
+          <App />
+        </CookiesProvider>
 
       </BrowserRouter>
 

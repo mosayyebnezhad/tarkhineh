@@ -15,7 +15,8 @@ interface UserLogin {
 interface LoginSimply {
 
     phone: String,
-    authCode: String
+    authCode: String,
+    Exist?: boolean
 }
 interface exist {
 
@@ -66,26 +67,47 @@ router.post("/", async (req: any, res: any) => {
 
     let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
 
-    if (user) return res.status(409).json({ message: "شماره همراه شما قبلا ثبت شده است" })
 
 
-    try {
-        await UsersDTO.create({
-            phone: Data.phone,
-            authCode: Data.authCode,
-            CreateDate: Date.now()
-        })
+    if (user && Data.Exist) {
+        try {
+
+
+            await UsersDTO.findByIdAndUpdate(user._id, {
+                authCode:Data.authCode
+            })
+
+          
+            return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+        }
+        catch (err) {
+            return res.status(400).json({
+                message: "عملیات با شکست مواجع شده",
+                Error: err
+            })
+        }
+    } else {
+        try {
+            await UsersDTO.create({
+                phone: Data.phone,
+                authCode: Data.authCode,
+                CreateDate: Date.now()
+            })
 
 
 
-        return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+            return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+        }
+        catch (err) {
+            return res.status(400).json({
+                message: "عملیات با شکست مواجع شده",
+                Error: err
+            })
+        }
     }
-    catch (err) {
-        return res.status(400).json({
-            message: "عملیات با شکست مواجع شده",
-            Error: err
-        })
-    }
+
+
+
 
 
 }
@@ -127,7 +149,7 @@ router.post("/AuthCodeauthorized", async (req: any, res: any) => {
     try {
         let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
         if (user.authCode != Data.authCode) return res.status(409).json({ message: "کد ارسالی برابر نیست!" })
-            return res.status(200).json({ message: "کد ارسالی کاملا درست است!" })
+        return res.status(200).json({ message: "کد ارسالی کاملا درست است!" })
     }
     catch {
         return res.status(400).json({ message: "شماره موبایل وارده در دیتابیس وجود ندارد" })

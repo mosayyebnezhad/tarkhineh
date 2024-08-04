@@ -3,6 +3,7 @@ import Aboute from "./About/about";
 import Home from "./home/home";
 import ContactUs from "./Contacts/ContactUs";
 import Notfound from "./Notfound/notfound";
+import Singout from "./singOut/singOut";
 
 function Routings() {
   return (
@@ -18,6 +19,8 @@ function Routings() {
         <Route path="/Branch" element={<Notfound />} />
         <Route path="/menu" element={<Notfound />} />
         <Route path="/Deputize" element={<Notfound />} />
+
+        <Route path="/singOut" element={<Singout />} />
 
         <Route path="*" element={<Notfound />} />
 
