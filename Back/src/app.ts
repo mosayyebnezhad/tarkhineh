@@ -8,9 +8,9 @@ const port = 8080
 env.config();
 
 const app = express();
-app.use(cors)
+app.use(cors())
 app.use(express.json());
-// app.use(cors());
+
 let Connection: string = process.env.MONGODB_URI || "no-mongodb-connection-string";
 
 mongoose.connect(Connection, { autoIndex: true }).then((e) => {

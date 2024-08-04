@@ -16,7 +16,7 @@ const Modal = (prop: IModal) => {
         }
 
 
-        console.log(e.target.className)
+        // console.log(e.target.className)
     };
 
 

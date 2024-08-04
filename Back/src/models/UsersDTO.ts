@@ -8,7 +8,7 @@ const UserSchema = new Schema(
         username: {
             type: String,
             required: false,
-            unique: false
+          
         },
         authCode: {
             type: String,
@@ -29,8 +29,8 @@ const UserSchema = new Schema(
         email: {
             type: String,
             required: false,
-            unique: true
-
+            unique: false,
+            default: ''
         },
         phone: {
             type: String,

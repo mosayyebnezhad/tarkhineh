@@ -3,7 +3,7 @@ import Buttons from "../Buttons/buttons"
 import Input from "../input/input"
 import "./sining.scss"
 import Icon from "../Icons/icons"
-import { useState } from "react"
+import { useRef, useState } from "react"
 import axios from "axios"
 
 
@@ -12,15 +12,58 @@ const Singin = () => {
 
 
     const [next, setNext] = useState(0)
-    const [phoneValidation, Setvalidation] = useState(false)
+    // const [phoneValidation, Setvalidation] = useState(false)
     const [phoneNumber, SetPhoneNumber] = useState("")
     const [codeValidation, setcodeValidation] = useState(false)
+    const [Error, SetError] = useState("")
+    const [Error2, SetError2] = useState("")
 
 
     const btnHandle = () => {
 
-        setNext(next + 1)
-        // alert("btn clicked")
+        // 
+        //    alert(phoneNumber)
+
+
+        if (phoneNumber.length > 10) {
+            const CodeGenerating = Math.floor(Math.random() * 10000) + 10000;
+            //TODO send code to phone number
+            const url: string = process.env.REACT_APP_DOMAIN || '';
+
+
+
+            let data = JSON.stringify({
+                "phone": String(phoneNumber),
+                "authCode": CodeGenerating
+
+            });
+
+            let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: `${url}/auth`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            console.log(config)
+            axios.request(config)
+                .then((response) => {
+                    console.log("created")
+                    setNext(next + 1)
+                    alert(CodeGenerating)
+
+                })
+                .catch((error) => {
+                    console.log("NO-created")
+                });
+
+        }
+
+
+
     }
     const cameback = () => {
 
@@ -31,56 +74,91 @@ const Singin = () => {
     const validationchecker = async (e: any) => {
         const val = e.target.value;
         if (val.length === 11) {
-            SetPhoneNumber(val)
-            Setvalidation(true)
+
+            const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
-            //INFO register user to the server
 
-            const url: string = process.env.DOMAIN || ''
-
-
-            let data = {
-                phone: "09384850816",
-                authCode: "858585"
-            };
-
+            let data = JSON.stringify({
+                "phone": String(val)
+            });
 
             let config = {
                 method: 'post',
-
-                url: 'http://localhost:8080/auth',
+                maxBodyLength: Infinity,
+                url: `${url}/auth/exist`,
                 headers: {
-                    "Access-Control-Allow-Origin": "*"
+                    'Content-Type': 'application/json'
                 },
                 data: data
             };
+
+            console.log(config)
             axios.request(config)
                 .then((response) => {
-                    console.log(JSON.stringify(response.data));
+
+
+                    SetError("");
+
+                    SetPhoneNumber(val)
                 })
                 .catch((error) => {
-                    console.log(error);
+                    SetError(error.response.data.message);
+
+
                 });
 
 
 
         } else {
-            Setvalidation(false)
+            SetError("موردی اشتباه است");
         }
 
 
     }
     const codevalidationcheker = (e: any) => {
         const val = e.target.value;
-        if (val.length === 6) {
+        if (val.length === 5) {
 
             setcodeValidation(true)
+            const url: string = process.env.REACT_APP_DOMAIN || '';
 
+
+
+            let data = JSON.stringify({
+                "phone": String(phoneNumber),
+                "authCode": val
+
+            });
+            console.log(data)
+
+            let config = {
+                method: 'post',
+                maxBodyLength: Infinity,
+                url: `${url}/auth/AuthCodeauthorized`,
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: data
+            };
+
+            console.log(config)
+            axios.request(config)
+                .then((response) => {
+                    console.log("loged in")
+                    setNext(next + 1)
+                    SetError2("")
+
+                })
+                .catch((error) => {
+                    console.log("NO-log")
+                    SetError2(error.response.data.message)
+                });
 
 
         } else {
             setcodeValidation(false)
+            SetError2("")
         }
 
 
@@ -108,12 +186,12 @@ const Singin = () => {
                 <span className="UpCap">با وارد کردن شماره موبایل کد تاییدی برای شما ارسال خواهد شد.</span>
                 <Input onInput={validationchecker}
 
-                    error={!phoneValidation ? "شماره موبایل اشتباه است" : ""}
+                    error={Error ? Error : ""}
 
                     title="شماره همراه" darkmode transparency={"white"} />
 
                 <div className="buttonsw">
-                    <Buttons onClick={btnHandle} disable={!phoneValidation} Style="fill" size={40}>
+                    <Buttons onClick={btnHandle} disable={!!Error} Style="fill" size={40}>
                         ادامه
                     </Buttons>
                 </div>
@@ -136,7 +214,10 @@ const Singin = () => {
                 </div>
                 <p className="line">کد برای شما ارسال شد!</p>
                 <span className="UpCap">یک کد شش رقمی برای شماره {phoneNumber} ارسال شد</span>
-                <Input title="کد شش رقمی" darkmode transparency="white" onInput={codevalidationcheker} />
+                <Input title="کد شش رقمی"
+
+                    error={Error2 ? Error2 : ""}
+                    darkmode transparency="white" onInput={codevalidationcheker} />
 
                 <div className="buttonsw">
                     <Buttons disable={!codeValidation} size={40} Style="fill">
@@ -147,7 +228,23 @@ const Singin = () => {
                     ورود و عضویت در ترخینه به منزله قبول قوانین و مقررات است.
                 </span>
             </div>
+            <div className={`slides`}
+                style={{ transform: `translateY(-${next * 448}px)` }}
+            >
+                <div className="headUp">
+                    <div className="x">
+                        <div className="closee"></div>
+                        <Buttons RightIcon={<Xmark />} Style="textBTN" />
+                    </div>
+                    <div className="logoCase">
+                        <Icon icon="logo" />
+                    </div>
+                </div>
+                <p className="line">با موفقیت ثبت نام شدید</p>
+                <span className="UpCap">لطفا برای تنظیم پروفایل به قسمت پروفایل خود بروید!</span>
 
+
+            </div>
 
         </div >
     )

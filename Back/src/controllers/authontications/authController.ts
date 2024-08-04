@@ -17,6 +17,10 @@ interface LoginSimply {
     phone: String,
     authCode: String
 }
+interface exist {
+
+    phone: String
+}
 
 
 
@@ -76,8 +80,11 @@ router.post("/", async (req: any, res: any) => {
 
         return res.status(200).json({ message: "با موفقیت ایجاد شد" })
     }
-    catch {
-        return res.status(400).json({ message: "عملیات با شکست مواجع شده" })
+    catch (err) {
+        return res.status(400).json({
+            message: "عملیات با شکست مواجع شده",
+            Error: err
+        })
     }
 
 
@@ -85,6 +92,62 @@ router.post("/", async (req: any, res: any) => {
 
 
 )
+router.post("/exist", async (req: any, res: any) => {
+
+
+    let Data: exist = req.body;
+
+    if (!Data.phone) return res.status(400).json({ message: "اطلاعات وارد شده نامعتبر است" })
+
+    let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
+
+    if (user) return res.status(409).json({ message: "شماره همراه شما قبلا ثبت شده است" })
+
+    if (Data.phone.length == 11) return res.status(200).json({ message: "ایجاد کاربر بلا مانع است" })
+
+
+
+
+    return res.status(400).json({ message: "تعداد کاراکتر مورد تایید نمی باشد" })
+
+
+
+}
+
+
+)
+
+router.post("/AuthCodeauthorized", async (req: any, res: any) => {
+
+
+    let Data: LoginSimply = req.body;
+
+    if (!Data.phone || !Data.authCode) return res.status(400).json({ message: "اطلاعات وارد شده نامعتبر است" })
+
+    try {
+        let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
+        if (user.authCode != Data.authCode) return res.status(409).json({ message: "کد ارسالی برابر نیست!" })
+            return res.status(200).json({ message: "کد ارسالی کاملا درست است!" })
+    }
+    catch {
+        return res.status(400).json({ message: "شماره موبایل وارده در دیتابیس وجود ندارد" })
+    }
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+)
+
 
 
 
