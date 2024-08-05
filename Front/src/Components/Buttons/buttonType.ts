@@ -30,19 +30,21 @@ interface CommonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children?: React.ReactNode;
     leftIcon?: IconoirProviderProps['children'];
     RightIcon?: IconoirProviderProps['children'];
-}
-
-interface LoadingPrimaryProps extends CommonProps {
     loading?: boolean;
-    disable?: never;  // این خاصیت نباید وجود داشته باشد
-}
-
-interface DisablePrimaryProps extends CommonProps {
     disable?: boolean;
-    loading?: never;  // این خاصیت نباید وجود داشته باشد
 }
 
-type IProps = LoadingPrimaryProps | DisablePrimaryProps;
+// interface LoadingPrimaryProps extends CommonProps {
+//     loading?: boolean;
+//     disable?: never;  // این خاصیت نباید وجود داشته باشد
+// }
+
+// interface DisablePrimaryProps extends CommonProps {
+//     disable?: boolean;
+//     loading?: never;  // این خاصیت نباید وجود داشته باشد
+// }
+
+type IProps = CommonProps;
 
 export default IProps;
 

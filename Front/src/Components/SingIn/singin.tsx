@@ -8,7 +8,7 @@ import axios from "axios"
 import { appContext } from "../../App"
 import { ILogin } from '../../types/Puplictyps';
 import { useCookies } from "react-cookie"
-
+const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
 
@@ -23,29 +23,29 @@ const Singin = () => {
     const [codeValidation, setcodeValidation] = useState(false)
     const [Error, SetError] = useState("")
     const [Error2, SetError2] = useState("")
-    const [exist , setExist] = useState(false)
+    const [exist, setExist] = useState(false)
+
+    const [fetchloading, setFetchLoading] = useState(false)
 
 
-    const btnHandle = () => {
+    const btnHandle = async () => {
 
         // 
-        //    alert(phoneNumber)
+        //    alert("f")
 
 
         if (phoneNumber.length > 10) {
             const CodeGenerating = Math.floor(Math.random() * 10000) + 10000;
             //TODO send code to phone number
-            const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
 
 
-           
 
             let data = JSON.stringify({
                 "phone": String(phoneNumber),
                 "authCode": CodeGenerating,
-                "Exist":exist
+                "Exist": exist
 
             });
 
@@ -61,17 +61,23 @@ const Singin = () => {
                 data: data
             };
 
-            // console.log(config)
-            axios.request(config)
-                .then((response) => {
-                    // console.log("created")
-                    setNext(next + 1)
-                    alert(CodeGenerating)
 
-                })
-                .catch((error) => {
-                    // console.log("NO-created")
-                });
+
+
+
+            try {
+                setFetchLoading(true)
+                const response = await axios.request(config)
+                alert(CodeGenerating)
+                setNext(next + 1)
+
+            } catch (error) {
+                console.log("NO-created")
+
+            } finally {
+                setFetchLoading(false)
+            }
+
 
         }
 
@@ -88,7 +94,6 @@ const Singin = () => {
         const val = e.target.value;
         if (val.length === 11) {
 
-            const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
 
@@ -106,36 +111,30 @@ const Singin = () => {
                 data: data
             };
 
-            // console.log(config)
-            axios.request(config)
-                .then((response) => {
+            try {
+                setFetchLoading(true);
+                const response = await axios.request(config);
+                SetError("");
+                setExist(false)
+                SetPhoneNumber(val)
 
+
+
+            } catch (error: any) {
+
+                const Status = error.response.status;
+                if (Status === 409) {
 
                     SetError("");
-                    setExist(false)
+                    setExist(true)
                     SetPhoneNumber(val)
-                })
-                .catch((error) => {
-
-
-                    const Status = error.response.status;
-
-
-                    if (Status === 409) { 
-
-                        SetError("");
-                        setExist(true)
-                        SetPhoneNumber(val)
-
-
-                    } else {
-                        SetError(error.response.data.message);
-                    }
-
-
-
-
-                });
+                } else {
+                    SetError(error.response.data.message);
+                }
+            }
+            finally {
+                setFetchLoading(false);
+            }
 
 
 
@@ -145,12 +144,12 @@ const Singin = () => {
 
 
     }
-    const codevalidationcheker = (e: any) => {
+    const codevalidationcheker = async (e: any) => {
         const val = e.target.value;
         if (val.length === 5) {
 
             setcodeValidation(true)
-            const url: string = process.env.REACT_APP_DOMAIN || '';
+
 
 
 
@@ -172,28 +171,54 @@ const Singin = () => {
             };
 
             // console.log(config)
-            axios.request(config)
-                .then((response) => {
-                    // console.log("loged in")
-                    setNext(next + 1)
+            // axios.request(config)
+            //     .then((response) => {
+            //         // console.log("loged in")
+            //         setNext(next + 1)
 
 
-                    const loginDetail: ILogin = {
-                        islogin: true,
-                        username: "پروفایل"
-                    }
+            //         const loginDetail: ILogin = {
+            //             islogin: true,
+            //             username: "پروفایل"
+            //         }
 
 
-                    SetLogin(loginDetail)
-                    setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
-                    SetError2("")
+            //         SetLogin(loginDetail)
+            //         setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
+            //         SetError2("")
 
 
-                })
-                .catch((error) => {
-                    // console.log("NO-log")
-                    SetError2(error.response.data.message)
-                });
+            //     })
+            //     .catch((error) => {
+            //         // console.log("NO-log")
+            //         SetError2(error.response.data.message)
+            //     });
+
+
+
+            try {
+                setFetchLoading(true)
+                await axios.request(config)
+                setNext(next + 1)
+
+
+                const loginDetail: ILogin = {
+                    islogin: true,
+                    username: "پروفایل"
+                }
+
+
+                SetLogin(loginDetail)
+                setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
+                SetError2("")
+
+
+
+            } catch (error: any) {
+                SetError2(error.response.data.message)
+            } finally {
+                setFetchLoading(false)
+            }
 
 
         } else {
@@ -227,12 +252,16 @@ const Singin = () => {
                 <span className="UpCap">با وارد کردن شماره موبایل کد تاییدی برای شما ارسال خواهد شد.</span>
                 <Input onInput={validationchecker}
 
-                    error={Error ? Error : ""}
+                    error={(Error && fetchloading === false) ? Error : ""}
 
                     title="شماره همراه" darkmode transparency={"white"} />
 
                 <div className="buttonsw">
-                    <Buttons onClick={btnHandle} disable={!!Error} Style="fill" size={40}>
+                    <Buttons
+                        onClick={btnHandle}
+                        disable={!!Error}
+                        loading={fetchloading}
+                        Style="fill" size={40}>
                         ادامه
                     </Buttons>
                 </div>
@@ -257,11 +286,11 @@ const Singin = () => {
                 <span className="UpCap">یک کد شش رقمی برای شماره {phoneNumber} ارسال شد</span>
                 <Input title="کد شش رقمی"
 
-                    error={Error2 ? Error2 : ""}
+                    error={(Error2 && fetchloading === false) ? Error2 : ""}
                     darkmode transparency="white" onInput={codevalidationcheker} />
 
                 <div className="buttonsw">
-                    <Buttons disable={!codeValidation} size={40} Style="fill">
+                    <Buttons disable={!codeValidation} loading={fetchloading} size={40} Style="fill">
                         ادامه
                     </Buttons>
                 </div>

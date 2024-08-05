@@ -35,7 +35,9 @@ const Header = () => {
 
 
                 <div className="icons">
-                    {!Login.islogin ? <button type="button" onClick={handleClickModal}  >
+                    {!Login.islogin ? <button style={{ cursor: "pointer" }}
+
+                        type="button" onClick={handleClickModal}  >
                         <i>
                             <Icon icon="user" />
                         </i>
@@ -44,7 +46,7 @@ const Header = () => {
 
 
                             <i>
-                                <LogOut color="#417F56"/>
+                                <LogOut color="#417F56" />
                             </i>
 
 
