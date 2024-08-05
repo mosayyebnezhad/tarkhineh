@@ -22,7 +22,7 @@ const Singin = () => {
     const [phoneNumber, SetPhoneNumber] = useState("")
     const [codeValidation, setcodeValidation] = useState(false)
     const [Error, SetError] = useState("")
-    const [Error2, SetError2] = useState("")
+    const [LoginOrRegister, setLoginOrregister] = useState("ثبت نام")
     const [exist, setExist] = useState(false)
 
     const [fetchloading, setFetchLoading] = useState(false)
@@ -87,6 +87,7 @@ const Singin = () => {
     const cameback = () => {
 
         setNext(next - 1)
+        SetError("")
         // alert("btn clicked")
     }
 
@@ -119,12 +120,12 @@ const Singin = () => {
                 SetPhoneNumber(val)
 
 
-
+                setLoginOrregister("ثبت نام")
             } catch (error: any) {
 
                 const Status = error.response.status;
                 if (Status === 409) {
-
+                    setLoginOrregister("ورود به حساب")
                     SetError("");
                     setExist(true)
                     SetPhoneNumber(val)
@@ -210,12 +211,12 @@ const Singin = () => {
 
                 SetLogin(loginDetail)
                 setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
-                SetError2("")
+                SetError("")
 
 
 
             } catch (error: any) {
-                SetError2(error.response.data.message)
+                SetError(error.response.data.message)
             } finally {
                 setFetchLoading(false)
             }
@@ -224,7 +225,7 @@ const Singin = () => {
         } else {
             setcodeValidation(false)
 
-            SetError2("")
+            SetError("")
         }
 
 
@@ -262,7 +263,7 @@ const Singin = () => {
                         disable={!!Error}
                         loading={fetchloading}
                         Style="fill" size={40}>
-                        ادامه
+                        {LoginOrRegister}
                     </Buttons>
                 </div>
                 <span className="UpCap cap">
@@ -286,7 +287,7 @@ const Singin = () => {
                 <span className="UpCap">یک کد شش رقمی برای شماره {phoneNumber} ارسال شد</span>
                 <Input title="کد شش رقمی"
 
-                    error={(Error2 && fetchloading === false) ? Error2 : ""}
+                    error={(Error && fetchloading === false) ? Error : ""}
                     darkmode transparency="white" onInput={codevalidationcheker} />
 
                 <div className="buttonsw">
