@@ -183,11 +183,6 @@ const Headeritem = () => {
 
                         }
 
-
-
-
-
-
                     >
 
                         {index === 4 ? <>
