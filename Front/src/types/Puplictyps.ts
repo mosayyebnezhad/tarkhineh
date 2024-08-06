@@ -1,6 +1,7 @@
 export interface ILogin {
     islogin: boolean,
-    username?: String
+    username?: String,
+    token?: String
 }
 
 

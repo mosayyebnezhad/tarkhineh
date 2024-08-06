@@ -16,7 +16,8 @@ interface LoginSimply {
 
     phone: String,
     authCode: String,
-    Exist?: boolean
+    isActive?: Boolean
+
 }
 interface exist {
 
@@ -69,16 +70,20 @@ router.post("/", async (req: any, res: any) => {
 
 
 
-    if (user && Data.Exist) {
+    if (user) {
         try {
 
 
             await UsersDTO.findByIdAndUpdate(user._id, {
-                authCode: Data.authCode
+                authCode: Data.authCode,
+                // isActive:false
+
             })
 
 
-            return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+            return res.status(200).json({
+                message: "با موفقیت ایجاد شد"
+            })
         }
         catch (err) {
             return res.status(400).json({
@@ -88,15 +93,18 @@ router.post("/", async (req: any, res: any) => {
         }
     } else {
         try {
-            await UsersDTO.create({
+
+
+            const NewUser = await UsersDTO.create({
                 phone: Data.phone,
                 authCode: Data.authCode,
-                CreateDate: Date.now()
+                CreateDate: Date.now(),
+                isActive: false
             })
 
-
-
-            return res.status(200).json({ message: "با موفقیت ایجاد شد" })
+            return res.status(200).json({
+                message: "با موفقیت ایجاد شد"
+            })
         }
         catch (err) {
             return res.status(400).json({
@@ -154,7 +162,32 @@ router.post("/AuthCodeauthorized", async (req: any, res: any) => {
     try {
         let user = await UsersDTO.findOne({ phone: Data.phone }).lean();
         if (user.authCode != Data.authCode) return res.status(409).json({ message: "کد ارسالی برابر نیست!" })
-        return res.status(200).json({ message: "کد ارسالی کاملا درست است!" })
+
+
+
+
+        const token = ecnodetoken({ id: user._id })
+        if (user.isActive) {
+            //login not first
+
+
+        } else {
+            // login by first time
+            await UsersDTO.findOneAndUpdate({ phone: user.phone },
+                { isActive: true }
+            )
+        }
+
+
+
+
+
+
+
+        return res.status(200).json({
+            message: "کد ارسالی کاملا درست است!",
+            token: token
+        })
     }
     catch {
         return res.status(400).json({ message: "شماره موبایل وارده در دیتابیس وجود ندارد" })

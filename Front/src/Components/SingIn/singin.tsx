@@ -44,8 +44,8 @@ const Singin = () => {
 
             let data = JSON.stringify({
                 "phone": String(phoneNumber),
-                "authCode": CodeGenerating,
-                "Exist": exist
+                "authCode": CodeGenerating
+
 
             });
 
@@ -72,7 +72,7 @@ const Singin = () => {
                 setNext(next + 1)
 
             } catch (error) {
-                console.log("NO-created")
+                // console.log("NO-created")
 
             } finally {
                 setFetchLoading(false)
@@ -171,48 +171,25 @@ const Singin = () => {
                 data: data
             };
 
-            // console.log(config)
-            // axios.request(config)
-            //     .then((response) => {
-            //         // console.log("loged in")
-            //         setNext(next + 1)
-
-
-            //         const loginDetail: ILogin = {
-            //             islogin: true,
-            //             username: "پروفایل"
-            //         }
-
-
-            //         SetLogin(loginDetail)
-            //         setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
-            //         SetError2("")
-
-
-            //     })
-            //     .catch((error) => {
-            //         // console.log("NO-log")
-            //         SetError2(error.response.data.message)
-            //     });
-
 
 
             try {
                 setFetchLoading(true)
-                await axios.request(config)
+                const result = await axios.request(config)
                 setNext(next + 1)
 
 
                 const loginDetail: ILogin = {
                     islogin: true,
-                    username: "پروفایل"
+                    username: "پروفایل",
+                    token : result.data.token,
                 }
 
 
                 SetLogin(loginDetail)
                 setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
                 SetError("")
-
+                // console.log(loginDetail)
 
 
             } catch (error: any) {

@@ -3,6 +3,7 @@ import { useState } from "react";
 import Image from "../../Components/Images/Image";
 import Input from "../../Components/input/input";
 import "./Contactus.scss"
+import WithAuth from "../../HOC/withAuth";
 const ContactUs = () => {
 
 
@@ -34,4 +35,4 @@ const ContactUs = () => {
     )
 }
 
-export default ContactUs;
+export default WithAuth(ContactUs);

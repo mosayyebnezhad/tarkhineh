@@ -6,19 +6,24 @@
     justify-content: $hor;
 }
 
-header {
+.container {
 
-    width: 95%;
-    height: 85px;
-    margin-left: 2.5%;
+    width: 100%;
+    height: 115px;
+    // margin-left: 2.5%;
     @include align(center, center);
     background: #FFFFFF;
 
 
     .logo {
         width: 20%;
-        // background: red;
-        @include align(center, center)
+        height: 60%;
+        // background: green;
+        @include align(center, center);
+
+        svg {
+            height: 70%;
+        }
     }
 
     .parameters {
@@ -43,10 +48,10 @@ header {
     }
 
     .icons {
-        // width: ;
-        width: 160px;
-        margin-left: 5%;
-        margin-right: 5%;
+        width: auto;
+        // min-width: 170px;
+        // margin-left: 5%;
+        margin-right: 0%;
         @include align(space-between, center);
 
 
@@ -71,6 +76,15 @@ header {
 
 
 @media (min-width: 1000px) {
+    .icons {
+        width: auto;
+        min-width: 170px;
+        margin-left: 5%;
+        margin-right: 0%;
+        @include align(space-between, center);
+
+    }
+
     .phoneDelete {
 
         display: block;
@@ -91,23 +105,23 @@ header {
 
     .phoneadd {
         display: block;
+        // background: blue;
     }
 
     .noi {
         background: none !important;
     }
 
-    header {
-        width: 100% !important;
-        margin-left: 0;
-        // background: red;
+    .container {
+        width: 90%;
+        margin-left: 5%;
+
 
         @include align(space-between, center);
 
         .icons {
-            // background: bisque;
-            // width: auto !important;
-            width: auto;
+
+
             @include align(space-around, center);
 
             i {
@@ -121,5 +135,114 @@ header {
             // background: black;
             width: auto;
         }
+    }
+}
+
+.loggedin {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    // overflow: hidden;
+    width: 60px !important;
+    justify-content: space-around !important;
+
+    svg {
+        width: auto !important;
+        margin: 0 !important;
+        padding: 0 !important;
+
+        // background: blue;
+    }
+
+    background: rgba(76, 137, 76, 0.983) !important;
+}
+
+
+
+
+
+.rightmenu {
+    width: 70%;
+    height: 100svh;
+    // background: red;
+    position: fixed;
+    margin-left: 30%;
+    z-index: 9;
+    transition: .5s;
+}
+
+.closemenu {
+    width: 100%;
+    height: 100svh;
+    background: rgba(0, 0, 0, 0.352);
+    backdrop-filter: blur(4px);
+    position: fixed;
+    margin-left: 30%;
+    z-index: 8;
+    transition: .5s;
+}
+
+
+
+.list {
+    width: 180px;
+    // height:280px;
+    z-index: 99;
+    top: 20px;
+    background: whitesmoke;
+    position: relative;
+    direction: rtl;
+    border-radius: 10px;
+    transition: .5s;
+    padding: 10px 0;
+    color: black;
+    a{
+        color: black;
+    }
+    .title {
+        margin-right: 5%;
+        width: 60%;
+        padding: 0 15%;
+        display: flex;
+        align-items: center;
+        height: 35px;
+        margin-top: 5px;
+        margin-bottom: 5px;
+        cursor: pointer;
+        border-radius: 5px;
+
+        &:hover {
+            background: rgb(205, 214, 202);
+        }
+
+    }
+}
+
+.clist {
+    display: none;
+    float: left;
+    position: absolute;
+    // background: red;
+    top: 70px;
+    // bottom: 0;
+    z-index: 999;
+
+}
+
+.cha3,
+.cha4 {
+    // background: red;
+
+    &:hover .clist {
+        display: block;
+        
+    }
+    &:not(:hover) .clist {
+        // display: block;
+        opacity: 0;
+        
+    }
+
+    &:not(:hover) .list {
+        opacity: 0;
     }
 }

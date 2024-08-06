@@ -10,6 +10,7 @@ const UserSchema = new Schema(
             required: false,
           
         },
+        isActive : Boolean,
         authCode: {
             type: String,
             required: false

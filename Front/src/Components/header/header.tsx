@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 import "./header.scss"
 import { Link, useLocation } from "react-router-dom";
@@ -7,8 +7,11 @@ import Icon from "../Icons/icons";
 import Modal from "../modal/modal";
 import { appContext } from "../../App";
 import { ILogin } from "../../types/Puplictyps";
-import { LogOut } from "iconoir-react";
+import { NavArrowDown, User } from "iconoir-react";
+import Headerinmobile from './headerinmobile';
+import axios from "axios";
 
+const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
 
@@ -16,73 +19,89 @@ import { LogOut } from "iconoir-react";
 
 const Header = () => {
 
-
+    const [menu, setMenu] = useState(true);
     const { Login: loding } = useContext(appContext);
 
 
     const Login: ILogin = loding;
 
     const [Parentshow, setShow] = useState(false)
-    const handleClickModal = () => {
+    const handleClickModal = (e: any) => {
 
         setShow(!Parentshow)
 
     }
+
+
+
+    const handlemenu = () => {
+        setMenu(!menu)
+    }
     return (
         <>
             <Modal show={Parentshow} onClose={() => setShow(false)} />
+
+
+            <div className="rightmenu" style={{ marginLeft: menu ? "100%" : "30%" }}>
+                <Headerinmobile />
+            </div>
+            <div className="closemenu" style={{ marginLeft: menu ? "100%" : "0%" }} onClick={() => setMenu(!menu)}></div>
             <header >
 
+                <div className="container">
 
-                <div className="icons">
-                    {!Login.islogin ? <button style={{ cursor: "pointer" }}
+                    <div className="icons">
+                        {!Login.islogin ? <button style={{ cursor: "pointer" }}
 
-                        type="button" onClick={handleClickModal}  >
-                        <i>
-                            <Icon icon="user" />
-                        </i>
-                    </button> :
-                        <Link to={"/singOut"} style={{ color: "black" }}>
-
-
+                            type="button" onClick={handleClickModal}  >
                             <i>
-                                <LogOut color="#417F56" />
+                                <Icon icon="user" />
                             </i>
+                        </button> :
+                            <Link to={"/Profile"}
+                                style={{ color: "black" }}>
 
 
+                                <i className="loggedin">
+                                    <NavArrowDown color="white" />
+                                    <User color="white" />
+                                </i>
+
+
+                            </Link>
+
+                        }
+
+                        <Link to="/about">
+                            <i>
+                                <Icon icon="pay" />
+                            </i>
+                        </Link >
+                        <Link className="phoneDelete" to="/contact">
+                            <i>
+                                <Icon icon="search" />
+                            </i>
                         </Link>
 
-                    }
+                    </div>
+                    <div className="parameters phoneDelete">
+                        <Headeritem />
+                    </div>
+                    <div className="logo">
+                        <Icon icon="logo" />
 
-                    <Link to="/about">
-                        <i>
-                            <Icon icon="pay" />
-                        </i>
-                    </Link >
-                    <Link className="phoneDelete" to="/contact">
-                        <i>
-                            <Icon icon="search" />
-                        </i>
-                    </Link>
+                    </div>
 
-                </div>
-                <div className="parameters phoneDelete">
-                    <Headeritem />
-                </div>
-                <div className="logo">
-                    <Icon icon="logo" />
+                    <div className="icons menu phoneadd">
 
-                </div>
+                        <button onClick={handlemenu}>
+                            <i className="noi">
+                                <Icon icon="menu" />
 
-                <div className="icons phoneadd">
+                            </i>
+                        </button>
 
-                    <Link to="/contact">
-                        <i className="noi">
-                            <Icon icon="menu" />
-
-                        </i>
-                    </Link>
-
+                    </div>
                 </div>
             </header>
 
@@ -109,22 +128,32 @@ const Headeritem = () => {
     let titles = "رستوران های زنجیره ای ترخینه"
 
 
+
     document.title = haederItems[indexloc] + " | " + titles; // Quick solution
 
 
     return (
         <>
+
+
+
             {haederItems.map((item, index) =>
 
 
 
                 <div key={index} >
 
-                    <Link to={haederItemsEnglish[index]}><div className={haederItems[indexloc] === item ? "active item" : "item"}>
+                    <Link to={haederItemsEnglish[index]}><div className={(haederItems[indexloc] === item ? "active item" : "item") + (index === 4 ? " cha4" : "") + (index === 3 ? " cha3" : "")}
 
-                        {index === 4 ? <Icon icon="ArrowDown" /> : null}
-                        {index === 5 ? <Icon icon="ArrowDown" /> : null}
+                    
+
+                    >
+
+                        {index === 4 ? <> <List witch={4} /><Icon icon="ArrowDown" /></> : null}
+                        {index === 3 ? <> <List witch={3} /><Icon icon="ArrowDown" /></> : null}
                         {item}
+
+
 
 
                     </div>
@@ -146,5 +175,66 @@ const Headeritem = () => {
     )
 }
 
+interface IData {
+    name: String,
+    id: String
+}
+
+const List = (prop: any) => {
 
 
+    const { witch } = prop;
+
+
+
+    const [Data, SetData] = useState<IData[]>();
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await axios.get(`${url}/branch`);
+                SetData(res.data);
+            } catch (error) {
+                console.error("Error fetching data", error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
+    console.log("Re render")
+    if (witch === 3) {
+        return (
+            <>
+                <div className="clist">
+                    <div className="list">
+                        <div className="title">غذای اصلی</div>
+                        <div className="title">پیش غذا</div>
+                        <div className="title">دسر</div>
+                        <div className="title">نوشیدنی</div>
+
+
+                    </div>
+                </div>
+            </>
+        )
+    } else {
+        return (
+            <>
+                <div className="clist">
+                    <div className="list">
+                        {Data && Data.map((item, index) => {
+                            return (
+                                <Link to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
+
+                            )
+                        })
+                        }
+
+                    </div>
+                </div>
+            </>
+        )
+    }
+
+}
