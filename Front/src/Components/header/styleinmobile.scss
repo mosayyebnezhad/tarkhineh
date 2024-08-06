@@ -52,3 +52,24 @@
     transition: .5s;
 
 }
+
+
+
+.loding {
+    animation: animation 1s linear infinite;
+}
+
+
+@keyframes animation {
+    0% {
+        background: white;
+    }
+
+    50% {
+        background: rgb(160, 160, 160);
+    }
+
+    100% {
+        background: white;
+    }
+}

@@ -189,18 +189,22 @@ const List = (prop: any) => {
 
     const [Data, SetData] = useState<IData[]>();
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`${url}/branch`);
-                SetData(res.data);
-            } catch (error) {
-                console.error("Error fetching data", error);
-            }
-        };
 
-        fetchData();
+    useEffect(() => {
+        if (window.innerWidth > 1000) {
+            const fetchData = async () => {
+                try {
+                    const res = await axios.get(`${url}/branch`);
+                    SetData(res.data);
+                } catch (error) {
+                    console.error("Error fetching data", error);
+                }
+            };
+
+            fetchData();
+        }
     }, []);
+
 
     console.log("Re render")
     if (witch === 3) {
@@ -230,7 +234,7 @@ const List = (prop: any) => {
                             )
                         })
                             :
-                             <div className="title loading" ></div>
+                            <div className="title loading" ></div>
                         }
 
                     </div>

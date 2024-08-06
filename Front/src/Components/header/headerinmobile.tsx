@@ -23,27 +23,29 @@ const Headerinmobile = () => {
 
 
     const [Data, SetData] = useState<IData[]>();
-
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const res = await axios.get(`${url}/branch`);
-                SetData(res.data);
-            } catch (error) {
-                console.error("Error fetching data", error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
-
-    // console.log(Data)
-
     const [menu, setmenu] = useState<IItem>({
         first: false,
         second: false
     })
+
+    useEffect(() => {
+        if (menu.first) {
+            const fetchData = async () => {
+                try {
+                    const res = await axios.get(`${url}/branch`);
+                    SetData(res.data);
+                } catch (error) {
+                    console.error("Error fetching data", error);
+                }
+            };
+
+            fetchData();
+        }
+    }, [menu.first]);
+
+
+    // console.log(Data)
+
 
 
 
@@ -84,7 +86,9 @@ const Headerinmobile = () => {
                     })
                     :
 
-                    <div>hello</div>
+                    <div className="itemsinphone loding">
+
+                    </div>
 
                 }
 
