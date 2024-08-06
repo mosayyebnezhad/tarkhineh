@@ -12,6 +12,10 @@ import Headerinmobile from './headerinmobile';
 import axios from "axios";
 
 const url: string = process.env.REACT_APP_DOMAIN || '';
+interface IData {
+    name: String,
+    id: String
+}
 
 
 
@@ -126,10 +130,35 @@ const Headeritem = () => {
     const urlpath = useLocation().pathname.replace("/", "");
     const indexloc = haederItemsEnglish.indexOf(urlpath) | 0
     let titles = "رستوران های زنجیره ای ترخینه"
-
-
-
     document.title = haederItems[indexloc] + " | " + titles; // Quick solution
+
+
+
+    const [Data, SetData] = useState<IData[]>();
+    const [fetchw, fetchDataw] = useState(false);
+
+
+    useEffect(() => {
+        if (window.innerWidth > 1000) {
+            if (fetchw) {
+                const fetchData = async () => {
+                    try {
+                        const res = await axios.get(`${url}/branch`);
+                        SetData(res.data);
+                    } catch (error) {
+                        console.error("Error fetching data", error);
+                    }
+                };
+
+                fetchData();
+            }
+        }
+    }, [fetchw]);
+
+
+
+
+
 
 
     return (
@@ -145,12 +174,54 @@ const Headeritem = () => {
 
                     <Link to={haederItemsEnglish[index]}><div className={(haederItems[indexloc] === item ? "active item" : "item") + (index === 4 ? " cha4" : "") + (index === 3 ? " cha3" : "")}
 
+                        onMouseEnter={() => {
+
+                            if (haederItemsEnglish[index] === "Branch") fetchDataw(true)
+                            // if (haederItemsEnglish[index] === "Branch") console.log(haederItemsEnglish[index])
+                            
+                        }
+
+                        }
+
+
+
+
 
 
                     >
 
-                        {index === 4 ? <> <List witch={4} /><Icon icon="ArrowDown" /></> : null}
-                        {index === 3 ? <> <List witch={3} /><Icon icon="ArrowDown" /></> : null}
+                        {index === 4 ? <>
+
+                            <div className="clist" >
+                                <div className="list">
+                                    {Data ? Data.map((item, index) => {
+                                        return (
+                                            <Link to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
+
+                                        )
+                                    })
+                                        :
+                                        <div className="title loading" ></div>
+                                    }
+
+                                </div>
+                            </div>
+
+                            <Icon icon="ArrowDown" /></> : null}
+                        {index === 3 ? <>
+
+                            <div className="clist">
+                                <div className="list">
+                                    <div className="title">غذای اصلی</div>
+                                    <div className="title">پیش غذا</div>
+                                    <div className="title">دسر</div>
+                                    <div className="title">نوشیدنی</div>
+
+
+                                </div>
+                            </div>
+
+                            <Icon icon="ArrowDown" /></> : null}
                         {item}
 
 
@@ -158,8 +229,8 @@ const Headeritem = () => {
 
                     </div>
 
-                    </Link>
-                </div>
+                    </Link >
+                </div >
 
 
 
@@ -175,72 +246,4 @@ const Headeritem = () => {
     )
 }
 
-interface IData {
-    name: String,
-    id: String
-}
 
-const List = (prop: any) => {
-
-
-    const { witch } = prop;
-
-
-
-    const [Data, SetData] = useState<IData[]>();
-
-
-    useEffect(() => {
-        if (window.innerWidth > 1000) {
-            const fetchData = async () => {
-                try {
-                    const res = await axios.get(`${url}/branch`);
-                    SetData(res.data);
-                } catch (error) {
-                    console.error("Error fetching data", error);
-                }
-            };
-
-            fetchData();
-        }
-    }, []);
-
-
-    console.log("Re render")
-    if (witch === 3) {
-        return (
-            <>
-                <div className="clist">
-                    <div className="list">
-                        <div className="title">غذای اصلی</div>
-                        <div className="title">پیش غذا</div>
-                        <div className="title">دسر</div>
-                        <div className="title">نوشیدنی</div>
-
-
-                    </div>
-                </div>
-            </>
-        )
-    } else {
-        return (
-            <>
-                <div className="clist">
-                    <div className="list">
-                        {Data ? Data.map((item, index) => {
-                            return (
-                                <Link to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
-
-                            )
-                        })
-                            :
-                            <div className="title loading" ></div>
-                        }
-
-                    </div>
-                </div>
-            </>
-        )
-    }
-
-}
