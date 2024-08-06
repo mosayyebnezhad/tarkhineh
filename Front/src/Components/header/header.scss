@@ -195,9 +195,11 @@
     transition: .5s;
     padding: 10px 0;
     color: black;
-    a{
+
+    a {
         color: black;
     }
+
     .title {
         margin-right: 5%;
         width: 60%;
@@ -234,15 +236,36 @@
 
     &:hover .clist {
         display: block;
-        
+
     }
+
     &:not(:hover) .clist {
         // display: block;
         opacity: 0;
-        
+
     }
 
     &:not(:hover) .list {
         opacity: 0;
+    }
+}
+
+
+.loading {
+    animation: animation 1s linear infinite;
+}
+
+
+@keyframes animation {
+    0% {
+        background: white;
+    }
+
+    50% {
+        background: rgb(160, 160, 160);
+    }
+
+    100% {
+        background: white;
     }
 }

@@ -145,7 +145,7 @@ const Headeritem = () => {
 
                     <Link to={haederItemsEnglish[index]}><div className={(haederItems[indexloc] === item ? "active item" : "item") + (index === 4 ? " cha4" : "") + (index === 3 ? " cha3" : "")}
 
-                    
+
 
                     >
 
@@ -223,12 +223,14 @@ const List = (prop: any) => {
             <>
                 <div className="clist">
                     <div className="list">
-                        {Data && Data.map((item, index) => {
+                        {Data ? Data.map((item, index) => {
                             return (
                                 <Link to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
 
                             )
                         })
+                            :
+                             <div className="title loading" ></div>
                         }
 
                     </div>
