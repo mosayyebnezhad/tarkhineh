@@ -5,7 +5,8 @@ import { EyeClosed, EyeSolid, User, UserCart, WarningCircle } from "iconoir-reac
 import { IconoirProviderProps } from "iconoir-react/dist/IconoirContext";
 import invertHexColor from "../../utils/Colorinverter";
 interface IInterface extends React.InputHTMLAttributes<HTMLInputElement> {
-    iconw?: IconoirProviderProps["children"],
+    iconR?: IconoirProviderProps["children"],
+    iconL?: IconoirProviderProps["children"],
     title: string,
     sizew?: 32 | 40 | 48 | 56,
     darkmode?: boolean,
@@ -54,7 +55,7 @@ const Input = (prop: IInterface) => {
             >
 
                 <div className="iconBaseL">
-                    <User />
+                    {prop.iconR && prop.iconR }
                 </div>
 
 
@@ -82,11 +83,23 @@ const Input = (prop: IInterface) => {
 
 
 
-                {prop.type === "password" &&
+                {prop.type === "password" ?
                     <button onClick={eyeHandle} type="button" className="iconBaseR">
                         {eye ? <EyeClosed /> : <EyeSolid />}
 
-                    </button>}
+                    </button>
+
+                    :
+
+
+                    prop.iconL ?
+                        <div className="iconBaseL">
+                            {prop.iconL}
+                        </div>
+
+
+                        : null
+                }
 
             </div>
 

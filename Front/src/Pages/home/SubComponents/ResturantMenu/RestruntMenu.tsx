@@ -13,9 +13,9 @@ const ResturantMenu = () => {
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
-                                {/* <Buttons btnStyle="filled" color="white" size="medium" textColor="black">
+                                <Buttons >
                                     نوشیدنی
-                                </Buttons> */}
+                                </Buttons>
                             </Link>
                         </div>
                     </div>
@@ -26,9 +26,9 @@ const ResturantMenu = () => {
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
-                                {/* <Buttons btnStyle="filled" color="white" size="medium" textColor="black">
+                                <Buttons >
                                     دسر
-                                </Buttons> */}
+                                </Buttons>
                             </Link>
                         </div>
                     </div>
@@ -39,9 +39,9 @@ const ResturantMenu = () => {
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
-                                {/* <Buttons btnStyle="filled" color="white" size="medium" textColor="black">
+                                <Buttons>
                                     پیش غذا
-                                </Buttons> */}
+                                </Buttons>
                             </Link>
 
                         </div>
@@ -52,9 +52,9 @@ const ResturantMenu = () => {
                     <div className="card">
                         <div className="flowing">
                             <Link to={""} className="linkBoxShadow">
-                                {/* <Buttons btnStyle="filled" color="white" size="medium" textColor="black">
+                                <Buttons >
                                     غذای اصلی
-                                </Buttons> */}
+                                </Buttons>
                             </Link>
                         </div>
                     </div>

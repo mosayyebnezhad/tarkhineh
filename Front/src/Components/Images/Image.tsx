@@ -1,12 +1,10 @@
-import { useState } from "react";
+import { ImgHTMLAttributes, useState } from "react";
 import "./image.scss"
 
 
-interface Propp {
+interface Propp extends ImgHTMLAttributes<HTMLImageElement> {
     path: string
-    alt?: string
-    width?: string
-    height?: string
+
     BeforTxt?: string
 }
 
@@ -40,11 +38,11 @@ const Image = (prop: Propp) => {
                     width: prop.width,
                     height: prop.height,
                     // height: document.documentElement.offsetHeight + "px",
-                 
+
                 }}></div>
                 :
-                
-                <img src={image} alt={Alt} title={Title} width={prop.width} height={prop.height} />
+
+                <img  {...prop} src={image} alt={Alt} title={Title} width={prop.width} height={prop.height} />
             }
 
 

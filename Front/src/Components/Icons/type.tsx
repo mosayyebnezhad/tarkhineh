@@ -14,7 +14,8 @@ interface icon {
     "Instagram"|
     "X"|
     "logo"|
-    "ArrowRight",
+    "ArrowRight"|
+    "sliderfelan",
     color?: string
     width?: number
     height?: number

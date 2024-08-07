@@ -3,6 +3,10 @@
     height: 100%;
     animation: loading 2s ease-in-out infinite;
     border-radius: 32px;
+    img{
+        
+        object-fit: cover;
+    }
 }
 
 
