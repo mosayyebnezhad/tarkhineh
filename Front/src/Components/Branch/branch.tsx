@@ -2,26 +2,25 @@ import { Link } from "react-router-dom"
 import "./branch.scss"
 import Buttons from "../Buttons/buttons"
 import Image from "../Images/Image"
+import { NavArrowLeft } from "iconoir-react"
+import { PictureFrame } from "iconsax-react"
 
-interface Branch {
+interface IBranch {
     Branch: string
     address: string
     link: string
+    image: string
 }
 
-const Branch = (prop: Branch) => {
+const Branch = (prop: IBranch) => {
     return (
         <div className="branch-container">
-            <div className="image">
-                <div className="shader">
 
-
-
-
-                </div>
-                {/* <img src="/image2.jpg" alt="hi" /> */}
-                <Image path="image2.jpg" BeforTxt="Resturant Branch Image" />
+            <div className="SHariw">
+                <PictureFrame color="white" />
             </div>
+            <img src={prop.image} alt="" />
+
             <div className="Detail">
                 <h3 className="title">شعبه {prop.Branch}</h3>
                 <p className="address">
@@ -35,9 +34,11 @@ const Branch = (prop: Branch) => {
 
             <div className="hiddenbutton">
                 <Link to={prop.link}>
-                    {/* <Buttons btnStyle="border" color="green" size="small" IconFirst="ArrowLeft" textColor="black" iconHeight={24} IconWidth={16}>
-                        شعبه
-                    </Buttons> */}
+                    <Buttons size={40} color="primery" Style="stroke"
+                        leftIcon={<NavArrowLeft />}
+                    >
+                        صفحه شعبه
+                    </Buttons>
 
                 </Link>
             </div>

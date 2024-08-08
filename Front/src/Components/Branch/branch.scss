@@ -1,211 +1,137 @@
-@media (min-width:1300px) {
-    .branch-container {
-        width: 288px;
-        height: 344px;
-        background: white;
-        border: 2px solid rgba(8, 121, 42, 0.2);
-        border-radius: 8px;
-        float: left;
-        overflow: hidden;
+.branch-container {
+    width: 288px;
+    height: 344px;
+    background: white;
+    border: 2px solid rgba(8, 121, 42, 0.2);
+    border-radius: 8px;
+    float: left;
+    overflow: hidden;
+    position: relative;
 
-        .image {
-            width: 288px;
-            height: 208px;
-            background: gray;
-            overflow: hidden;
-            transition: .5s;
-
-            img {
-                width: 288px;
-                height: 208px;
-            }
-        }
-
-
-
-        .Detail {
-            height: 136px;
-
-            .title {
-                text-align: center;
-                margin-top: 15px;
-            }
-
-            .address {
-                width: 80%;
-                // background: red;
-                margin-left: 10%;
-                margin-top: 5px;
-                text-align: center;
-                text-overflow: ellipsis;
-                direction: rtl;
-                white-space: wrap;
-                overflow: hidden;
-
-            }
-        }
-
-        .hiddenbutton {
-            height: 36px;
-            width: 100%;
-            // background: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-
-    .branch-container:hover .image {
-        height: 100px;
-
-        img {
-            transition: .5s;
-            filter: blur(5px);
-        }
-    }
-
-}
-
-
-@media (max-width:1300px ) {
-    .branch-container {
-        width: 175px;
-        height: 260px;
-        background: white;
-        border: 2px solid rgba(8, 121, 42, 0.2);
-        border-radius: 8px;
-        float: left;
-        overflow: hidden;
-        font-size: 14px;
-
-        .image {
-            width: 175px;
-            height: 156px;
-            background: gray;
-            overflow: hidden;
-            transition: .5s;
-
-            img {
-                width: 175px;
-                height: 156px;
-            }
-        }
-
-
-
-        .Detail {
-            height: 104px;
-
-            .title {
-                text-align: center;
-                margin-top: 15px;
-            }
-
-            .address {
-                width: 80%;
-                // background: red;
-                margin-left: 10%;
-                margin-top: 5px;
-                text-align: center;
-                text-overflow: ellipsis;
-                direction: rtl;
-                white-space: wrap;
-                overflow: hidden;
-                font-size: 10px;
-
-            }
-        }
-
-        .hiddenbutton {
-            height: 36px;
-            width: 100%;
-            // background: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    }
-
-
-    .branch-container:hover .image {
-        height: 100px;
-
-        img {
-            transition: .5s;
-            filter: blur(5px);
-        }
-    }
-}
-
-
-
-@media (max-width:768px) {
-    .branch-container {
-        width: 318px;
+    @media (max-width:768px) {
+        width: 90%;
         height: 80px;
-        background: white;
-        border: 2px solid rgba(8, 121, 42, 0.2);
-        border-radius: 8px;
-        float: left;
-        overflow: hidden;
-        font-size: 14px;
+        display: flex;
         direction: rtl;
+        // justify-content:;
+    }
 
-        .image {
+    img {
+        width: 288px;
+        height: 208px;
+        background: gray;
+        overflow: hidden;
+        transition: .5s;
+        object-fit: cover;
+
+        @media (max-width:768px) {
             width: 40%;
             height: 100%;
-            background: gray;
-            overflow: hidden;
-            transition: .5s;
-            float: right;
-
-            img {
-                width: 100%;
-                height: 100%;
-            }
+            float: left;
         }
 
+    }
 
+    .Detail {
+        height: 136px;
 
-        .Detail {
-            height: 100%;
+        @media (max-width:768px) {
             width: 60%;
-            float: right;
-            // background: red;
-
-            .title {
-                text-align: center;
-                // margin-top: 15px;
-                margin: 0;
-
-            }
-
-            .address {
-                width: 80%;
-                // background: gray;
-                margin-right: 10%;
-                text-align: center;
-                text-overflow: ellipsis;
-                direction: rtl;
-                white-space: wrap;
-                overflow: hidden;
-                font-size: 10px;
+            height: 100%;
+            float: left;
 
 
-            }
+            display: flex;
+            flex-wrap: wrap;
         }
 
-        .hiddenbutton {
-            height: 36px;
-            width: 100%;
-            // background: red;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+        .title {
+            text-align: center;
+            margin-top: 15px;
+
+            @media (max-width:768px) {
+                all: unset;
+                width: 100%;
+                text-align: center;
+                font-size: 14px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+        }
+
+        .address {
+            width: 80%;
+            // background: blue;
+            margin-left: 10%;
+            margin-top: 5px;
+            text-align: center;
+            text-overflow: ellipsis;
+            direction: rtl;
+            white-space: wrap;
+            overflow: hidden;
+
+            @media (max-width:768px) {
+                all: unset;
+                width: 100%;
+                font-weight: 300;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
         }
     }
 
+    .hiddenbutton {
+        height: 36px;
+        width: 100%;
+        // background: red;
+        display: flex;
+        justify-content: center;
+        align-items: center;
 
+        @media (max-width:768px) {
+            display: none;
+        }
+    }
+}
 
+.SHariw {
+    height: 100px;
+    opacity: 0;
+    width: 100%;
+    left: 0;
+    // background: red;
+    position: absolute;
+    z-index: 9999;
+    transition: .5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        width: 58px;
+        height: 58px;
+    }
+
+    @media (max-width:768px) {
+        display: none;
+    }
+}
+
+@media (min-width:768px) {
+    .branch-container:hover img {
+        height: 100px;
+        transition: .5s;
+        filter: blur(5px);
+    }
+    .branch-container:hover .SHariw {
+    
+        opacity: 1;
+    
+    }
 }

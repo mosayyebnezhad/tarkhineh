@@ -2,6 +2,8 @@
 
 button {
     all: unset;
+    // display: flex;
+    // justify-content: center;
 }
 
 .Custombtn {
@@ -209,17 +211,21 @@ button {
 
 .size-48 {
     font-size: 16px;
+
     .SvgInButton {
         margin: 0 16px;
     }
+
     height: 48px;
 }
 
 .size-56 {
     font-size: 16px;
+
     .SvgInButton {
         margin: 0 16px;
     }
+
     height: 56px;
 }
 

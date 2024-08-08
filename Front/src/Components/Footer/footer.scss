@@ -5,15 +5,21 @@
     color: white;
     background: url("https://raw.githubusercontent.com/mosayyebnezhad/mohammadmosayyeb.github.io/mohammadmosayyebnezahd/Projects/Tarkhineh/image1.jpg");
 
-    .shader {
+    .shaderInfooter {
         background: linear-gradient(to top, rgba(0, 0, 0, 0.563), black);
         width: 100%;
         height: 100%;
         // position: absolute;
+     
+        z-index: -1;
+    }
+
+    .safeArae{
         display: flex;
         justify-content: space-around;
         align-items: center;
-        z-index: -1;
+        width: 95%;
+        margin-left: 2.5%;
     }
 
     background-size: cover;
@@ -121,7 +127,7 @@
 }
 
 
-@media (max-width:768px) {
+@media (max-width:1024px) {
     .deleteinPhoen {
         display: none;
     }

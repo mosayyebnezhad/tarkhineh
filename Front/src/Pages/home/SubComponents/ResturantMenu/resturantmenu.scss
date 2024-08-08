@@ -1,70 +1,77 @@
 @import "../../../../Data/varibles.scss";
 
-.resturantMenu {
+.menuCase {
     width: 100%;
-    height: auto;
-    // background: red;
     float: left;
-    @include align(center, center);
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin: 20px 0;
 
-    .subcountainer {
-        width: 90%;
+    .containerInmenu {
+
+        margin: 0 5px;
+        padding: 20px 30px;
+        position: relative;
+        float: left;
         height: auto;
-        // background: green;
-        @include align(space-around, center);
-        flex-wrap: wrap;
-        flex-direction: row;
 
-        // flex-grow: 0;
-        // flex-flow: wrap;
-        .countainerElement {
+        // background: gray;
 
-            width: 220px;
-            height: 360px;
-            position: relative;
-            display: block !important;
 
-            img {
-                position: absolute;
-                width: 100%;
-                margin-top: 25px;
-                filter: drop-shadow(0px 0px 4px rgba(0, 0, 0, 0.5));
+        @media(max-width:1260px) and (min-width:900px) {
+            margin: 0 60px;
+        }
+
+        @media(max-width:900px) and (min-width:600px) {
+            margin: 0 40px;
+        }
+
+        @media(max-width:600px) {
+            // padding: 50px 30px;
+            margin: 0 20px;
+        }
+
+        .images {
+
+            width: 240px;
+            height: 240px;
+
+            @media(max-width:768px) {
+                height: 120px;
+                width: 120px;
             }
 
-            // background: red;
+        }
 
-            .card {
-                width: 100%;
-                margin-top: 144px;
-                border-radius: 8px;
-                height: 144px;
-                background: #417F56;
+        button {
+            margin: auto;
+            width: 60%;
+            box-shadow: 0px 5px 5px rgba($color: #000000, $alpha: .6);
 
-                .flowing {
-                    position: absolute;
-                    z-index: 99;
-                    width: 100%;
-                    // height: 3;
-                    margin-top: 136px;
-                    // background: gray;
+            @media(max-width:768px) {
+                width: 80%;
+                font-size: 12px;
 
-                    @include align(center, center);
+            }
+        }
 
-                    .linkBoxShadow {
-                        border-radius: 4px;
-                        overflow: hidden;
-                        box-shadow: 0px 5px 20px rgba(0, 0, 0, 0.5);
-                    }
-                }
+        .Backage {
+            // float: left;
+            width: 100%;
+            height: 160px;
+            background: #417f56;
+            position: absolute;
+            left: 0;
+            z-index: -1;
+            bottom: 40px;
+            border-radius: 8px;
+
+            @media(max-width:768px) {
+                border-radius: 4px;
+                height: 100px;
             }
         }
     }
-}
-
-
-@media (max-width:900px) {
-    .countainerElement {
-        margin: 20px 40px;
-    }
-
 }

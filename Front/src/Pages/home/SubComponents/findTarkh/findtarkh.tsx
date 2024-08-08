@@ -1,14 +1,51 @@
+import { lazy, useEffect, useState } from "react";
 import Branch from "../../../../Components/Branch/branch";
 import "./findtarkh.scss"
-
+import axios from "axios";
+import { useInView } from "react-intersection-observer";
+const url: string = process.env.REACT_APP_DOMAIN || '';
 
 const Findtarkh = () => {
+    const { ref, inView } = useInView({ threshold: 0.1 })
+
+    const [branches, setBranches] = useState<any[]>();
+
+    useEffect(() => {
+
+
+        if (inView) {
+            const fetchingData = async () => {
+                try {
+                    const result = await axios.get(`${url}/branch`)
+                    setBranches(result.data)
+                } catch (er) {
+                    console.error('Error fetching data', er)
+                }
+
+
+            }
+            fetchingData()
+        }
+
+    }, [inView])
+
+
+
+
+
+
     return (
-        <div className="findtarkh">
-            <Branch Branch="اکباتان" address="شهرک اکباتان، فاز ۳، مجتمع تجاری کوروش، طبقه سوم" link="/ekbatan" />
-            <Branch Branch="لاهیجان" address="لاهیجان میدان شهدا ، خیابان شهید رجایی" link="" />
-            <Branch Branch="رشت" address="رشت ، میدان شهرداری ، خیابان شهید بهشتی" link="" />
-            <Branch Branch="طرقبه" address="مشهد ،میدان ضامن آهو، خیابان شهید رسولی" link="" />
+        <div className={`findtarkh ${!branches&&"isloadingfetching"}`} ref={ref} >
+
+            {branches &&
+                branches.map((item, index) => {
+                    return (
+                        <Branch key={index} Branch={item.name} address={item.address} link={`/${item.id}`} image={item.image} />
+
+
+                    )
+                })
+            }
 
 
         </div>

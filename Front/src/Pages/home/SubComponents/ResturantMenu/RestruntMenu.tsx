@@ -1,65 +1,61 @@
 import { Link } from "react-router-dom";
-import Buttons from "../../../../Components/Buttons/buttons";
+import Buttons from '../../../../Components/Buttons/buttons';
 import "./resturantmenu.scss"
 import Image from "../../../../Components/Images/Image";
 
 const ResturantMenu = () => {
+
+    let size: any = 240;
+
+
+    if (window.innerWidth < 768) {
+        size = 120;
+    }
+
+
+    size = size + "px"
+    // <Image path="drink.png" BeforTxt="Enjoy from your" />
+    // <Image path="deser.png" BeforTxt="Enjoy from your" />
+    // <Image path="befor.png" BeforTxt="Enjoy from your" />
+    // <Image path="food.png" BeforTxt="Enjoy from your" />
     return (
-        <div className="resturantMenu">
+        <div className="menuCase">
 
-            <div className="subcountainer">
-                <div className="countainerElement">
-                    <Image path="drink.png" BeforTxt="Enjoy from your" />
-                    <div className="card">
-                        <div className="flowing">
-                            <Link to={""} className="linkBoxShadow">
-                                <Buttons >
-                                    نوشیدنی
-                                </Buttons>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="countainerElement">
+            <div className="containerInmenu">
+                <div className="Backage"></div>
+                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <Buttons Style="fill" color="white">
+                    پیش غذا
+                </Buttons>
 
-                    <Image path="deser.png" BeforTxt="Enjoy from your" />
-                    <div className="card">
-                        <div className="flowing">
-                            <Link to={""} className="linkBoxShadow">
-                                <Buttons >
-                                    دسر
-                                </Buttons>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-                <div className="countainerElement">
-
-                    <Image path="befor.png" BeforTxt="Enjoy from your" />
-                    <div className="card">
-                        <div className="flowing">
-                            <Link to={""} className="linkBoxShadow">
-                                <Buttons>
-                                    پیش غذا
-                                </Buttons>
-                            </Link>
-
-                        </div>
-                    </div>
-                </div>
-                <div className="countainerElement">
-                    <Image path="food.png" BeforTxt="Enjoy from your" />
-                    <div className="card">
-                        <div className="flowing">
-                            <Link to={""} className="linkBoxShadow">
-                                <Buttons >
-                                    غذای اصلی
-                                </Buttons>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
             </div>
+            <div className="containerInmenu">
+                <div className="Backage"></div>
+                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <Buttons Style="fill" color="white">
+                    پیش غذا
+                </Buttons>
+
+            </div>
+            <div className="containerInmenu">
+                <div className="Backage"></div>
+                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <Buttons Style="fill" color="white">
+                    پیش غذا
+                </Buttons>
+
+            </div>
+            <div className="containerInmenu">
+                <div className="Backage"></div>
+                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <Buttons Style="fill" color="white">
+                    پیش غذا
+                </Buttons>
+
+            </div>
+
+
+
         </div>
     )
 }
