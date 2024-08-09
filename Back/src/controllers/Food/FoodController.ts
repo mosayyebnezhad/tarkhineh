@@ -141,6 +141,10 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextF
         Data['RateID'] = new mongoose.mongo.ObjectId();
         Data['CommentID'] = new mongoose.mongo.ObjectId();
 
+        Data['price.solidPriceView'] = String(Data.price.price)
+
+        const price = Data.price.price - (Data.price.price * Data.price.Off / 100)
+        Data['price.priceView'] = String(price)
 
         const Upload = await FoodDTO.create(Data);
 

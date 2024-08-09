@@ -1,0 +1,26 @@
+.sectionOne {
+    // background: red;
+
+    .titleOfsection {
+        font-size: 24px;
+        margin: 32px 0 16px 0;
+        font-weight: 700;
+        width: 80%;
+        margin-left: 10%;
+        text-align: right;
+        float: left;
+
+        @media (max-width:768px) {
+            font-size: 16px;
+        }
+    }
+
+    padding-bottom: 32px;
+
+}
+.greenBackgrnd{
+    background: #315f41;
+    .titleOfsection{
+        color: white;
+    }
+}

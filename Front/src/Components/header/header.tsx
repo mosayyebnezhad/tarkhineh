@@ -76,7 +76,7 @@ const Header = () => {
 
                         }
 
-                        <Link to="/about">
+                        <Link to="/Carts">
                             <i>
                                 <Icon icon="pay" />
                             </i>
@@ -159,7 +159,7 @@ const Headeritem = () => {
 
 
 
-
+    const { branchName } = useContext(appContext)
 
     return (
         <>
@@ -178,7 +178,7 @@ const Headeritem = () => {
 
                             if (haederItemsEnglish[index] === "Branch") fetchDataw(true)
                             // if (haederItemsEnglish[index] === "Branch") console.log(haederItemsEnglish[index])
-                            
+
                         }
 
                         }
@@ -191,7 +191,7 @@ const Headeritem = () => {
                                 <div className="list">
                                     {Data ? Data.map((item, index) => {
                                         return (
-                                            <Link to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
+                                            <Link key={index} to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
 
                                         )
                                     })
@@ -217,7 +217,8 @@ const Headeritem = () => {
                             </div>
 
                             <Icon icon="ArrowDown" /></> : null}
-                        {item}
+                        {/* {item} */}
+                        {index === 4 ? branchName : item}
 
 
 

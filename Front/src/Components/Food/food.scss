@@ -1,0 +1,282 @@
+.foodCase {
+    // margin-bottom: 500px;
+    float: left;
+    width: 288px;
+    height: 433px;
+    border: 1px solid rgba(99, 125, 101, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+
+    @media(max-width:768px) {
+        width: 168px;
+        height: 231px;
+        border-radius: 4px;
+    }
+
+    .Foodimage {
+        width: 100%;
+        height: 256px;
+        object-fit: cover;
+        float: left;
+
+        @media(max-width:768px) {
+            height: 100px;
+
+        }
+    }
+
+    .title {
+        width: 100%;
+        // background: red;
+        margin: 5px 0;
+        text-align: center;
+        float: left;
+        height: 32px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #353535;
+        @media(max-width:768px) {
+            font-size: 12px;
+            height: 24px;
+        }
+    }
+
+    .details {
+        // background: lightblue;
+        height: 70px;
+        width: 90%;
+        float: left;
+        margin: 5px 0;
+        margin-left: 5%;
+        // display: grid;
+
+        @media(max-width:768px) {
+            height: 40px;
+
+
+        }
+
+        .Oldprice {
+            float: left;
+            // background: red;
+            display: flex;
+            justify-content: flex-start;
+            width: 40%;
+            height: 40%;
+            font-size: 10px;
+            align-items: center;
+            direction: ltr;
+
+            @media(max-width:768px) {
+                align-items: flex-start;
+            }
+
+            .off {
+                width: 32px !important;
+                height: 16px;
+                background: rgba(252, 50, 50, 0.15);
+                color: rgb(183, 0, 0);
+                text-align: center;
+                margin-right: 5px;
+                border-radius: 100px;
+            }
+
+            .solidPrice {
+                text-decoration: line-through rgba(0, 0, 0, 0.5);
+                opacity: .5;
+            }
+        }
+
+        .addtolike {
+            float: left;
+            // background: blue;
+            height: 40%;
+            width: 60%;
+            display: flex;
+            font-size: 10px;
+            justify-content: flex-end;
+            align-items: center;
+            opacity: .5;
+            direction: ltr;
+
+            @media(max-width:768px) {
+                align-items: flex-start;
+            }
+
+            .addtext {
+                @media(max-width:768px) {
+                    display: none;
+                }
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+                margin-left: 5px;
+
+            }
+        }
+
+        .Price {
+            height: 60%;
+            float: left;
+            // background: green;
+            width: 50%;
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            gap: 5px;
+            direction: ltr;
+
+            @media(max-width:768px) {
+                // width: auto;
+                font-size: 10px;
+                align-items: flex-end;
+            }
+
+        }
+
+        .rating {
+            float: left;
+            // background: rgb(103, 117, 225);
+            width: 50%;
+            height: 60%;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            justify-content: flex-end;
+            direction: ltr;
+
+            @media(max-width:768px) {
+                align-items: flex-end;
+
+                .ratingDetail {
+                    display: none;
+                }
+            }
+
+
+            @media(max-width:768px) {
+                // width: auto;
+                font-size: 10px;
+
+                .NumberOfRating {
+                    // background: red;
+                    line-height: 14px;
+                }
+            }
+
+            svg {
+                width: 16px;
+                height: 16px;
+                border: none;
+                fill: yellow;
+            }
+
+            p {
+                font-size: 10px;
+                opacity: .5;
+                direction: rtl;
+                gap: 5px;
+
+                span {
+                    margin: 0 1px;
+                }
+            }
+        }
+
+    }
+
+    button {
+        width: 90%;
+        // margin: 0 auto;
+        float: left;
+        margin-left: 5%;
+        margin-top: 5px;
+
+        @media(max-width:768px) {
+            font-size: 10px;
+        }
+    }
+
+}
+
+
+.branchswiper {
+    .swiper {
+        width: 100%;
+        // direction: ltr;
+        margin-left: 0;
+        // background: red;
+
+        @media(min-width:400px) {
+
+            width: 90%;
+        }
+
+    }
+
+    .swiper-slide {
+
+
+        display: flex;
+        justify-content: flex-start;
+
+        @media (max-width:400px) {
+            justify-content: center;
+        }
+
+    }
+}
+
+.imgldr {
+    width: 100%;
+    animation: loading 1s infinite linear;
+
+    border-radius: 4px;
+}
+
+.loadingFood {
+
+    .Foodimage {
+        animation: loading 1s infinite linear;
+
+        border-radius: 4px;
+    }
+
+    .title {
+        width: 90%;
+        margin-left: 5%;
+        border-radius: 4px;
+        animation: loading 2s infinite linear;
+    }
+
+    .details {
+        border-radius: 4px;
+        animation: loading 1s infinite linear;
+    }
+
+
+    button {
+        animation: loading 2s infinite linear;
+    }
+
+
+
+}
+
+@keyframes loading {
+    0% {
+
+        background: rgb(205, 205, 205)
+    }
+
+    50% {
+        background: rgb(168, 168, 168)
+    }
+
+    100% {
+        background: rgb(205, 205, 205)
+    }
+}

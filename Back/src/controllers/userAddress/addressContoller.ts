@@ -1,6 +1,8 @@
-import { Request, Response, Router } from 'express';
+import { Request, Response, Router ,NextFunction} from 'express';
 
 import addressDTO from '../../models/addressDTO';
+import AuthMiddleware from '../../middlewares/authmiddleware';
+import Requestauthed from '../../types/authTypes';
 
 
 
@@ -8,17 +10,21 @@ const router = Router();
 
 
 
-router.get('/', async (req: Request, res: Response) => {
+router.get('/',AuthMiddleware, async (req: Requestauthed, res: Response, next: NextFunction) => {
+    try {
 
-    const Logic = req.query.userID;
-    let Magic: any = {};
-
-
-    if (Logic) Magic.userID = Logic
+        const Logic = req.query.userID;
+        let Magic: any = {};
 
 
-    const Data = await addressDTO.find(Magic);
-    return res.json(Data);
+        if (Logic) Magic.userID = Logic
+
+
+        const Data = await addressDTO.find(Magic);
+        return res.json(Data);
+    } catch (err) {
+        next(err)
+    }
 
 })
 

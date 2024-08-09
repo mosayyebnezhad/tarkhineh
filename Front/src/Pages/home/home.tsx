@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <>
 
-            <Slider />
+            
             <SearchBar />
 
             <ResturantMenu />

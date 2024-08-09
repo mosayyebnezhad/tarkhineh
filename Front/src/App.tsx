@@ -5,6 +5,7 @@ import Footer from './Components/Footer/footer';
 import { createContext, useState } from 'react';
 import { ILogin } from './types/Puplictyps';
 import { useCookies } from 'react-cookie';
+import Slider from './Components/Slider/slider';
 
 
 export const appContext = createContext(null as any);
@@ -25,30 +26,37 @@ function App() {
     islogin: false,
     username: ""
   }
+  interface Cart{
+    id:String
+  }
 
 
   if (cookies.Login) Detail = cookies.Login;
 
 
   const [Login, SetLogin] = useState<ILogin>(Detail)
+  const [branchName, SetbranchName] = useState<String>("شعبه")
+
+  const [Cart, setCart] = useState<Cart[]>()
 
 
 
-  // useEffect(() => {
-  //   console.log(Login)
-  //   setCookie('Login', JSON.stringify(Login), { path: '/' });
-  //   console.log("login Changed")
-
-
-  // }, [Login])
+  const SendingData = {
+    branchName,
+    SetbranchName,
+    SetLogin,
+    Login,
+    Cart,
+    setCart
+  }
 
 
   return (
     <>
 
-      <appContext.Provider value={{ SetLogin, Login }} >
+      <appContext.Provider value={SendingData} >
         <Header />
-
+        <Slider />
 
         <Routings />
         <Footer />

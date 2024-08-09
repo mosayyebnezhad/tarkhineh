@@ -4,6 +4,7 @@ const FoodSchema = new mongoose.Schema({
     name: String,
     detail: String,
     Image: String,
+    Branch: String,
     price: {
         priceView: String,
         solidPriceView: String,

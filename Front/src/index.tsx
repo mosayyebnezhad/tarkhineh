@@ -31,7 +31,7 @@ const Main = () => {
   //    //   </Suspense> 
 
   return (
-    <React.StrictMode>
+
       <BrowserRouter>
 
         <CookiesProvider defaultSetOptions={{ path: "/" }}>
@@ -40,7 +40,7 @@ const Main = () => {
 
       </BrowserRouter>
 
-    </React.StrictMode>
+
   )
 }
 

@@ -19,6 +19,18 @@ router.get('/', async (req: Request, res: Response) => {
 
 })
 
+
+router.get('/:id', async (req: Request, res: Response) => {
+
+    const { id } = req.params
+    const Data = await BranchsDTO.findOne({ id: id });
+
+
+    return res.json(Data);
+
+
+})
+
 router.post('/', async (req: Request, res: Response) => {
 
     const Data = req.body;

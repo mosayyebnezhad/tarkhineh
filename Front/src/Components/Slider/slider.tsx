@@ -30,7 +30,8 @@ const Slider = () => {
 
     return (
 
-        <Swiper
+     <div className="sliderMain">
+           <Swiper
             pagination={
                 {
                     el: '.swiper-pagination',
@@ -97,6 +98,7 @@ const Slider = () => {
             </SwiperSlide>
 
         </Swiper >
+     </div>
 
 
 
