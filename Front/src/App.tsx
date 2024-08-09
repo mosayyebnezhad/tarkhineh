@@ -57,7 +57,7 @@ function App() {
       <appContext.Provider value={SendingData} >
         <Header />
         <Slider />
-
+        here is router
         <Routings />
         <Footer />
       </appContext.Provider>
