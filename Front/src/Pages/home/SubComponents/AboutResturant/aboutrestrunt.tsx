@@ -1,7 +1,7 @@
 
 import { NavArrowLeft } from "iconoir-react";
 import Buttons from "../../../../Components/Buttons/buttons";
-import Image from "../../../../Components/Images/Image";
+import { ImageGithub } from "../../../../Components/Images/Image";
 import "./aboutrestrunt.scss"
 import { Diagram, HomeWifi, MenuBoard, User } from "iconsax-react";
 
@@ -109,7 +109,7 @@ const Aboutrestrunt = () => {
                 </div>
 
             </div>
-            <Image className="image" path="image2.jpg" />
+            <ImageGithub className="image" path="image2.jpg" />
 
         </div>
     )

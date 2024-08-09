@@ -9,7 +9,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 import { Swiper, SwiperSlide } from 'swiper/react';
-import Image from "../Images/Image";
+import { ImageGithub } from "../Images/Image";
 import { Pagination } from 'swiper/modules';
 import Icon from "../Icons/icons";
 import Buttons from '../Buttons/buttons';
@@ -70,7 +70,7 @@ const Slider = () => {
                         </Buttons>
                     </Link>
                 </div>
-                <Image className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
+                <ImageGithub className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
             </SwiperSlide>
 
             <SwiperSlide>
@@ -82,7 +82,7 @@ const Slider = () => {
                         </Buttons>
                     </Link>
                 </div>
-                <Image className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
+                <ImageGithub className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
             </SwiperSlide>
 
             <SwiperSlide>
@@ -94,7 +94,7 @@ const Slider = () => {
                         </Buttons>
                     </Link>
                 </div>
-                <Image className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
+                <ImageGithub className="sliderImage" width={"100%"} height={`${ImageSize}px`} path="image2.jpg" />
             </SwiperSlide>
 
         </Swiper >

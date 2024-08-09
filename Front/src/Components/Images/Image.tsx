@@ -1,5 +1,6 @@
 import { ImgHTMLAttributes, useState } from "react";
 import "./image.scss"
+import Loading from '../Loading/Loading';
 
 
 interface Propp extends ImgHTMLAttributes<HTMLImageElement> {
@@ -8,7 +9,7 @@ interface Propp extends ImgHTMLAttributes<HTMLImageElement> {
     BeforTxt?: string
 }
 
-const Image = (prop: Propp) => {
+export const ImageGithub = (prop: Propp) => {
     let path = "https://raw.githubusercontent.com/mosayyebnezhad/mohammadmosayyeb.github.io/mohammadmosayyebnezahd/Projects/Tarkhineh/";
 
 
@@ -52,4 +53,22 @@ const Image = (prop: Propp) => {
     )
 }
 
-export default Image;
+interface IProm extends ImgHTMLAttributes<HTMLImageElement> {
+
+}
+export const Image = (prop: IProm) => {
+
+    const [load, setLoading] = useState(false);
+
+    return (
+        <>
+
+            <img  {...prop} style={{ display: "none" }} onLoad={() => { setLoading(true)}} />
+
+
+
+            {load ? <img {...prop} /> : <div className="image loading"></div>}
+
+        </>
+    )
+}

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Image from "../Images/Image";
+import { ImageGithub } from "../Images/Image";
 import "./styleinmobile.scss"
 import { Map, NavArrowDown, Star, UserBadgeCheck } from "iconoir-react";
 import { useEffect, useState } from "react";
@@ -53,7 +53,7 @@ const Headerinmobile = () => {
         <div className="containerinphone">
 
 
-            <Image path="image2.jpg" />
+            <ImageGithub path="image2.jpg" />
 
 
             <Link to={""}>

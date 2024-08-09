@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import Buttons from '../../../../Components/Buttons/buttons';
 import "./resturantmenu.scss"
-import Image from "../../../../Components/Images/Image";
+import { ImageGithub } from "../../../../Components/Images/Image";
 
 const ResturantMenu = () => {
 
@@ -23,7 +23,7 @@ const ResturantMenu = () => {
 
             <div className="containerInmenu">
                 <div className="Backage"></div>
-                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <ImageGithub className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
                 <Buttons Style="fill" color="white">
                     پیش غذا
                 </Buttons>
@@ -31,7 +31,7 @@ const ResturantMenu = () => {
             </div>
             <div className="containerInmenu">
                 <div className="Backage"></div>
-                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <ImageGithub className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
                 <Buttons Style="fill" color="white">
                     پیش غذا
                 </Buttons>
@@ -39,7 +39,7 @@ const ResturantMenu = () => {
             </div>
             <div className="containerInmenu">
                 <div className="Backage"></div>
-                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <ImageGithub className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
                 <Buttons Style="fill" color="white">
                     پیش غذا
                 </Buttons>
@@ -47,7 +47,7 @@ const ResturantMenu = () => {
             </div>
             <div className="containerInmenu">
                 <div className="Backage"></div>
-                <Image className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
+                <ImageGithub className="images" path="food.png" BeforTxt="Enjoy from your" width={size} height={size} />
                 <Buttons Style="fill" color="white">
                     پیش غذا
                 </Buttons>

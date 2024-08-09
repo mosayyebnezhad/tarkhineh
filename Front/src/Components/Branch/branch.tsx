@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom"
 import "./branch.scss"
 import Buttons from "../Buttons/buttons"
-import Image from "../Images/Image"
+
 import { NavArrowLeft } from "iconoir-react"
 import { PictureFrame } from "iconsax-react"
+import { Image } from "../Images/Image"
 
 interface IBranch {
     Branch: string
@@ -19,7 +20,8 @@ const Branch = (prop: IBranch) => {
             <div className="SHariw">
                 <PictureFrame color="white" />
             </div>
-            <img src={prop.image} alt="" />
+            <Image className="image" src={prop.image} alt=""/>
+           
 
             <div className="Detail">
                 <h3 className="title">شعبه {prop.Branch}</h3>
