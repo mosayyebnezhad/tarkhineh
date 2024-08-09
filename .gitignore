@@ -1,13 +1,9 @@
 
 .gitignore
 
-# front
 Front/node_modules
-Front/.env
-
-# Back
 Back/build
 Back/node_modules
 Back/.env
-
+Front/.env
 
