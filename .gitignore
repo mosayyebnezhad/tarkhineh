@@ -1,10 +1,13 @@
+
+.gitignore
+
 # front
-front/node_modules
-front/.env
+Front/node_modules
+Front/.env
 
 # Back
-back/build
-back/node_modules
-back/.env
+Back/build
+Back/node_modules
+Back/.env
 
 
