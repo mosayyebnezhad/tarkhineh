@@ -1,8 +1,10 @@
 import { Heart, Star1, } from "iconsax-react"
 import "./food.scss"
 import Buttons from "../Buttons/buttons"
-import { useContext, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { appContext } from "../../App"
+import { useCookies } from "react-cookie"
+
 interface IFood {
     image?: string
     name?: string
@@ -22,16 +24,49 @@ const Food = (prop: IFood) => {
         size = 32;
     }
     const [loaded, setLoaded] = useState(false)
+
     const handleLoad = () => {
         setLoaded(true)
     }
 
-    const { Cart, setCart } = useContext(appContext)
+    const { Cart, setCart, setAlert, alert } = useContext(appContext)
 
 
+
+    const [cookies, setCookie, removeCookie] = useCookies(['Cart']);
+
+    const [isExistInCart, changeExisting] = useState(false)
+
+
+    useEffect(() => {
+
+        if (Cart.includes(prop.productId)) changeExisting(true)
+    }, [Cart])
 
     const AddToCart = () => {
-        setCart(Cart + " " + prop.productId)
+        const IDD = prop.productId;
+        if (!Cart.includes(IDD)) {
+            setAlert({
+                message: prop.name + "  " + " به سبد خرید اضافه شد!",
+                messageColor: "green",
+            })
+            const updatedCart = [...Cart, IDD];
+
+            console.log(Cart);
+            setCart(updatedCart); // به‌روزرسانی State
+            setCookie('Cart', JSON.stringify(updatedCart), { path: '/' }); // ذخیره‌سازی در کوکی
+        }
+
+
+        // setCart([...Cart, prop.productId]);
+        // // removeCookie('Cart', { path: '/' });
+
+        // const Datas : string[] = [...Cart , prop.productId];
+
+
+        // setCookie('Cart', JSON.stringify(Datas), { path: '/' });
+
+        // // console.log('setted', Datas)
     }
     if (prop.loading) {
 
@@ -129,8 +164,10 @@ const Food = (prop: IFood) => {
                     size={size}
                     Style="fill"
                     color="primery"
+                    disable={isExistInCart}
                 >
-                    افزودن به سبد خرید
+                    {isExistInCart ? "در سبد شما موجود است" : " افزودن به سبد خرید"}
+
                 </Buttons>
             </div>
         )

@@ -3,9 +3,10 @@ import Routings from './Pages/Routes';
 import Header from './Components/header/header';
 import Footer from './Components/Footer/footer';
 import { createContext, useState } from 'react';
-import { ILogin } from './types/Puplictyps';
+import { ICart, ILogin } from './types/Puplictyps';
 import { useCookies } from 'react-cookie';
 import Slider from './Components/Slider/slider';
+import Alert from './Components/Alert/Alert';
 
 
 export const appContext = createContext(null as any);
@@ -14,7 +15,11 @@ function App() {
 
 
 
+  const [alert, setAlert] = useState({
+    message: "",
+    messageColor: "",
 
+  })
   const [cookies] = useCookies(['Login']);
 
 
@@ -26,9 +31,6 @@ function App() {
     islogin: false,
     username: ""
   }
-  interface Cart{
-    id:String
-  }
 
 
   if (cookies.Login) Detail = cookies.Login;
@@ -37,9 +39,13 @@ function App() {
   const [Login, SetLogin] = useState<ILogin>(Detail)
   const [branchName, SetbranchName] = useState<String>("شعبه")
 
-  const [Cart, setCart] = useState<Cart[]>()
+  const [Cartcookies, CartsetCookie, CartremoveCookie] = useCookies(['Cart']);
 
 
+  const [Cart, setCart] = useState<ICart[]>(Cartcookies.Cart ? Cartcookies.Cart : [])
+
+
+  // console.log(Cart);
 
   const SendingData = {
     branchName,
@@ -47,7 +53,11 @@ function App() {
     SetLogin,
     Login,
     Cart,
-    setCart
+    setCart,
+
+
+    setAlert,
+    alert
   }
 
 
@@ -55,9 +65,10 @@ function App() {
     <>
 
       <appContext.Provider value={SendingData} >
+
         <Header />
         <Slider />
-        here is router
+        <Alert />
         <Routings />
         <Footer />
       </appContext.Provider>

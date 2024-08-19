@@ -124,6 +124,44 @@ router.get("/One", async (req: Request, res: Response) => {
 })
 
 
+router.post("/Many", async (req: Request, res: Response) => {
+    const Body = req.body;
+
+    if (Body.foods) {
+
+        const foodsId = Body.foods;
+
+
+
+        try {
+            const Data = await FoodDTO.find({
+                _id: { $in: foodsId }
+            })
+
+
+
+            if (Data) return res.status(200).json(Data)
+            return res.status(404).json({ message: "اطلاعاتی یافت نشد" })
+
+
+        }
+        catch {
+            return res.status(404).json({ message: "اطلاعاتی یافت نشد" })
+        }
+    }
+
+
+    // return res.status(400).json({ message: "آیدی ضروری است" })
+    return res.status(400).json({ message: Body.foods })
+
+})
+
+
+
+
+
+
+
 router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
 
 

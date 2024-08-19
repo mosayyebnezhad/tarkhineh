@@ -1,0 +1,61 @@
+.AlertCase {
+    position: fixed;
+    background: rgb(248, 248, 248);
+    width: 320px;
+    height: 90px;
+    right: 50px;
+    bottom: 50px;
+    z-index: 999;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 0px 15px 5px rgba($color: #000000, $alpha: .3);
+    transition: .5s;
+    transform: translateX(500px);
+    .casing {
+        width: 100%;
+        height: 5%;
+        margin: 2.5% 0;
+
+        .Color {
+            height: 100%; 
+            margin-left: 5%;
+            border-radius: 100px;
+
+        }
+    }
+
+
+    .textP {
+        position: relative;
+        width: 100%;
+        // background: red;
+        direction: rtl;
+        height: 60%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+
+
+
+.meginefd {
+    transform: translateX(0px);
+    
+}
+
+.anima{
+    animation: fullation 3s linear forwards;
+}
+
+
+@keyframes fullation {
+    0% {
+        width: 0%;
+    }
+
+    100% {
+        width: 90%;
+    }
+}

@@ -17,6 +17,7 @@ function Routings() {
 
         <Route path="/branch/:name" element={<BrachPage />} />
         <Route path="/Carts" element={<Cart />} />
+        {/* <Route path="/Profile" element={<Cart />} /> */}
 
         {/* test */}
         <Route path="/contact" element={<ContactUs />} />

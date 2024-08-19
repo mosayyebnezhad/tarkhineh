@@ -3,8 +3,6 @@ import Food from "../../../Components/Food/food";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-import { Pagination } from 'swiper/modules';
-
 
 
 
@@ -52,7 +50,7 @@ const SectionBranch = (prop: ISection) => {
                     food.map((item, index) => {
                         return (
 
-                            <SwiperSlide>
+                            <SwiperSlide key={index}>
 
                                 <Food key={index} name={item.name} price={item.price.priceView} image={item.Image} off={item.price.Off}
                                     rate={item.Rate.rating} ratecount={item.Rate.count} solidPrice={item.price.solidPriceView} title={item.name}
@@ -66,8 +64,8 @@ const SectionBranch = (prop: ISection) => {
 
                     <>
                         {Array.from({ length: 5 }).map((_, i) => (
-                            <SwiperSlide>
-                                <Food key={i} loading />
+                            <SwiperSlide key={i}>
+                                <Food  loading />
                             </SwiperSlide>
                         ))}
                     </>

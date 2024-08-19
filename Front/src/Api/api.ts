@@ -1,10 +1,11 @@
 import axios from 'axios';
 
 // آدرس پایه API از محیط استفاده می‌شود
-const url = process.env.REACT_APP_DOMAIN || '';
+const url = process.env.REACT_APP_DOMAIN || 'http://localhost:5050';
 const api = axios.create({
     baseURL: url
 });
+
 
 // api.interceptors.request.use(
 //     (req) => {

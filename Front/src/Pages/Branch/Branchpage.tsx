@@ -42,7 +42,7 @@ const BranchPage = () => {
 
             try {
                 const res = await api.get("/food");
-                console.log(res.data);
+                // console.log(res.data);
                 setFood(res.data);
 
             } catch (err) {
@@ -58,7 +58,7 @@ const BranchPage = () => {
 
     const BranchFiltered = food?.filter(s => s.Branch.includes(name))
 
-    console.log(name);
+    // console.log(name);
     const Offer = BranchFiltered?.filter(s => s.price.Off > 50)
     const Popular = BranchFiltered?.filter(s => s.Rate.rating > 5)
     const foregin = BranchFiltered?.filter(s => s.Category.includes("غیرایرانی"))
