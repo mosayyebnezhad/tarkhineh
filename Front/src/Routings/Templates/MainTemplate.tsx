@@ -19,3 +19,16 @@ export const Template = (prop: Iprop) => {
   )
 
 }
+export const Template2 = (prop: Iprop) => {
+  return (
+    <>
+      <Header />
+     
+      <Alert />
+      {prop.Componenet}
+      <Footer />
+
+    </>
+  )
+
+}

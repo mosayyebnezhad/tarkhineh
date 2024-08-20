@@ -1,6 +1,7 @@
-import Buttons from "../../../Components/Buttons/buttons";
-import { Image, Image2 } from "../../../Components/Images/Image";
-import { FoodMain } from "../../../types/Puplictyps";
+import Buttons from "../../../../Components/Buttons/buttons";
+import { Image } from "../../../../Components/Images/Image";
+import { FoodMain } from "../../../../types/Puplictyps";
+import { formatter } from "../../../../utils/formatter";
 import "./cartStyleFood.scss"
 interface Iprop {
     key: any,
@@ -9,6 +10,10 @@ interface Iprop {
 }
 const FoodInCart = (prop: Iprop) => {
     const { food, removeHandler } = prop;
+ 
+
+
+    
     return (
         <div key={prop.key} className="Cartinfood">
             <Image src={`${food.Image}`} alt={`${food.name}`}
@@ -16,7 +21,7 @@ const FoodInCart = (prop: Iprop) => {
             />
             {/* <Image /> */}
             <h2>{food.name}</h2>
-            <h4>{food.price.priceView}
+            <h4>{formatter.format(Number(food.price.priceView))}
                 <span>تومان</span>
             </h4>
             <Buttons onClick={removeHandler} color="black">حذف</Buttons>

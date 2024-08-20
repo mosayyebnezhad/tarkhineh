@@ -59,8 +59,8 @@ const BranchPage = () => {
     const BranchFiltered = food?.filter(s => s.Branch.includes(name))
 
     // console.log(name);
-    const Offer = BranchFiltered?.filter(s => s.price.Off > 50)
-    const Popular = BranchFiltered?.filter(s => s.Rate.rating > 5)
+    const Offer = BranchFiltered?.filter(s => s.price.Off > 11)
+    const Popular = BranchFiltered?.filter(s => s.Rate.rating >= 3)
     const foregin = BranchFiltered?.filter(s => s.Category.includes("غیرایرانی"))
 
     return (
@@ -71,6 +71,7 @@ const BranchPage = () => {
             <div className="sectionOne ">
                 <div className="titleOfsection">
                     پیشنهاد ویژه
+              
                 </div>
                 <SectionBranch food={Offer} />
             </div>

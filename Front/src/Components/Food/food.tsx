@@ -5,6 +5,7 @@ import { useContext, useEffect, useState } from "react"
 import { appContext } from "../../App"
 import { useCookies } from "react-cookie"
 import { useAlert } from "../../hook/useAlert"
+import { formatter } from "../../utils/formatter"
 
 
 interface IFood {
@@ -21,7 +22,7 @@ interface IFood {
 }
 
 const Food = (prop: IFood) => {
-    const Hooc =  useAlert();
+    const Hooc = useAlert();
     let size: 40 | 32 = 40
     if (window.innerWidth < 768) {
         size = 32;
@@ -36,7 +37,7 @@ const Food = (prop: IFood) => {
 
 
 
-  
+
 
     const [isExistInCart, changeExisting] = useState(false)
 
@@ -46,14 +47,14 @@ const Food = (prop: IFood) => {
         if (Cart.includes(prop.productId)) changeExisting(true)
     }, [Cart])
 
-    const AddToCart = () => {
-        
-      Hooc.Add(prop)
-    //   Hooc.justConsoleLog()
- 
+    const AddToCart = () => Hooc.Add(prop)
 
-    
-    }
+
+
+
+    let price = formatter.format(Number(prop.price))
+    let solidPrice = formatter.format(Number(prop.solidPrice))
+
     if (prop.loading) {
 
         return (
@@ -109,7 +110,7 @@ const Food = (prop: IFood) => {
 
                     <div className="Oldprice">
                         <span className="off">%{prop.off}</span>
-                        <span className="solidPrice">{prop.solidPrice}</span>
+                        <span className="solidPrice">{solidPrice}</span>
                     </div>
                     <div className="addtolike">
                         <span className="addtext">افزودن به علافه مندی ها</span>
@@ -118,7 +119,7 @@ const Food = (prop: IFood) => {
 
                     <div className="Price">
                         <span>تومان</span>
-                        <span> {prop.price}</span>
+                        <span> {price}</span>
                     </div>
 
                     <div className="rating">

@@ -1,0 +1,343 @@
+.containerCart {
+    margin: 32px;
+    width: 90%;
+    margin-left: 5%;
+    height: auto;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    direction: rtl;
+
+    @media (max-width:1000px) {
+        border: 1px solid #cbcbcb;
+        border-radius: 8px;
+    }
+
+    .details {
+        direction: ltr;
+        width: 35%;
+        height: auto;
+        // position: fixed;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 8px;
+        @media (max-width:1000px) {
+            width: 100%;
+            border: none;
+        }
+        .headeresCart {
+
+            margin-top: 20px;
+
+
+        }
+
+
+        .iteminDetail {
+            width: 80%;
+            margin-left: 10%;
+            margin-top: 5%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            // background: rebeccapurple;
+            .Values {
+                direction: rtl;
+                font-size: 14px;
+                font-weight: 300;
+            }
+
+            .Titles {
+                font-size: 16px;
+                font-weight: 600;
+                direction: rtl;
+            }
+        }
+    }
+
+    .foods {
+        direction: ltr;
+        width: 60%;
+
+        // background: blue;
+        height: 500px;
+        overflow-y: scroll;
+        border: 1px solid #cbcbcb;
+        border-radius: 8px;
+        padding: 15px 0;
+
+        @media (min-width:1000px) {
+            min-width: 600px;
+        }
+
+        @media (max-width:1000px) {
+            width: 100%;
+            min-width: none !important;
+            border: none;
+        }
+
+        .food {
+            background: #fcfcfc;
+            border-radius: 4px;
+            width: 90%;
+            height: 150px;
+            margin: 15px 0;
+            margin-left: 5%;
+            overflow: hidden;
+            border: 1px solid #cbcbcb;
+
+            @media (max-width:1000px) {
+                height: 55px;
+            }
+
+            .leftSide {
+                width: 70%;
+                height: 100%;
+                float: left;
+
+                @media (max-width:1000px) {
+                    width: 100%;
+                }
+
+                .toppest {
+                    width: 90%;
+                    margin-left: 5%;
+                    height: 33%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+
+                    // background: rgb(37, 175, 60);
+
+                    @media (max-width:1000px) {
+                        height: 30px;
+                        margin-top:0px;
+                    }
+
+                    .icon,
+                    .title {
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        cursor: pointer;
+                    }
+
+                    .title {
+                        font-family: 16px;
+                        font-weight: 700;
+
+                        @media (max-width:1000px) {
+                            font-size: 14px;
+                            font-weight: 500;
+                        }
+                    }
+                }
+
+                .middelest {
+                    width: 90%;
+                    margin-left: 5%;
+                    height: 30%;
+                    display: flex;
+                    justify-content: flex-start;
+                    overflow: hidden;
+                    font-size: 14px;
+                    font-weight: 300;
+                    align-items: center;
+                    direction: rtl;
+
+                    @media (max-width:1000px) {
+                        display: none;
+                    }
+
+                    .rating {
+
+
+                        float: right;
+
+
+                        .Off {
+                            background: rgb(236, 142, 142);
+                            padding: 0px 7px;
+                            border-radius: 100px;
+                            font-size: 10px;
+                            color: rgb(92, 14, 14);
+                        }
+
+                        .OldPrice {
+                            margin: 0 10%;
+                            // background: violet;
+                            font-size: 10px;
+                            text-decoration: line-through;
+                        }
+                    }
+
+                    p {
+
+
+                        width: calc(80% - 15px);
+
+                        display: inline;
+                        text-wrap: nowrap;
+                        overflow: hidden;
+                        float: right;
+                        // background: gray;
+                    }
+                }
+
+                .lowest {
+                    width: 90%;
+                    margin-left: 5%;
+                    margin-top: 2%;
+                    height: 26%;
+                    // background: rgb(174, 39, 227);
+                    display: flex;
+
+                    @media (max-width:1000px) {
+                        height: 25px;
+                        margin-top: 0;
+                        font-size: 10px !important;
+                        font-weight: 200;
+                        justify-content: flex-end;
+                    }
+
+                    .price {
+                        width: 20%;
+                        // background: green;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 18px;
+                        font-weight: 700;
+                        direction: rtl;
+                        gap: 5px;
+                        span{
+                            font-weight: 300;
+                        }
+                        @media (max-width:1000px) {
+
+
+                            font-size: 10px !important;
+                            font-weight: 200;
+                        }
+                    }
+
+                    .counting {
+                        margin-left: 20%;
+                        width: 30%;
+                        // background: blue;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        @media (max-width:1000px) {
+                            display: none;
+                        }
+
+                        .counter {
+
+                            width: 60%;
+                            height: 80%;
+                            background: #e1e0e0;
+                            display: flex;
+                            border-radius: 4px;
+
+                            .spltthree {
+                                width: 33.34%;
+                                height: 100%;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                border-radius: 4px;
+
+                                &:hover {
+                                    cursor: pointer;
+                                    background: #cacaca;
+                                }
+
+                                .iconw {
+                                    width: 16px;
+                                }
+                            }
+                        }
+                    }
+
+                    .Stars {
+                        width: 30%;
+                        // background: red;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        .Isacoiwh {
+                            width: 20px;
+                            fill: rgb(219, 246, 139);
+                        }
+
+                        @media (max-width:1000px) {
+                            display: none;
+                        }
+
+                    }
+                }
+            }
+
+            img {
+                width: 30%;
+                height: 100%;
+                float: left;
+                object-fit: cover;
+
+                @media (max-width:1000px) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    button {
+
+        width: 80%;
+        margin: 30px 0;
+
+        margin-left: 10%;
+    }
+
+
+}
+
+
+
+
+.splitterHoriz {
+
+    width: 80%;
+    height: 2px;
+    margin: 15px;
+    margin-left: 10%;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+.headerrr {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.Maining {
+    // font-size: 18px !important;
+    font-weight: 800 !important;
+}
+
+.lowing {
+    // font-size: 14px !important;
+    font-weight: 300 !important;
+}
+
+.grn {
+    color: rgb(8, 117, 8);
+}
+
+.rdn {
+    color: rgb(111, 0, 0);
+}

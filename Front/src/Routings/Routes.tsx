@@ -7,7 +7,7 @@ import Singout from "../Pages/singOut/singOut";
 import BrachPage from "../Pages/Branch/Branchpage";
 import Cart from "../Pages/Carts/Carts";
 
-import { Template } from "./Templates/MainTemplate";
+import { Template, Template2 } from "./Templates/MainTemplate";
 import { ReactNode } from "react";
 
 function MainRoutes() {
@@ -22,17 +22,17 @@ function MainRoutes() {
         {Rt("*", <Notfound />)}
 
 
-        
+
         {/* routes */}
         {Rt("/home", <Home />)}
         {Rt("/branch/:name", <BrachPage />)}
-        {Rt("/Carts", <Cart />)}
+        {Rt("/Carts", <Cart /> , 2)}
 
-   
-      
+
+
 
         {/* test */}
-       
+
         {Rt("/contact", <ContactUs />)}
         {Rt("/Branch", <Notfound />)}
         {Rt("/menu", <Notfound />)}
@@ -57,9 +57,22 @@ export default MainRoutes;
 
 
 
-const Rt = (p: string, El: ReactNode) => {
+const Rt = (p: string, El: ReactNode, template: number = 1) => {
 
-  return (
-    <Route path={p} element={<Template Componenet={El} />} />
-  )
+  if (template === 1) {
+    return (
+      <Route path={p} element={<Template Componenet={El} />} />
+    )
+  }
+  else if (template === 2) {
+    return (
+      <Route path={p} element={<Template2 Componenet={El} />} />
+    )
+  }
+
+  else {
+    return (
+      <Route path={p} element={<Template Componenet={El} />} />
+    )
+  }
 }

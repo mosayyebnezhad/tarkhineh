@@ -22,13 +22,14 @@ const Alert = (prop: IAlert) => {
     }
 
     useEffect(() => {
-        console.log(alert);
+        // console.log(alert);
         if (alert.message) {
             setShow(true)
             setTimeout(() => {
                 setShow(false)
-                console.log("clear");
+                // console.log("clear");
             }, 3000);
+           
         }
     }, [alert])
 

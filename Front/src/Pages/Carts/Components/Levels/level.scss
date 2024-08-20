@@ -1,0 +1,67 @@
+.MainContainer {
+    width: 80%;
+    margin-left: 10%;
+    // background: red;
+    direction: rtl;
+    height: 80px;
+    margin-top: 56px;
+
+    @media (max-width:1100px) {
+        width: 100%;
+        margin-left: 0%;
+    }
+
+
+    @media (max-width:1000px) {
+        display: none;
+        // margin-left: 0%;
+    }
+
+    .case {
+        width: 80%;
+        margin-right: 10%;
+        height: 100%;
+        // background: blue;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+
+        .casing {
+            width: 25%;
+            height: 100%;
+            // background: blue;
+            margin: 0 15px;
+            display: flex;
+
+            .linBord {
+                width: 50%;
+                height: 50%;
+                border-bottom: dashed #cbcbcb 2px;
+
+
+            }
+        }
+    }
+
+    .PlaceC {
+        width: auto;
+        gap: 7px;
+        // background: #808080;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        font-size: 14px;
+        color: #cbcbcb;
+    }
+}
+
+.activeBorder {
+    border-bottom: dashed #417f56 2px !important;
+}
+
+.ActivePlace {
+    color: #417f56 !important;
+    font-size: 16px !important;
+    font-weight: 600;
+}

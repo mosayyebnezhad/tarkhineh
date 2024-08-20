@@ -174,8 +174,8 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextF
         Data.CreateDate = Date.now();
 
 
-        Data['Rate.rating'] = 0
-        Data['Rate.count'] = 0
+        // Data['Rate.rating'] = 0
+        // Data['Rate.count'] = 0
         Data['RateID'] = new mongoose.mongo.ObjectId();
         Data['CommentID'] = new mongoose.mongo.ObjectId();
 
@@ -189,6 +189,19 @@ router.post("/", AuthMiddleware, async (req: Request, res: Response, next: NextF
         return res.status(200).send({ message: "اطلاعات با موفقیت ثبت شد" })
 
 
+
+
+
+    }
+    catch (err) {
+        next(err)
+    }
+})
+router.post("/Lsit", AuthMiddleware, async (req: Request, res: Response, next: NextFunction) => {
+
+
+    try {
+    const Data = req.body;
 
 
 
