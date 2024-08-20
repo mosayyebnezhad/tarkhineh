@@ -172,7 +172,7 @@ const Headeritem = () => {
 
                 <div key={index} >
 
-                    <Link to={haederItemsEnglish[index]}><div className={(haederItems[indexloc] === item ? "active item" : "item") + (index === 4 ? " cha4" : "") + (index === 3 ? " cha3" : "")}
+                    <Link to={"../" + haederItemsEnglish[index]}><div className={(haederItems[indexloc] === item ? "active item" : "item") + (index === 4 ? " cha4" : "") + (index === 3 ? " cha3" : "")}
 
                         onMouseEnter={() => {
 
@@ -191,7 +191,7 @@ const Headeritem = () => {
                                 <div className="list">
                                     {Data ? Data.map((item, index) => {
                                         return (
-                                            <Link key={index} to={`branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
+                                            <Link key={index} to={`../branch/${item.id}`}> <div className="title" >{item.name}</div></Link>
 
                                         )
                                     })

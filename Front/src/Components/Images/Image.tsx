@@ -67,7 +67,24 @@ export const Image = (prop: IProm) => {
 
 
 
-            {load ? <img {...prop} /> : <div className="image loading"></div>}
+            {load ? <img {...prop} /> : <div {...prop}  className="image loading"></div>}
+
+        </>
+    )
+}
+
+export const Image2 = (prop: IProm) => {
+
+    const [load, setLoading] = useState(false);
+
+    return (
+        <>
+
+            <img  {...prop} style={{ display: "none" }} onLoad={() => { setLoading(true)}} />
+
+
+
+            {load ? <img {...prop} /> : <div  className="image loading"></div>}
 
         </>
     )

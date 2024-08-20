@@ -4,6 +4,8 @@ import Buttons from "../Buttons/buttons"
 import { useContext, useEffect, useState } from "react"
 import { appContext } from "../../App"
 import { useCookies } from "react-cookie"
+import { useAlert } from "../../hook/useAlert"
+
 
 interface IFood {
     image?: string
@@ -19,6 +21,7 @@ interface IFood {
 }
 
 const Food = (prop: IFood) => {
+    const Hooc =  useAlert();
     let size: 40 | 32 = 40
     if (window.innerWidth < 768) {
         size = 32;
@@ -33,7 +36,7 @@ const Food = (prop: IFood) => {
 
 
 
-    const [cookies, setCookie, removeCookie] = useCookies(['Cart']);
+  
 
     const [isExistInCart, changeExisting] = useState(false)
 
@@ -44,29 +47,12 @@ const Food = (prop: IFood) => {
     }, [Cart])
 
     const AddToCart = () => {
-        const IDD = prop.productId;
-        if (!Cart.includes(IDD)) {
-            setAlert({
-                message: prop.name + "  " + " به سبد خرید اضافه شد!",
-                messageColor: "green",
-            })
-            const updatedCart = [...Cart, IDD];
+        
+      Hooc.Add(prop)
+    //   Hooc.justConsoleLog()
+ 
 
-            console.log(Cart);
-            setCart(updatedCart); // به‌روزرسانی State
-            setCookie('Cart', JSON.stringify(updatedCart), { path: '/' }); // ذخیره‌سازی در کوکی
-        }
-
-
-        // setCart([...Cart, prop.productId]);
-        // // removeCookie('Cart', { path: '/' });
-
-        // const Datas : string[] = [...Cart , prop.productId];
-
-
-        // setCookie('Cart', JSON.stringify(Datas), { path: '/' });
-
-        // // console.log('setted', Datas)
+    
     }
     if (prop.loading) {
 

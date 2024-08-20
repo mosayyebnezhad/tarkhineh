@@ -36,10 +36,11 @@ const Alert = (prop: IAlert) => {
     return (
         <div className={`AlertCase ${show && "meginefd"}`}>
             <div className="casing">
-                <div className={`Color ${show && "anima"}`} style={{ background: Colors.green }}></div>
+                <div className={`Color ${show && "anima"}`} style={{ background: `${alert.messageColor}` }}></div>
             </div>
             <p className="textP">
                 {alert.message}
+          
             </p>
 
         </div >

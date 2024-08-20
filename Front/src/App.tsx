@@ -1,5 +1,5 @@
 
-import Routings from './Pages/Routes';
+import MainRoutes from './Routings/Routes';
 import Header from './Components/header/header';
 import Footer from './Components/Footer/footer';
 import { createContext, useState } from 'react';
@@ -66,11 +66,9 @@ function App() {
 
       <appContext.Provider value={SendingData} >
 
-        <Header />
-        <Slider />
-        <Alert />
-        <Routings />
-        <Footer />
+       
+        <MainRoutes />
+       
       </appContext.Provider>
 
     </>

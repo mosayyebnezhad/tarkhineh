@@ -8,11 +8,13 @@ import axios from "axios"
 import { appContext } from "../../App"
 import { ILogin } from '../../types/Puplictyps';
 import { useCookies } from "react-cookie"
+import { useAlert } from "../../hook/useAlert"
 const url: string = process.env.REACT_APP_DOMAIN || '';
 
 
 
 const Singin = () => {
+    const Hoock = useAlert()
     const { SetLogin } = useContext(appContext)
     const [, setCookie] = useCookies(['Login']);
 
@@ -190,7 +192,7 @@ const Singin = () => {
                 setCookie("Login", JSON.stringify(loginDetail), { path: '*' });
                 SetError("")
                 // console.log(loginDetail)
-
+                Hoock.Create("ورود شما با موفقیت انجام شد" , "green")
 
             } catch (error: any) {
                 SetError(error.response.data.message)

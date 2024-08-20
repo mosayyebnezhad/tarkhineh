@@ -1,0 +1,100 @@
+.containerCart {
+    width: 90%;
+    flex-wrap: wrap;
+
+    margin: 56px 0;
+    margin-left: 5%;
+    // background: red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    .Cartinfood {
+        width: 240px;
+        height: 300px;
+        background: rgb(234, 234, 234);
+        // border-radius: calc(8px + 2.5%);
+        border-radius: 10px;
+        margin: 24px;
+
+        img {
+            width: 95%;
+            margin-left: 2.5%;
+            margin-top: 2.5%;
+            border-radius: 8px;
+            height: 50%;
+            object-fit: cover;
+        }
+
+        h2 {
+            width: 100%;
+            text-align: center;
+            // background: red;
+            font-weight: 400;
+        }
+
+        h4 {
+            width: 70%;
+            margin-left: 15%;
+
+            margin-top: 2.5%;
+            direction: rtl;
+            gap: 10px;
+
+            span {
+                font-weight: 400;
+                margin-right: 5px;
+            }
+        }
+
+        button {
+            width: 70%;
+            margin-left: 15%;
+            margin-top: 2.5%;
+            background: rgb(255, 48, 48);
+
+            &:hover {
+                background: rgb(242, 18, 18);
+            }
+        }
+    }
+}
+
+
+.Submit {
+
+    width: 50%;
+    margin-left: 25%;
+    background: whitesmoke;
+    height: auto;
+    border-radius: 16px;
+    margin-bottom: 100px;
+    float: left;
+    @media (max-width:576px) {
+        width: 95%;
+        margin-left: 2.5%;
+    }
+
+    button {
+        width: 40%;
+        margin-left: 30%;
+        margin-bottom: 15px;
+        float: left;
+        @media (max-width:576px) {
+            width: 60%;
+            margin-left: 20%;
+        }
+    }
+
+    .ShowPrice {
+        width: 100%;
+        text-align: center;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        font-weight: 500;
+        float: left;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}

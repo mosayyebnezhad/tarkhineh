@@ -1,18 +1,23 @@
-import { CartAlt } from "iconoir-react"
+
 import { appContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import api from "../../Api/api";
-import { FoodMain, ICart } from "../../types/Puplictyps";
-import { useCookies } from "react-cookie";
+import { FoodMain } from "../../types/Puplictyps";
+
+import { useAlert } from "../../hook/useAlert";
+import FoodInCart from "./Components/CartFoods";
+import Buttons from "../../Components/Buttons/buttons";
+import { HandCard, Paypal } from "iconoir-react";
+import { VideoPlay } from "iconsax-react";
 
 
 const Cart = () => {
+    const Hoock = useAlert()
+    const { Cart, Login } = useContext(appContext);
 
-    const { Cart, setCart } = useContext(appContext);
-
-    const [cookies, setCookie, removeCookie] = useCookies(['Cart']);
 
     const [foods, addFoods] = useState<FoodMain[]>([])
+    const [Price, SetPrice] = useState<number>(0)
 
     useEffect(() => {
         console.log(Cart)
@@ -35,40 +40,72 @@ const Cart = () => {
     }, [Cart])
 
 
-    const { alert, setAlert } = useContext(appContext)
     const removeItem = (id: String) => {
-        console.log(id)
-        const CartArray: string[] = Cart;
-        console.log()
-        let updatedCart = CartArray.filter(s => s !== id);
-        setCart(updatedCart)
-        console.log(updatedCart)
-        console.log(Cart)
-        //remove from cart state
-
-
-
-        //remove from cookie
-
-        setCookie('Cart', JSON.stringify(updatedCart), { path: '/' });
-
-        setAlert({
-            message: " " + "با موفقیت حذف شد!",
-            messageColor: "red",
-        })
+        Hoock.Remove(id)
     }
 
+
+
+    useEffect(() => {
+
+        const totalPrice = foods.reduce((total, item) => {
+            // return total + (Number(item.price.price) * Number(item.price.Off) / 100);
+            return total + Number(item.price.priceView);
+
+
+
+        }, 0);
+        SetPrice(totalPrice)
+        console.log(foods)
+        console.log(totalPrice)
+
+    }, [foods])
+
+
+
+    const registerhanlder = () => {
+        Hoock.Create("سفارش شما مثلا ثبت شد 😆" , "violet")
+    }
+
+    const registerhanlderNosign = () => {
+        Hoock.Create("ابتدا وارد حساب خود شوید !" , "red")
+    }
     return (
         <>
-            {foods && foods.map((item, index) => {
-                return (
-                    <div key={index}>
-                        {item.name}
-                        <div onClick={() => removeItem(item._id)}>Remove This Item</div>
-                    </div>
-                )
-            })}
-            welcome here
+            <div className="containerCart">
+                {foods && foods.map((item, index) => {
+                    return (
+
+                        <FoodInCart key={index} food={item} removeHandler={() => removeItem(item._id)} />
+                    )
+                })}
+            </div>
+
+
+
+            <div className="Submit">
+
+
+
+                <div className="ShowPrice">
+                    جمع محصولات شما : {Price} تومان
+
+                    <HandCard />
+                </div>
+                {Login.islogin ?
+
+
+                    <Buttons onClick={registerhanlder}>
+                        ثبت سفارش
+                    </Buttons>
+                    :
+                    <Buttons onClick={registerhanlderNosign} color="primery" Style="fill">
+                        !لطفا ثبت نام کنید
+                    </Buttons>
+
+                }
+
+            </div>
         </>
     )
 }
