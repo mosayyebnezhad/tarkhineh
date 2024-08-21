@@ -18,7 +18,8 @@ interface IFood {
     rate?: number
     ratecount?: number
     loading?: boolean
-    productId?: string
+    productId?: string,
+    Buyed: boolean 
 }
 
 const Food = (prop: IFood) => {
@@ -54,6 +55,10 @@ const Food = (prop: IFood) => {
 
     let price = formatter.format(Number(prop.price))
     let solidPrice = formatter.format(Number(prop.solidPrice))
+
+
+
+    const { Buyed } = prop;
 
     if (prop.loading) {
 
@@ -151,9 +156,9 @@ const Food = (prop: IFood) => {
                     size={size}
                     Style="fill"
                     color="primery"
-                    disable={isExistInCart}
+                    disable={Buyed}
                 >
-                    {isExistInCart ? "در سبد شما موجود است" : " افزودن به سبد خرید"}
+                    {Buyed ? "در سبد شما موجود است" : " افزودن به سبد خرید"}
 
                 </Buttons>
             </div>

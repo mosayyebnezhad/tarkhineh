@@ -1,7 +1,10 @@
 
+import { useContext } from "react";
 import Food from "../../../Components/Food/food";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { appContext } from "../../../App";
+import { ICart } from "../../../types/Puplictyps";
 
 
 
@@ -15,14 +18,20 @@ const SectionBranch = (prop: ISection) => {
     const { food } = prop
 
 
+    let { Cart } = useContext(appContext)
+    const CartContext: any[] = Cart;
+
+
+    console.log(Cart[0])
+
     return (
 
 
         <div className="branchswiper">
             <Swiper
-              
-                
-           
+
+
+
                 spaceBetween={0}
                 // centeredSlides={true}
                 dir={"rtl"}
@@ -48,6 +57,13 @@ const SectionBranch = (prop: ISection) => {
 
                 {food ?
                     food.map((item, index) => {
+                        const ThisID = item._id.toString();
+                        let Buydd = false;
+
+
+                        if (CartContext.includes(ThisID)) {
+                            Buydd = true;
+                        }
                         return (
 
                             <SwiperSlide key={index}>
@@ -55,7 +71,10 @@ const SectionBranch = (prop: ISection) => {
                                 <Food key={index} name={item.name} price={item.price.priceView} image={item.Image} off={item.price.Off}
                                     rate={item.Rate.rating} ratecount={item.Rate.count} solidPrice={item.price.solidPriceView} title={item.name}
                                     productId={String(item._id)}
+
+                                    Buyed={Buydd}
                                 />
+                                {/* {Cart} */}
 
                             </SwiperSlide>
                         )
@@ -65,7 +84,7 @@ const SectionBranch = (prop: ISection) => {
                     <>
                         {Array.from({ length: 5 }).map((_, i) => (
                             <SwiperSlide key={i}>
-                                <Food  loading />
+                                <Food Buyed={true} loading />
                             </SwiperSlide>
                         ))}
                     </>
