@@ -13,8 +13,10 @@
     // margin-left: 2.5%;
     @include align(center, center);
     background: #FFFFFF;
-    box-shadow: 0 0 15px 5px rgba($color: #000000, $alpha: .15);
-
+ 
+    @media (min-width: 1000px) {
+        box-shadow: 0 0 15px 5px rgba($color: #000000, $alpha: .15);
+    }
 
     .logo {
         width: 20%;

@@ -22,7 +22,7 @@ const SectionBranch = (prop: ISection) => {
     const CartContext: any[] = Cart;
 
 
-    console.log(Cart[0])
+    // console.log(Cart[0])
 
     return (
 

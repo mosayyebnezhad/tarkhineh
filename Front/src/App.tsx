@@ -1,25 +1,28 @@
 
 import MainRoutes from './Routings/Routes';
-import Header from './Components/header/header';
-import Footer from './Components/Footer/footer';
-import { createContext, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { ICart, ILogin } from './types/Puplictyps';
 import { useCookies } from 'react-cookie';
-import Slider from './Components/Slider/slider';
-import Alert from './Components/Alert/Alert';
 
 
 export const appContext = createContext(null as any);
 
 function App() {
 
+  interface IContext {
+    message?: string, messageColor?: string
+  }
+
+  const [alert, setAlert] = useState<IContext>(
+    {
+      message: "",
+      messageColor: "",
+    })
 
 
-  const [alert, setAlert] = useState({
-    message: "",
-    messageColor: "",
 
-  })
+
+
   const [cookies] = useCookies(['Login']);
 
 
@@ -66,9 +69,9 @@ function App() {
 
       <appContext.Provider value={SendingData} >
 
-       
+
         <MainRoutes />
-       
+
       </appContext.Provider>
 
     </>

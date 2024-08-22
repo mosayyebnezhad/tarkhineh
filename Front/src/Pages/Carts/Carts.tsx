@@ -3,7 +3,7 @@ import { appContext } from "../../App";
 import { useContext, useEffect, useState } from "react";
 import api from "../../Api/api";
 import { FoodMain } from "../../types/Puplictyps";
-import { useAlert } from "../../hook/useAlert";
+import { useCreateAlert, useFood } from '../../hook/Hooks';
 import FoodInCart from "./Components/Foods/CartFoods";
 import Buttons from "../../Components/Buttons/buttons";
 import { HandCard, InfoCircle, Paypal } from "iconoir-react";
@@ -14,7 +14,8 @@ import "./carts.scss"
 import { Link } from "react-router-dom";
 
 const Cart = () => {
-    const Hoock = useAlert()
+    const Hoock = useFood();
+    const AlertHoock = useCreateAlert();
     const { Cart, Login } = useContext(appContext);
 
 
@@ -90,11 +91,13 @@ const Cart = () => {
 
 
     const registerhanlder = () => {
-        Hoock.Create("سفارش شما مثلا ثبت شد 😆", "violet")
+        AlertHoock.Alert("سفارش شما مثلا ثبت شد 😆", "violet")
+      
     }
 
     const registerhanlderNosign = () => {
-        Hoock.Create("ابتدا وارد حساب خود شوید !", "red")
+        AlertHoock.Alert("ابتدا وارد حساب خود شوید !", "red")
+      
     }
 
 

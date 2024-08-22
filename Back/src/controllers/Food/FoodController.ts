@@ -201,8 +201,10 @@ router.post("/Lsit", AuthMiddleware, async (req: Request, res: Response, next: N
 
 
     try {
-    const Data = req.body;
+        // const Data = req.body;
+        const { body: Data } = req;
 
+        Data
 
 
     }

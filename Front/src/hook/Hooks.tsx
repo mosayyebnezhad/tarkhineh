@@ -15,9 +15,10 @@ interface Iprop {
     productId?: string
 }
 
-export const useAlert = () => {
-    const [cookies, setCookie, WremoveCookie] = useCookies(['Cart']);
-    const { Cart, setCart, setAlert, Walert } = useContext(appContext)
+export const useFood = () => {
+    const [, setCookie] = useCookies(['Cart']);
+
+    const { Cart, setCart, setAlert } = useContext(appContext)
 
 
     const Add = (prop: Iprop) => {
@@ -35,24 +36,24 @@ export const useAlert = () => {
             })
             const updatedCart = [...Cart, Prid];
 
-            console.log(Cart);
+            // console.log(Cart);
             setCart(updatedCart); // به‌روزرسانی State
             setCookie('Cart', JSON.stringify(updatedCart), { path: '/' }); // ذخیره‌سازی در کوکی
         }
 
-        console.log(prop)
+        // console.log(prop)
     }
 
 
     const Remove = (id: String) => {
 
-        console.log(id)
+        // console.log(id)
         const CartArray: string[] = Cart;
-        console.log()
+        // console.log()
         let updatedCart = CartArray.filter(s => s !== id);
         setCart(updatedCart)
-        console.log(updatedCart)
-        console.log(Cart)
+        // console.log(updatedCart)
+        // console.log(Cart)
         //remove from cart state
 
 
@@ -70,30 +71,37 @@ export const useAlert = () => {
     }
 
 
-    const Create = (Text: String, Color: String) => {
 
-       
-        setAlert({
-            message: Text,
-            messageColor: Color,
-        })
-
-
-    }
 
     return {
         Add,
-        Remove,
-        Create
+        Remove
+
     }
 
 }
 
 
 
-export const useRemoveAlert = () => {
+export const useCreateAlert = () => {
 
-    console.log("use remove alert called")
-    return null
+
+
+    const { setAlert } = useContext(appContext)
+
+
+    const Alert = (Text: String, Color: String) => {
+        setAlert({
+            message: Text,
+            messageColor: Color,
+        })
+    }
+
+
+    return {
+        Alert,
+        
+    }
+
 
 }

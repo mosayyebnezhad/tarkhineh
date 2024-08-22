@@ -4,7 +4,7 @@ import Buttons from "../Buttons/buttons"
 import { useContext, useEffect, useState } from "react"
 import { appContext } from "../../App"
 import { useCookies } from "react-cookie"
-import { useAlert } from "../../hook/useAlert"
+import { useFood } from "../../hook/Hooks"
 import { formatter } from "../../utils/formatter"
 
 
@@ -19,11 +19,11 @@ interface IFood {
     ratecount?: number
     loading?: boolean
     productId?: string,
-    Buyed: boolean 
+    Buyed: boolean
 }
 
 const Food = (prop: IFood) => {
-    const Hooc = useAlert();
+    const Hooc = useFood();
     let size: 40 | 32 = 40
     if (window.innerWidth < 768) {
         size = 32;
@@ -48,7 +48,10 @@ const Food = (prop: IFood) => {
         if (Cart.includes(prop.productId)) changeExisting(true)
     }, [Cart])
 
-    const AddToCart = () => Hooc.Add(prop)
+
+    const AddToCart = () => {
+        Hooc.Add(prop)
+    }
 
 
 

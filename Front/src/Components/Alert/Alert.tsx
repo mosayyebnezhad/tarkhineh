@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react"
 import { appContext } from "../../App"
 import "./Alert.scss"
+import { useParams } from "react-router-dom"
 
 interface IAlert {
     message?: string,
@@ -15,21 +16,25 @@ const Alert = (prop: IAlert) => {
     const [show, setShow] = useState(false)
 
 
-    const Colors = {
-        red: "",
-        green: "#417F56",
-        Orange: "orange"
-    }
+
 
     useEffect(() => {
-        // console.log(alert);
+        console.log(alert);
+    
         if (alert.message) {
+
+       
             setShow(true)
             setTimeout(() => {
                 setShow(false)
+                setAlert({
+                    message: "",
+                    messageColor: "",
+                })
                 // console.log("clear");
             }, 3000);
-           
+
+
         }
     }, [alert])
 
@@ -37,11 +42,11 @@ const Alert = (prop: IAlert) => {
     return (
         <div className={`AlertCase ${show && "meginefd"}`}>
             <div className="casing">
-                <div className={`Color ${show && "anima"}`} style={{ background: `${alert.messageColor}` }}></div>
+                <div className={`Color ${show && "anima"}`} style={{ background: `${alert?.messageColor}` }}></div>
             </div>
             <p className="textP">
-                {alert.message}
-          
+                {alert?.message}
+
             </p>
 
         </div >
