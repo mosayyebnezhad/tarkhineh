@@ -1,0 +1,37 @@
+.CountainterInMaziat {
+    width: 60%;
+    float: left;
+    margin-left: 20%;
+    // background: gray;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+
+    .leftDrive,
+    .RightDrive {
+        width: auto;
+
+    }
+
+
+    .Titles {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        // background: red;
+        margin: 16px 0;
+        direction: rtl;
+
+        p {
+            // background: pink;
+            text-wrap: nowrap;
+            margin-right: 4px;
+        }
+
+        // flex-wrap: nowrap;
+        // width: auto !important;
+        // display: inline;
+        // vertical-align: middle;
+    }
+}

@@ -1,0 +1,30 @@
+.ContainerinMoshaver {
+    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    // background: rgb(231, 199, 199);
+
+    .inputs {
+        width: 80%;
+        // background: red;
+        flex-wrap: wrap;
+        float: left;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+
+    .buttonheere {
+        width: 100%;
+        // height: 100px;
+        // background: red;
+        float: left;
+        margin: 48px;
+
+        button {
+            margin: 0 auto;
+        }
+    }
+}

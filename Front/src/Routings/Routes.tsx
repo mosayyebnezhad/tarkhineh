@@ -9,6 +9,7 @@ import Cart from "../Pages/Carts/Carts";
 
 import { Template, Template2 } from "./Templates/MainTemplate";
 import { ReactNode } from "react";
+import Deputize from "../Pages/Deputize/deputze";
 
 function MainRoutes() {
 
@@ -27,7 +28,7 @@ function MainRoutes() {
         {Rt("/home", <Home />)}
         {Rt("/branch/:name", <BrachPage />)}
         {Rt("/Carts", <Cart /> , 2)}
-
+        {Rt("/Deputize", <Deputize />,2)}
 
 
 
@@ -36,7 +37,7 @@ function MainRoutes() {
         {Rt("/contact", <ContactUs />)}
         {Rt("/Branch", <Notfound />)}
         {Rt("/menu", <Notfound />)}
-        {Rt("/Deputize", <Notfound />)}
+        
         {Rt("/singOut", <Singout />)}
 
 
