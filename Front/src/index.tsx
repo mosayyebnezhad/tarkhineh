@@ -10,6 +10,7 @@ import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import { CookiesProvider } from 'react-cookie';
 
+import * as serviceWorker from './serviceWorkerRegistration';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -49,7 +50,7 @@ root.render(
   <Main />
 );
 
-
+serviceWorker.register();
 reportWebVitals();
 
 

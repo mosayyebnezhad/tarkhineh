@@ -9,11 +9,8 @@ const Home = () => {
 
 
     return (
-        <>
-
-            
+        <>           
             <SearchBar />
-
             <ResturantMenu />
             <Aboutrestrunt />
             <Findtarkh />
