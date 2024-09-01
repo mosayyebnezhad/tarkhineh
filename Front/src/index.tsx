@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 
 import reportWebVitals from './reportWebVitals';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 import './Data/index.scss';
 import { BrowserRouter } from 'react-router-dom';
@@ -47,7 +48,8 @@ const Main = () => {
 root.render(
   <Main />
 );
-console.log(process.env.NODE_ENV)
+
+serviceWorkerRegistration.register();
 
 reportWebVitals();
 
